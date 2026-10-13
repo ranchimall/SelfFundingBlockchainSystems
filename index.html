@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Attention, Consumption, Cashflow</title>
+<title>Self Funding Blockchain Systems: Attention, Consumption, Cashflow</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -30,6 +30,7 @@ html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--body)}
 .wrap{max-width:1040px;margin:0 auto;padding:40px 20px 64px}
 h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0 0 8px}
+.kicker{font:600 clamp(18px,3vw,24px)/1.2 var(--head);color:var(--attention);margin:0 0 10px}
 .sub{color:var(--muted);margin:0 0 28px;max-width:56ch}
 
 /* tabs */
@@ -77,7 +78,8 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
 </head>
 <body>
 <main class="wrap">
-  <h1>Attention, Consumption, Cashflow</h1>
+  <h1>Self Funding Blockchain Systems</h1>
+  <p class="kicker">Attention, Consumption, Cashflow</p>
   <p class="sub">Three layers of the same loop. Each one has to grow on average over time.</p>
 
   <div class="tabs" role="tablist" aria-label="Sections">
@@ -102,7 +104,6 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
     <div class="chart-head"><span>Average trend</span><strong data-slope="1"></strong></div>
     <svg class="chart" data-chart="1" viewBox="0 0 640 250" role="img" aria-label="Consumption growing over 24 months"></svg>
     <div class="legend"><span><i></i>Consumption</span><span><i class="d"></i>Average trend</span><span>Illustrative data</span></div>
-    <div class="empty"><b>No categories added yet</b>Share the Consumption content and it will go here.</div>
   </section>
 
   <section class="panel" role="tabpanel" id="p-cashflow" aria-labelledby="t-cashflow" hidden style="--c:var(--cashflow)">
@@ -111,7 +112,6 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
     <div class="chart-head"><span>Average trend</span><strong data-slope="2"></strong></div>
     <svg class="chart" data-chart="2" viewBox="0 0 640 250" role="img" aria-label="Cashflow growing over 24 months"></svg>
     <div class="legend"><span><i></i>Cashflow</span><span><i class="d"></i>Average trend</span><span>Illustrative data</span></div>
-    <div class="empty"><b>No categories added yet</b>Share the Cashflow content and it will go here.</div>
   </section>
 </main>
 
