@@ -47,7 +47,7 @@ Music AI explores a decentralized music library on FLO Blockchain, featuring hum
 
 Parts 1 (**Interblockchain Swaps**) and 3 (**AI Apps**) were developed independently before Frontiers 2026.
 
-Our primary objective at Frontiers 2026 is to build a **Proof of Concept (PoC) for Part 2: Self-Funding Metrics**, demonstrating how blockchain applications, AI-powered products, and growing consumption can contribute to a self-funding economic system.
+Our primary objective at Frontiers 2026 is to build a **Proof of Concept (PoC) for Part 2: Self-Funding Mechanisms**, demonstrating how blockchain applications, AI-powered products, and growing consumption can contribute to a self-funding economic system.
 
 ## The Vision
 
