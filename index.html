@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Attention, Consumption, Cashflow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF2F5; --surface:#FFFFFF; --ink:#13202B; --muted:#5B6B78; --line:#DCE3E8;
+  --attention:#0E7C86; --consumption:#4B52D6; --cashflow:#C26A0A; --accent:var(--attention);
+  --head:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"Figtree","Segoe UI",system-ui,sans-serif;
+  color-scheme:light;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F171D; --surface:#17222A; --ink:#E8EEF2; --muted:#93A4B0; --line:#26343E;
+    --attention:#3CC4CF; --consumption:#8B91F5; --cashflow:#F0A24C; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F171D; --surface:#17222A; --ink:#E8EEF2; --muted:#93A4B0; --line:#26343E;
+  --attention:#3CC4CF; --consumption:#8B91F5; --cashflow:#F0A24C; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--body)}
+.wrap{max-width:1040px;margin:0 auto;padding:40px 20px 64px}
+h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0 0 8px}
+.sub{color:var(--muted);margin:0 0 28px;max-width:56ch}
+
+/* tabs */
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+.tab{all:unset;cursor:pointer;background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:14px 16px 10px;display:flex;flex-direction:column;gap:2px;transition:border-color .15s,box-shadow .15s}
+.tab:hover{border-color:var(--c)}
+.tab:focus-visible{outline:3px solid var(--c);outline-offset:2px}
+.tab[aria-selected="true"]{border-color:var(--c);box-shadow:inset 0 -4px 0 var(--c)}
+.tab b{font:700 18px var(--head);color:var(--ink)}
+.tab small{color:var(--muted);font-size:13px}
+.tab svg{width:100%;height:34px;margin-top:6px;display:block}
+
+/* panel */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:24px}
+.panel[hidden]{display:none}
+.panel h2{font:700 26px/1.15 var(--head);margin:0 0 4px;letter-spacing:-.01em}
+.panel .lead{color:var(--muted);margin:0 0 18px}
+.chart-head{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:baseline;margin-bottom:6px;font-size:14px;color:var(--muted)}
+.chart-head strong{color:var(--c);font:700 20px var(--head)}
+.chart{width:100%;height:auto;display:block}
+.chart text{fill:var(--muted);font:12px var(--body)}
+.legend{display:flex;gap:18px;font-size:13px;color:var(--muted);margin:4px 0 26px}
+.legend i{display:inline-block;width:18px;height:0;border-top:3px solid var(--c);vertical-align:middle;margin-right:6px}
+.legend i.d{border-top:2px dashed var(--ink);opacity:.6}
+
+/* attention list */
+.list-head,.row{display:grid;grid-template-columns:1.1fr 1.6fr 1.2fr;gap:16px;padding:14px 4px}
+.list-head{color:var(--muted);font-size:13px;font-weight:600;border-bottom:1.5px solid var(--ink);padding-bottom:8px}
+.row{border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row .n{font-weight:600}
+.row .n span{color:var(--c);margin-right:8px;font-variant-numeric:tabular-nums}
+.row .k{display:none;color:var(--muted);font-size:12px;font-weight:600}
+.empty{border:1.5px dashed var(--line);border-radius:12px;padding:22px;color:var(--muted)}
+.empty b{display:block;color:var(--ink);margin-bottom:2px}
+@media (max-width:720px){
+  .tabs{gap:8px}.tab{padding:10px 10px 8px}.tab b{font-size:15px}.tab small{display:none}
+  .panel{padding:18px}
+  .list-head{display:none}
+  .row{grid-template-columns:1fr;gap:6px}
+  .row .k{display:block}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h1>Attention, Consumption, Cashflow</h1>
+  <p class="sub">Three layers of the same loop. Each one has to grow on average over time.</p>
+
+  <div class="tabs" role="tablist" aria-label="Sections">
+    <button class="tab" role="tab" id="t-attention" aria-controls="p-attention" aria-selected="true" style="--c:var(--attention)"><b>Attention</b><small>People notice</small><svg data-spark="0"></svg></button>
+    <button class="tab" role="tab" id="t-consumption" aria-controls="p-consumption" aria-selected="false" tabindex="-1" style="--c:var(--consumption)"><b>Consumption</b><small>People use</small><svg data-spark="1"></svg></button>
+    <button class="tab" role="tab" id="t-cashflow" aria-controls="p-cashflow" aria-selected="false" tabindex="-1" style="--c:var(--cashflow)"><b>Cashflow</b><small>Money moves</small><svg data-spark="2"></svg></button>
+  </div>
+
+  <section class="panel" role="tabpanel" id="p-attention" aria-labelledby="t-attention" style="--c:var(--attention)">
+    <h2>Attention</h2>
+    <p class="lead">Attention has to grow on average. These are the 16 places it shows up and how each one is measured.</p>
+    <div class="chart-head"><span>Average trend</span><strong data-slope="0"></strong></div>
+    <svg class="chart" data-chart="0" viewBox="0 0 640 250" role="img" aria-label="Attention growing over 24 months"></svg>
+    <div class="legend"><span><i></i>Attention</span><span><i class="d"></i>Average trend</span><span>Illustrative data</span></div>
+    <div class="list-head"><span>Type</span><span>Examples</span><span>How it's measured</span></div>
+    <div id="rows"></div>
+  </section>
+
+  <section class="panel" role="tabpanel" id="p-consumption" aria-labelledby="t-consumption" hidden style="--c:var(--consumption)">
+    <h2>Consumption</h2>
+    <p class="lead">Consumption has to grow on average.</p>
+    <div class="chart-head"><span>Average trend</span><strong data-slope="1"></strong></div>
+    <svg class="chart" data-chart="1" viewBox="0 0 640 250" role="img" aria-label="Consumption growing over 24 months"></svg>
+    <div class="legend"><span><i></i>Consumption</span><span><i class="d"></i>Average trend</span><span>Illustrative data</span></div>
+    <div class="empty"><b>No categories added yet</b>Share the Consumption content and it will go here.</div>
+  </section>
+
+  <section class="panel" role="tabpanel" id="p-cashflow" aria-labelledby="t-cashflow" hidden style="--c:var(--cashflow)">
+    <h2>Cashflow</h2>
+    <p class="lead">Cashflow has to grow on average.</p>
+    <div class="chart-head"><span>Average trend</span><strong data-slope="2"></strong></div>
+    <svg class="chart" data-chart="2" viewBox="0 0 640 250" role="img" aria-label="Cashflow growing over 24 months"></svg>
+    <div class="legend"><span><i></i>Cashflow</span><span><i class="d"></i>Average trend</span><span>Illustrative data</span></div>
+    <div class="empty"><b>No categories added yet</b>Share the Cashflow content and it will go here.</div>
+  </section>
+</main>
+
+<script>
+const ATTN=[
+["Viral Meme Attention","Dogecoin, viral memes, internet jokes, meme coins","Views, shares, mentions, meme creations"],
+["Intellectual Curiosity","Navier–Stokes equations, unsolved mathematical problems, scientific discoveries","Searches, video views, discussions"],
+["Search Attention","People searching for AI tools, tutorials, solutions to problems","Search volume, clicks, website visits"],
+["News and Current Events","Major technology announcements, political events, scientific breakthroughs","Article views, mentions, search spikes"],
+["Entertainment Attention","Music videos, comedy, movies, animated stories","Streams, watch time, repeat consumption"],
+["Creator and Influencer Attention","YouTubers, streamers, digital artists, online personalities","Followers, views, engagement, audience growth"],
+["Community Attention","Reddit communities, Discord servers, Telegram groups, online forums","Active members, discussions, returning users"],
+["Gaming Attention","Esports, gaming streams, game launches, player-created content","Viewership, players, downloads, in-game activity"],
+["Educational Attention","Courses, explainers, coding tutorials, language learning","Watch time, course enrollments, completed lessons"],
+["AI and Technology Attention","New AI models, AI-generated music, new applications, demonstrations","Product visits, API usage, downloads, generated outputs"],
+["Financial and Market Attention","Stock market trends, crypto tokens, trading narratives","Searches, watchlists, community activity, trading volume"],
+["Creative Participation","Art challenges, music remixes, fan fiction, collaborative projects","Submissions, remixes, creations, contributions"],
+["Product and Utility Attention","Wallets, productivity tools, software, useful websites","Sign-ups, active users, feature usage, transactions"],
+["Live Event Attention","Hackathons, conferences, livestreams, product launches","Live viewers, registrations, attendees, post-event engagement"],
+["Fandom and Cultural Attention","Sports teams, celebrities, fictional universes, popular franchises","Fan activity, merchandise demand, streams, community growth"],
+["Professional and Industry Attention","Developer tools, blockchain infrastructure, research papers, startup launches","GitHub stars, integrations, downloads, leads"]];
+
+document.getElementById('rows').innerHTML=ATTN.map((r,i)=>
+ `<div class="row"><div class="n"><span>${i+1}</span>${r[0]}</div><div><div class="k">Examples</div>${r[1]}</div><div><div class="k">How it's measured</div>${r[2]}</div></div>`).join('');
+
+// illustrative upward series: seeded noise on top of compounding growth
+function series(seed,g){let s=seed,v=[];const rnd=()=>(s=(s*16807)%2147483647)/2147483647;
+ for(let t=0;t<24;t++)v.push(100*Math.pow(1+g,t)*(1+(rnd()-.5)*.16));return v}
+const DATA=[series(7,.035),series(19,.03),series(31,.04)];
+const COL=['--attention','--consumption','--cashflow'];
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+function fit(v){const n=v.length,mx=(n-1)/2,my=v.reduce((a,b)=>a+b)/n;let c=0,d=0;
+ v.forEach((y,x)=>{c+=(x-mx)*(y-my);d+=(x-mx)**2});const m=c/d;return{m,b:my-m*mx,my}}
+
+function draw(i){
+ const svg=document.querySelector(`[data-chart="${i}"]`),v=DATA[i],W=640,H=250,L=44,R=12,T=14,B=28;
+ const col=css(COL[i]),grid=css('--line'),ink=css('--ink');
+ const lo=0,hi=Math.ceil(Math.max(...v)/50)*50;
+ const X=t=>L+t*(W-L-R)/(v.length-1),Y=y=>T+(1-(y-lo)/(hi-lo))*(H-T-B);
+ const f=fit(v);let h='';
+ for(let k=0;k<=4;k++){const y=lo+(hi-lo)*k/4;h+=`<line x1="${L}" x2="${W-R}" y1="${Y(y)}" y2="${Y(y)}" stroke="${grid}"/><text x="${L-8}" y="${Y(y)+4}" text-anchor="end">${Math.round(y)}</text>`}
+ [0,6,12,18,23].forEach(t=>h+=`<text x="${X(t)}" y="${H-8}" text-anchor="middle">M${t+1}</text>`);
+ const pts=v.map((y,t)=>`${X(t)},${Y(y)}`).join(' ');
+ h+=`<polygon points="${X(0)},${Y(0)} ${pts} ${X(23)},${Y(0)}" fill="${col}" opacity=".12"/>`;
+ h+=`<polyline points="${pts}" fill="none" stroke="${col}" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>`;
+ h+=`<line x1="${X(0)}" y1="${Y(f.b)}" x2="${X(23)}" y2="${Y(f.b+f.m*23)}" stroke="${ink}" stroke-width="2" stroke-dasharray="6 5" opacity=".6"/>`;
+ svg.innerHTML=h;
+ document.querySelector(`[data-slope="${i}"]`).textContent=`+${(f.m/f.my*100).toFixed(1)}% per month`;
+}
+function spark(i){
+ const svg=document.querySelector(`[data-spark="${i}"]`),v=DATA[i],W=200,H=34,mn=Math.min(...v),mx=Math.max(...v);
+ svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.setAttribute('preserveAspectRatio','none');
+ const p=v.map((y,t)=>`${t*W/23},${H-3-(y-mn)/(mx-mn)*(H-6)}`).join(' ');
+ svg.innerHTML=`<polyline points="${p}" fill="none" stroke="${css(COL[i])}" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>`;
+}
+function render(){[0,1,2].forEach(i=>{draw(i);spark(i)})}
+render();
+matchMedia('(prefers-color-scheme:dark)').addEventListener('change',render);
+
+// tabs
+const tabs=[...document.querySelectorAll('.tab')];
+function select(t){tabs.forEach(b=>{const on=b===t;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1;
+  document.getElementById(b.getAttribute('aria-controls')).hidden=!on});t.focus()}
+tabs.forEach((b,i)=>{b.onclick=()=>select(b);
+ b.onkeydown=e=>{if(e.key==='ArrowRight')select(tabs[(i+1)%3]);if(e.key==='ArrowLeft')select(tabs[(i+2)%3])}});
+</script>
+</body>
+</html>
