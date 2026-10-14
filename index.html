@@ -178,6 +178,50 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
 @media(max-width:768px){.metrics-grid-7{grid-template-columns:1fr 1fr}}
 @media(max-width:540px){.metrics-grid-7{grid-template-columns:1fr}}
 
+/* Cashflow Storyboard styles */
+.sim-btn-cash{all:unset;cursor:pointer;padding:6px 14px;border-radius:8px;font-size:13px;font-weight:600;border:1px solid var(--line);background:var(--bg);color:var(--ink);transition:all .15s}
+.sim-btn-cash.active,.sim-btn-cash:hover{background:var(--surface);border-color:var(--cashflow);color:var(--cashflow);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.metrics-grid-9{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:768px){.metrics-grid-9{grid-template-columns:1fr 1fr}}
+@media(max-width:540px){.metrics-grid-9{grid-template-columns:1fr}}
+
+.pred-spectrum{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px;padding:16px;border-radius:12px;background:var(--bg);border:1px solid var(--line)}
+@media(max-width:768px){.pred-spectrum{grid-template-columns:1fr}}
+.pred-card{padding:12px;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
+.pred-card b{display:block;font:700 13.5px var(--head);margin-bottom:4px;color:var(--ink)}
+.pred-card p{margin:0;font-size:12px;color:var(--muted);line-height:1.4}
+.pred-badge{display:inline-block;padding:2px 8px;border-radius:6px;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
+.pred-badge.high{background:rgba(46,125,50,.15);color:#2E7D32}
+.pred-badge.med{background:rgba(194,106,10,.15);color:var(--cashflow)}
+.pred-badge.low{background:rgba(224,82,82,.15);color:#D32F2F}
+:root[data-theme="dark"] .pred-badge.high{color:#81C784}
+:root[data-theme="dark"] .pred-badge.med{color:var(--cashflow)}
+:root[data-theme="dark"] .pred-badge.low{color:#FF6B6B}
+
+.ratio-box{background:var(--bg);border:1.5px solid var(--cashflow);border-radius:14px;padding:20px;margin-top:20px}
+.ratio-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+.ratio-badge{padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;background:rgba(194,106,10,.14);color:var(--cashflow)}
+.ratio-formula{font:700 clamp(16px,2.5vw,19px) var(--head);color:var(--ink);background:var(--surface);padding:10px 16px;border-radius:10px;border:1px solid var(--line);display:inline-block;margin-bottom:10px}
+.ratio-desc{font-size:13.5px;color:var(--muted);line-height:1.5;margin:0}
+
+.cash-dashboard-wrap{margin-top:20px;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:20px}
+.dash-title{font:700 16px var(--head);color:var(--ink);margin:0 0 14px}
+.dash-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(max-width:640px){.dash-grid{grid-template-columns:1fr}.dash-item[style*="grid-column"]{grid-column:span 1!important}}
+.dash-item{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;position:relative}
+.dash-item .d-num{font-size:11px;font-weight:700;color:var(--cashflow);display:block;margin-bottom:3px;letter-spacing:.04em}
+.dash-item b{font:700 13.5px var(--head);color:var(--ink);display:block;margin-bottom:4px}
+.dash-item p{margin:0;font-size:12px;color:var(--muted);line-height:1.4}
+
+.crypto-realities-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-bottom:20px}
+.crypto-card{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--bg)}
+.crypto-card b{font:700 14px var(--head);display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;color:var(--ink)}
+.crypto-card p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.45}
+.crypto-card .c-tag{font-size:11px;font-weight:700;padding:2px 7px;border-radius:6px}
+.crypto-card.false .c-tag{background:rgba(224,82,82,.15);color:#D32F2F}
+.crypto-card.true .c-tag{background:rgba(194,106,10,.15);color:var(--cashflow)}
+:root[data-theme="dark"] .crypto-card.false .c-tag{color:#FF6B6B}
+
 .metric-box{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--bg);transition:transform .15s,border-color .15s}
 .metric-box:hover{transform:translateY(-2px);border-color:var(--attention)}
 .metric-box b{display:block;font:700 15px var(--head);color:var(--ink);margin-bottom:4px}
@@ -848,9 +892,405 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
   <section class="panel" role="tabpanel" id="p-cashflow" aria-labelledby="t-cashflow" hidden style="--c:var(--cashflow)">
     <h2>Cashflow</h2>
     <p class="lead">Cashflow has to grow on average.</p>
+
+    <div class="case-study-hero-banner">
+      <a href="#case-study-cashflow" class="case-study-hero-btn" style="--c:var(--cashflow);border-color:var(--cashflow)">
+        <span class="cs-badge" style="background:rgba(194,106,10,.14);color:var(--cashflow)">Deep Dive</span>
+        <span class="cs-title">Explore Cashflow Case Study: Why Repeat Cash Flow Beats One-Time Windfalls</span>
+        <span class="cs-arrow" style="color:var(--cashflow)">↓</span>
+      </a>
+    </div>
+
     <div class="chart-head"><span>Average trend</span><strong data-slope="2"></strong></div>
     <svg class="chart" data-chart="2" viewBox="0 0 640 250" role="img" aria-label="Cashflow growing over 24 months"></svg>
     <div class="legend"><span><i></i>Cashflow</span><span><i class="d"></i>Average trend</span><span>Illustrative data</span></div>
+
+    <!-- CASE STUDY: CASHFLOW MODEL (CONNECTED VERTICAL STORYBOARD) -->
+    <div class="storyboard-section" id="case-study-cashflow" style="--c:var(--cashflow)">
+      <div class="storyboard-head">
+        <span class="badge" style="background:rgba(194,106,10,.14);color:var(--cashflow)">Case Study · Cashflow Model</span>
+        <h2>YouTube as a Model for Cashflow in an Attention-Driven Economy</h2>
+        <p>Why generating money once is not the same as building a sustainable cashflow system. A walkthrough of measuring recurrence, net cash surplus, unit economics, and 10-year internal reinvestment.</p>
+      </div>
+
+      <div class="story-track" style="border-left-color:var(--line)">
+
+        <!-- STEP 1: The Cashflow Paradox & 3 Layers -->
+        <div class="story-step" style="--step-c:var(--cashflow)">
+          <div class="story-marker" style="border-color:var(--cashflow);color:var(--cashflow)">01</div>
+          <span class="story-tag" style="color:var(--cashflow)">Cashflow Paradox & The 3 Layers</span>
+          <h3 class="story-title">Windfalls Do Not Mean Sustainability: $100,000 Upfront vs. $8,000/mo Recurring Surplus</h3>
+          <p class="story-desc">Generating money once is fundamentally different from building a repeatable cashflow engine. A channel or crypto project can receive a $100,000 windfall sponsorship or grant, but with $20,000/month in operating burn, runway hits zero in 5 months. Meanwhile, a project generating $8,000/month from paying customers with $5,000 expenses produces a compounding $3,000 monthly cash surplus that sustains itself indefinitely.</p>
+          
+          <div class="contrast-grid">
+            <div class="contrast-card meme">
+              <h4><span>Project A: One-Time Income</span> <span class="stat-pill">$100,000 Upfront</span></h4>
+              <ul class="contrast-list">
+                <li><span class="label">Income Model:</span> <span>Lump-sum sponsorship or grant</span></li>
+                <li><span class="label">Operating Burn:</span> <span>$20,000 / month</span></li>
+                <li><span class="label">Net Cashflow:</span> <span>-$20,000 / month (negative loop)</span></li>
+                <li><span class="label">10-Yr Sustainability:</span> <span><strong>Runs out in 5 months</strong>; $0 recurring cashflow</span></li>
+              </ul>
+            </div>
+            <div class="contrast-card" style="border-top:3.5px solid var(--cashflow)">
+              <h4><span>Project B: Recurring Income</span> <span class="stat-pill" style="background:rgba(194,106,10,.14);color:var(--cashflow)">$8,000/mo Recurring</span></h4>
+              <ul class="contrast-list">
+                <li><span class="label">Income Model:</span> <span>Subscriptions & usage-based fees</span></li>
+                <li><span class="label">Operating Burn:</span> <span>$5,000 / month</span></li>
+                <li><span class="label">Net Cashflow:</span> <span><strong>+$3,000 / month operating surplus</strong></span></li>
+                <li><span class="label">10-Yr Sustainability:</span> <span><strong>Compounding surplus</strong>; self-funds continuous R&D</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="pipeline-flow">
+            <div class="pipe-node" style="--c:var(--attention)">
+              <span class="pipe-num" style="color:var(--attention)">Layer 1</span>
+              <div class="pipe-name">Attention</div>
+              <div class="pipe-examples">What did we attract? Reach, quality, relevance, watch time, and lasting interest from developers, researchers, and users.</div>
+            </div>
+            <div class="pipe-node" style="--c:var(--consumption)">
+              <span class="pipe-num" style="color:var(--consumption)">Layer 2</span>
+              <div class="pipe-name">Consumption</div>
+              <div class="pipe-examples">What did people do? Videos watched, returning viewers, website visits, Music AI creations, and blockchain transactions.</div>
+            </div>
+            <div class="pipe-node" style="--c:var(--cashflow)">
+              <span class="pipe-num" style="color:var(--cashflow)">Layer 3</span>
+              <div class="pipe-name">Cashflow</div>
+              <div class="pipe-examples">What economic value was generated? Advertising revenue, subscriptions, product sales, usage fees, and swap transaction fees.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2: The 9 Types of Digital Cashflow & Predictability Spectrum -->
+        <div class="story-step">
+          <div class="story-marker" style="border-color:var(--cashflow);color:var(--cashflow)">02</div>
+          <span class="story-tag" style="color:var(--cashflow)">Revenue Taxonomy & Predictability</span>
+          <h3 class="story-title">The 9 Types of Digital Cashflow & The Predictability Spectrum</h3>
+          <p class="story-desc">Cash sources differ fundamentally in their predictability. Recurring subscriptions, usage fees, and enterprise contracts provide stable revenue to budget operations, whereas advertising, sponsorships, and grants fluctuate or end unexpectedly.</p>
+          
+          <div class="metrics-grid-9">
+            <div class="metric-box">
+              <b>1. Advertising Revenue</b>
+              <p>YouTube monetization, website advertisements.</p>
+              <span class="metric-ex" style="color:var(--cashflow)">Monthly ad income, CPM rates</span>
+            </div>
+            <div class="metric-box">
+              <b>2. Subscriptions</b>
+              <p>Premium AI tools, music libraries, SaaS platforms.</p>
+              <span class="metric-ex" style="color:var(--cashflow)">MRR, subscriber retention</span>
+            </div>
+            <div class="metric-box">
+              <b>3. Usage-Based Payments</b>
+              <p>AI music generation, API calls, video tasks.</p>
+              <span class="metric-ex" style="color:var(--cashflow)">Pay-per-task margin, compute recovery</span>
+            </div>
+            <div class="metric-box">
+              <b>4. Transaction Fees</b>
+              <p>Interblockchain swaps, blockchain payments.</p>
+              <span class="metric-ex" style="color:var(--cashflow)">Fees captured, net fee income</span>
+            </div>
+            <div class="metric-box">
+              <b>5. Digital Product Sales</b>
+              <p>Music tracks, software downloads, digital assets.</p>
+              <span class="metric-ex" style="color:var(--cashflow)">Direct sales, repeat purchases</span>
+            </div>
+            <div class="metric-box">
+              <b>6. Licensing & Royalties</b>
+              <p>Music licensing, software IP, digital content rights.</p>
+              <span class="metric-ex" style="color:var(--cashflow)">Royalties received, recurring IP income</span>
+            </div>
+            <div class="metric-box">
+              <b>7. Enterprise Services</b>
+              <p>Custom AI solutions, hosted nodes, infra contracts.</p>
+              <span class="metric-ex" style="color:var(--cashflow)">Contract revenue, client renewals</span>
+            </div>
+            <div class="metric-box">
+              <b>8. Sponsorships & Deals</b>
+              <p>Sponsored videos, branded integrations, collabs.</p>
+              <span class="metric-ex" style="color:var(--cashflow)">Cash received, contract renewals</span>
+            </div>
+            <div class="metric-box">
+              <b>9. Grants & Donations</b>
+              <p>Research grants, ecosystem funds, DAO grants.</p>
+              <span class="metric-ex" style="color:var(--cashflow)">Funds received, finite duration</span>
+            </div>
+          </div>
+
+          <div class="pred-spectrum">
+            <div class="pred-card">
+              <span class="pred-badge high">High Predictability</span>
+              <b>Subscriptions & Enterprise Contracts</b>
+              <p>Contractual, recurring monthly cashflows that enable predictable budgeting and hiring.</p>
+            </div>
+            <div class="pred-card">
+              <span class="pred-badge med">Moderate Predictability</span>
+              <b>Usage Fees, Royalties & Product Sales</b>
+              <p>Volume-correlated revenue with repeat behavior that tracks active economic utility.</p>
+            </div>
+            <div class="pred-card">
+              <span class="pred-badge low">Low / Volatile Predictability</span>
+              <b>Ad Revenue, Lump-Sum Sponsorships & Grants</b>
+              <p>Fluctuates with broader advertising cycles, algorithmic shifts, or finite fund programs.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3: 7 Rules for Measuring Sustainable Cashflow -->
+        <div class="story-step">
+          <div class="story-marker" style="border-color:var(--cashflow);color:var(--cashflow)">03</div>
+          <span class="story-tag" style="color:var(--cashflow)">Evaluation Principles</span>
+          <h3 class="story-title">The Seven Rules for Measuring Sustainable Cashflow Quality</h3>
+          <p class="story-desc">Cashflow should be evaluated by its quality, reliability, and net retention—not just top-line dollars. These seven principles help distinguish temporary spikes from an enduring self-funding business.</p>
+          
+          <div class="metrics-grid-7">
+            <div class="metric-box">
+              <b>1. Actual Cash Received</b>
+              <p>Whether real money has reached project accounts.</p>
+              <span class="metric-ex" style="color:var(--cashflow)">Fees received vs nominal volume</span>
+            </div>
+            <div class="metric-box">
+              <b>2. Recurrence</b>
+              <p>Whether income continues predictably over time.</p>
+              <span class="metric-ex" style="color:var(--cashflow)">Monthly subscriptions vs one-off checks</span>
+            </div>
+            <div class="metric-box">
+              <b>3. Net Cash Generation</b>
+              <p>How much cash remains after expenses and hosting.</p>
+              <span class="metric-ex" style="color:var(--cashflow)">Operating revenue exceeding costs</span>
+            </div>
+            <div class="metric-box">
+              <b>4. Revenue Diversification</b>
+              <p>Dependence on different income sources.</p>
+              <span class="metric-ex" style="color:var(--cashflow)">Ad rev + subs + swap fees</span>
+            </div>
+            <div class="metric-box">
+              <b>5. Resilience</b>
+              <p>Ability to withstand declining demand or traffic.</p>
+              <span class="metric-ex" style="color:var(--cashflow)">Covering costs during view dips</span>
+            </div>
+            <div class="metric-box">
+              <b>6. Unit Economics</b>
+              <p>Each service contributes positively after its direct cost.</p>
+              <span class="metric-ex" style="color:var(--cashflow)">AI music rev exceeding GPU compute</span>
+            </div>
+            <div class="metric-box" style="grid-column: span 3">
+              <b>7. Reinvestment Capacity</b>
+              <p>Ability to fund further R&D and feature expansion completely internally using operating surplus rather than needing new funding rounds.</p>
+              <span class="metric-ex" style="color:var(--cashflow)">Internal operating surplus funding protocol engineers & infrastructure</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 4: 10-Year Trajectory Simulation & Self-Funding Ratio -->
+        <div class="story-step">
+          <div class="story-marker" style="border-color:var(--cashflow);color:var(--cashflow)">04</div>
+          <span class="story-tag" style="color:var(--cashflow)">10-Year Dynamic Simulation</span>
+          <h3 class="story-title">10-Year Net Cash Reserves: Project A (Burnout) vs. Project B (Compounding Surplus)</h3>
+          <p class="story-desc">Simulating a 10-year operating horizon: Project A burns through its $100,000 windfall in 5 months and flatlines into dependency, whereas Project B reinvests its $3,000 monthly surplus with positive unit economics into compounding self-funding independence.</p>
+          
+          <div class="sim-controls">
+            <span>Select Horizon Milestone:</span>
+            <button class="sim-btn-cash active" data-cons-idx="0">Month 1</button>
+            <button class="sim-btn-cash" data-cons-idx="1">Year 1</button>
+            <button class="sim-btn-cash" data-cons-idx="2">Year 5</button>
+            <button class="sim-btn-cash" data-cons-idx="3">Year 10</button>
+          </div>
+
+          <div class="sim-chart-wrap">
+            <svg viewBox="0 0 640 220" role="img" aria-label="10-Year Simulation comparing one-time windfall vs compounding cashflow">
+              <!-- Grid lines -->
+              <line x1="50" y1="30" x2="620" y2="30" stroke="var(--line)" stroke-dasharray="3 3"/>
+              <line x1="50" y1="80" x2="620" y2="80" stroke="var(--line)" stroke-dasharray="3 3"/>
+              <line x1="50" y1="130" x2="620" y2="130" stroke="var(--line)" stroke-dasharray="3 3"/>
+              <line x1="50" y1="190" x2="620" y2="190" stroke="var(--line)"/>
+              
+              <!-- Y-Axis Labels -->
+              <text x="44" y="34" text-anchor="end" font-size="11" fill="var(--muted)">+$80k</text>
+              <text x="44" y="84" text-anchor="end" font-size="11" fill="var(--muted)">+$35k</text>
+              <text x="44" y="134" text-anchor="end" font-size="11" fill="var(--muted)">+$10k</text>
+              <text x="44" y="194" text-anchor="end" font-size="11" fill="var(--muted)">$0/Runway</text>
+
+              <!-- X-Axis Labels -->
+              <text x="60" y="210" text-anchor="middle" font-size="11.5" font-weight="600" fill="var(--muted)">Month 1</text>
+              <text x="220" y="210" text-anchor="middle" font-size="11.5" font-weight="600" fill="var(--muted)">Year 1</text>
+              <text x="420" y="210" text-anchor="middle" font-size="11.5" font-weight="600" fill="var(--muted)">Year 5</text>
+              <text x="610" y="210" text-anchor="middle" font-size="11.5" font-weight="600" fill="var(--muted)">Year 10</text>
+
+              <!-- Project A: Rapid burnout from $100k to 0 at Month 5 -->
+              <path d="M 60,50 C 90,60 120,190 160,190 L 610,190" fill="none" stroke="#E05252" stroke-width="2.5" stroke-dasharray="6 5"/>
+              
+              <!-- Project B: Compounding cash surplus -->
+              <path d="M 60,175 C 140,165 220,145 320,115 C 420,90 520,55 610,28" fill="none" stroke="var(--cashflow)" stroke-width="3.5" stroke-linecap="round"/>
+              <polygon points="60,175 140,165 220,145 320,115 420,90 520,55 610,28 610,190 60,190" fill="var(--cashflow)" opacity=".12"/>
+
+              <!-- Active Timeline Indicator -->
+              <line id="sim-cash-indicator" x1="60" y1="20" x2="60" y2="190" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="3 3" opacity=".7"/>
+              <circle id="sim-cash-point-a" cx="60" cy="50" r="5.5" fill="#E05252" stroke="var(--surface)" stroke-width="2"/>
+              <circle id="sim-cash-point-b" cx="60" cy="175" r="5.5" fill="var(--cashflow)" stroke="var(--surface)" stroke-width="2"/>
+            </svg>
+
+            <div class="sim-legend">
+              <span><i class="meme"></i>Project A (One-Time Windfall · Burnout)</span>
+              <span><i style="border-top:3px solid var(--cashflow)"></i>Project B (Recurring Utility · Compounding Surplus)</span>
+            </div>
+
+            <div class="sim-status">
+              <div class="sim-status-col meme">
+                <b id="sim-cash-a-title">Project A (One-Time Windfall) · Month 1</b>
+                <p id="sim-cash-a-desc">$100,000 upfront sponsorship · $20,000/mo burn rate · 5 months of operating runway remaining.</p>
+              </div>
+              <div class="sim-status-col" style="--c:var(--cashflow)">
+                <b id="sim-cash-b-title" style="color:var(--cashflow)">Project B (Recurring Utility) · Month 1</b>
+                <p id="sim-cash-b-desc">$8,000/mo revenue · $5,000/mo expenses · +$3,000 monthly operating cash surplus (160% self-funding ratio).</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="ratio-box">
+            <div class="ratio-header">
+              <span class="ratio-badge">Key Sustainability Metric</span>
+              <strong>The Self-Funding Ratio</strong>
+            </div>
+            <div class="ratio-formula">
+              Self-Funding Ratio = (Operating Cash Generated / Operating Cash Expenses) × 100
+            </div>
+            <p class="ratio-desc">
+              <strong>Example:</strong> If a project generates $12,000 in monthly operating cash while spending $10,000 on operating expenses, its Self-Funding Ratio is <strong>120%</strong>. A ratio &gt; 100% demonstrates that internally generated cash covers operational overhead, creating surplus for internal reinvestment without dilution.
+            </p>
+          </div>
+
+          <div class="cash-dashboard-wrap">
+            <div class="dash-title">10-Year Cashflow Dashboard: 7 Core Health Dimensions</div>
+            <div class="dash-grid">
+              <div class="dash-item">
+                <span class="d-num">Metric 01</span>
+                <b>Annual Inflows vs. Outflows</b>
+                <p>Tracking gross cash received against gross expenditures to ensure positive compounding cash position over 10 years.</p>
+              </div>
+              <div class="dash-item">
+                <span class="d-num">Metric 02</span>
+                <b>Net Operating Cashflow</b>
+                <p>Operational cash remaining after direct hosting, node operations, and ongoing maintenance obligations are satisfied.</p>
+              </div>
+              <div class="dash-item">
+                <span class="d-num">Metric 03</span>
+                <b>Proportion of Recurring Revenue</b>
+                <p>Percentage of inflows originating from predictable subscriptions and enterprise retainer contracts vs. volatile one-offs.</p>
+              </div>
+              <div class="dash-item">
+                <span class="d-num">Metric 04</span>
+                <b>Revenue Diversification & Retention</b>
+                <p>Mitigating counterparty risk across ads, SaaS subscriptions, swap transaction fees, and IP licensing.</p>
+              </div>
+              <div class="dash-item">
+                <span class="d-num">Metric 05</span>
+                <b>Cash Reserves & Operating Runway</b>
+                <p>Total liquid non-volatile treasury reserves measured in months of zero-revenue operating survival.</p>
+              </div>
+              <div class="dash-item">
+                <span class="d-num">Metric 06</span>
+                <b>% OpEx Covered Internally</b>
+                <p>Proportion of continuous operational overhead paid purely from self-generated platform fees.</p>
+              </div>
+              <div class="dash-item" style="grid-column: span 2">
+                <span class="d-num">Metric 07</span>
+                <b>Cash Available for Internal Reinvestment</b>
+                <p>Net operating surplus deployed directly into protocol development, developer bounties, and ecosystem expansion without outside capital or token dilution.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 5: Blockchain Cashflow Realities & The Closed Self-Funding Flywheel -->
+        <div class="story-step">
+          <div class="story-marker" style="border-color:var(--cashflow);color:var(--cashflow)">05</div>
+          <span class="story-tag" style="color:var(--cashflow)">Blockchain Realities & The Closed Loop</span>
+          <h3 class="story-title">Distinguishing Blockchain Noise from Real Cashflow: The Self-Funding Flywheel</h3>
+          <p class="story-desc">In cryptocurrency systems, token prices, trading volumes, and treasury reserves are frequently confused with real cashflow. Over a 10-year horizon, vanity volume must be disentangled from sustainable economic self-funding.</p>
+          
+          <div class="crypto-realities-grid">
+            <div class="crypto-card false">
+              <b><span>Token Price ≠ Revenue</span> <span class="c-tag">Not Cashflow</span></b>
+              <p>A 10x rise in token price does not fund hosting bills or developer salaries unless tokens are dumped onto the market.</p>
+            </div>
+            <div class="crypto-card false">
+              <b><span>Trading Volume ≠ Revenue</span> <span class="c-tag">Not Cashflow</span></b>
+              <p>$1,000,000 in decentralized trading volume is not project revenue. Only the actual transaction fee cut captured by the protocol counts.</p>
+            </div>
+            <div class="crypto-card false">
+              <b><span>Token Sales ≠ Operating Rev</span> <span class="c-tag">Financing Inflow</span></b>
+              <p>Funds received from issuing or selling tokens represent external financing and equity dilution, not repeatable customer revenue.</p>
+            </div>
+            <div class="crypto-card true">
+              <b><span>Captured Fees = Operating Cash</span> <span class="c-tag">Real Cashflow</span></b>
+              <p>Transaction fees paid by actual users to complete real swaps, API tasks, and data storage represent legitimate, recurring operating income.</p>
+            </div>
+            <div class="crypto-card false" style="grid-column: span 2">
+              <b><span>Redemption Reserves ≠ Available Profit</span> <span class="c-tag">Obligation Reserve</span></b>
+              <p>Capital held to back redemption obligations, pool liquidity, or guarantees cannot be treated as profit or spent on speculative R&D.</p>
+            </div>
+          </div>
+
+          <div class="flywheel-container">
+            <div class="flywheel-svg-wrap">
+              <svg viewBox="0 0 380 380" role="img" aria-label="Closed-loop self-funding cashflow flywheel">
+                <circle cx="190" cy="190" r="140" fill="none" stroke="var(--line)" stroke-width="2" />
+                <circle cx="190" cy="190" r="140" fill="none" stroke="var(--cashflow)" stroke-width="3" stroke-dasharray="35 15" class="rotating-ring" />
+
+                <!-- Center Core -->
+                <circle cx="190" cy="190" r="66" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5" />
+                <text x="190" y="174" text-anchor="middle" font-size="11" font-weight="700" fill="var(--cashflow)" font-family="var(--head)" letter-spacing="1">10-YEAR</text>
+                <text x="190" y="190" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)" font-family="var(--head)">SELF-FUNDING</text>
+                <text x="190" y="206" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted)" font-family="var(--head)">CASHFLOW LOOP</text>
+
+                <!-- Node 1: Real Consumption (Top) -->
+                <circle cx="190" cy="50" r="28" fill="var(--surface)" stroke="var(--consumption)" stroke-width="2.5" />
+                <text x="190" y="47" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--ink)" font-family="var(--head)">REAL</text>
+                <text x="190" y="59" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--ink)" font-family="var(--head)">CONSUMPTION</text>
+
+                <!-- Node 2: Cash Received (Top Right) -->
+                <circle cx="309" cy="151" r="28" fill="var(--surface)" stroke="var(--cashflow)" stroke-width="2.5" />
+                <text x="309" y="147" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--ink)" font-family="var(--head)">CASH</text>
+                <text x="309" y="159" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--ink)" font-family="var(--head)">RECEIVED</text>
+
+                <!-- Node 3: Operating Costs (Bottom Right) -->
+                <circle cx="264" cy="291" r="28" fill="var(--surface)" stroke="#E05252" stroke-width="2.5" />
+                <text x="264" y="287" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--ink)" font-family="var(--head)">OPERATING</text>
+                <text x="264" y="299" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--ink)" font-family="var(--head)">COSTS</text>
+
+                <!-- Node 4: Net Cash Generated (Bottom Left) -->
+                <circle cx="116" cy="291" r="28" fill="var(--surface)" stroke="var(--attention)" stroke-width="2.5" />
+                <text x="116" y="287" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--ink)" font-family="var(--head)">NET CASH</text>
+                <text x="116" y="299" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--ink)" font-family="var(--head)">SURPLUS</text>
+
+                <!-- Node 5: Reinvestment (Top Left) -->
+                <circle cx="71" cy="151" r="28" fill="var(--surface)" stroke="var(--cashflow)" stroke-width="2.5" />
+                <text x="71" y="147" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--ink)" font-family="var(--head)">INTERNAL</text>
+                <text x="71" y="159" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--ink)" font-family="var(--head)">REINVESTMENT</text>
+              </svg>
+            </div>
+
+            <div class="token-distinction">
+              <div class="dist-box leak">
+                <b>One-Time Grant Depletion (Negative Loop)</b>
+                <p>A project relies on one-time raises or sponsorships to fund operating payroll. When market cycles turn down, cash reserves hit zero and development collapses.</p>
+              </div>
+              <div class="dist-box" style="border-left:4px solid var(--cashflow)">
+                <b style="color:var(--cashflow)">Compounding Self-Funding Flywheel (Positive Loop)</b>
+                <p>Recurring subscriptions, API usage margins, and swap transaction fees produce positive net operating cashflow. This surplus funds internal R&D, infrastructure, and ecosystem expansion without reliance on external capital.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flywheel-conclusion" style="border-left:4px solid var(--cashflow)">
+            <strong style="color:var(--cashflow)">Conclusion:</strong> Sustainable cashflow is the ability to repeatedly generate sufficient cash to operate, fulfil obligations, maintain services, and fund further development. Over a 10-year period, the ultimate test is whether the system can <strong>generate, retain, and reinvest enough internally generated cash to sustain its operations and support continued growth without depending indefinitely on new external funding</strong>.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </section>
 </main>
 
@@ -962,6 +1402,16 @@ function select(t){
       const short = navCaseStudy.querySelector('.short-txt');
       if(full) full.textContent = 'Explore Consumption Case Study ↓';
       if(short) short.textContent = 'Case Study ↓';
+    } else if(t.id === 't-cashflow'){
+      navCaseStudy.style.display = 'inline-flex';
+      navCaseStudy.setAttribute('href', '#case-study-cashflow');
+      navCaseStudy.style.removeProperty('color');
+      navCaseStudy.style.removeProperty('border-color');
+      navCaseStudy.style.setProperty('--btn-bg', 'var(--cashflow)');
+      const full = navCaseStudy.querySelector('.full-txt');
+      const short = navCaseStudy.querySelector('.short-txt');
+      if(full) full.textContent = 'Explore Cashflow Case Study ↓';
+      if(short) short.textContent = 'Case Study ↓';
     } else {
       navCaseStudy.style.display = 'none';
     }
@@ -975,6 +1425,8 @@ if(navCaseStudy){
       select(document.getElementById('t-attention'));
     } else if(href === '#case-study-consumption') {
       select(document.getElementById('t-consumption'));
+    } else if(href === '#case-study-cashflow') {
+      select(document.getElementById('t-cashflow'));
     }
   });
 }
@@ -1124,6 +1576,79 @@ simConsButtons.forEach((btn, idx) => {
     if (simConsADesc) simConsADesc.textContent = d.aDesc;
     if (simConsBTitle) simConsBTitle.textContent = d.bTitle;
     if (simConsBDesc) simConsBDesc.textContent = d.bDesc;
+  });
+});
+
+// 10-Year Cashflow Simulation controls
+const simCashData = [
+  {
+    x: 60,
+    aY: 50,
+    bY: 175,
+    aTitle: 'Project A (One-Time Windfall) · Month 1',
+    aDesc: '$100,000 upfront sponsorship · $20,000/mo burn rate · 5 months of operating runway remaining.',
+    bTitle: 'Project B (Recurring Utility) · Month 1',
+    bDesc: '$8,000/mo revenue · $5,000/mo expenses · +$3,000 monthly operating cash surplus (160% self-funding ratio).'
+  },
+  {
+    x: 220,
+    aY: 190,
+    bY: 145,
+    aTitle: 'Project A (One-Time Windfall) · Year 1',
+    aDesc: 'Cash balance hit $0 at Month 5 · Operations frozen · Desperately seeking new external grants or token sales.',
+    bTitle: 'Project B (Recurring Utility) · Year 1',
+    bDesc: 'Subscriber base expands · $18,000/mo recurring income · $8,000 expenses · +$10,000/mo operating surplus reinvested.'
+  },
+  {
+    x: 420,
+    aY: 190,
+    bY: 90,
+    aTitle: 'Project A (One-Time Windfall) · Year 5',
+    aDesc: 'Project abandoned or zombie protocol · 10-year cumulative operating cashflow: $0.',
+    bTitle: 'Project B (Recurring Utility) · Year 5',
+    bDesc: 'Diversified revenue (subs, API calls, swap fees) · $54,000/mo rev · +$36,000/mo cash surplus (300% self-funding ratio).'
+  },
+  {
+    x: 610,
+    aY: 190,
+    bY: 28,
+    aTitle: 'Project A (One-Time Windfall) · Year 10',
+    aDesc: 'Cumulative 10-year economic contribution: $0. A cautionary example of windfall dependency.',
+    bTitle: 'Project B (Recurring Utility) · Year 10',
+    bDesc: 'Self-funding equilibrium reached · Cumulative cash reserves fund 100% of R&D, hosting, and builder bounties indefinitely.'
+  }
+];
+
+const simCashButtons = document.querySelectorAll('.sim-btn-cash');
+const simCashIndicator = document.getElementById('sim-cash-indicator');
+const simCashPointA = document.getElementById('sim-cash-point-a');
+const simCashPointB = document.getElementById('sim-cash-point-b');
+const simCashATitle = document.getElementById('sim-cash-a-title');
+const simCashADesc = document.getElementById('sim-cash-a-desc');
+const simCashBTitle = document.getElementById('sim-cash-b-title');
+const simCashBDesc = document.getElementById('sim-cash-b-desc');
+
+simCashButtons.forEach((btn, idx) => {
+  btn.addEventListener('click', () => {
+    simCashButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const d = simCashData[idx];
+    if (simCashIndicator) {
+      simCashIndicator.setAttribute('x1', d.x);
+      simCashIndicator.setAttribute('x2', d.x);
+    }
+    if (simCashPointA) {
+      simCashPointA.setAttribute('cx', d.x);
+      simCashPointA.setAttribute('cy', d.aY);
+    }
+    if (simCashPointB) {
+      simCashPointB.setAttribute('cx', d.x);
+      simCashPointB.setAttribute('cy', d.bY);
+    }
+    if (simCashATitle) simCashATitle.textContent = d.aTitle;
+    if (simCashADesc) simCashADesc.textContent = d.aDesc;
+    if (simCashBTitle) simCashBTitle.textContent = d.bTitle;
+    if (simCashBDesc) simCashBDesc.textContent = d.bDesc;
   });
 });
 
