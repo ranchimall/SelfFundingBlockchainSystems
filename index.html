@@ -266,6 +266,7 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
 /* Score formula banner (Attention & Consumption simulators) */
 .sim-formula{margin-top:10px;padding:10px 14px;border-radius:10px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--attention);font-family:monospace;font-size:14.5px;font-weight:700;color:var(--ink);line-height:1.5;white-space:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
 .sim-formula-cons{border-left-color:var(--consumption)}
+.sim-formula-cash{border-left-color:var(--cashflow)}
 @media(max-width:540px){
   .sim-formula{font-size:12.5px;padding:8px 10px}
   .sim-chart-wrap{padding:14px 14px}
@@ -991,6 +992,25 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
       </a>
     </div>
 
+    <!-- Cashflow Simulator -->
+    <div class="sim-chart-wrap" style="margin-bottom: 24px;">
+      <div class="sim-controls">
+        <span>Cashflow Repeatability Simulator</span>
+        <button class="sim-btn active" id="simulate-cashflow-btn" type="button">Generate Random Inputs</button>
+      </div>
+      <div style="font-size: 13px; color: var(--muted); line-height: 1.55; margin-bottom: 12px;">
+        <b style="color: var(--ink);">How to read this:</b><br>
+        <span style="color: var(--denom); font-weight: 600;">Total Revenue</span> = all operating revenue in the period (subscriptions + fees + sales + grants).<br>
+        <span style="color: var(--attention); font-weight: 600;">High-Value / Recurring (3 pts)</span> = subscriptions, API/AI usage fees, interchain swap fees.<br>
+        <span style="color: var(--consumption); font-weight: 600;">Medium-Value / Semi-Recurring (1 pt)</span> = licensing, marketplace commissions, developer tools.<br>
+        <span style="color: var(--cashflow); font-weight: 600;">Low-Value / One-time or Volatile (0.1 pts)</span> = advertising, one-time sales, grants/sponsorships.<br>
+        Repeatability + immunity to competition come from a high share of recurring revenue (score near 3.0).
+        <div class="sim-formula sim-formula-cash">Cashflow Score = ((Recurring * 3) + (Semi-Recurring * 1) + (One-time * 0.1)) / Total Revenue</div>
+      </div>
+      <div id="cashflow-sim-output" style="font-family: monospace; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
+        <p style="color: var(--muted); margin: 0;">Click "Generate Random Inputs" to run the simulation.</p>
+      </div>
+    </div>
     <div class="chart-head"><span>Average trend</span><strong data-slope="2"></strong></div>
     <svg class="chart" data-chart="2" viewBox="0 0 640 250" role="img" aria-label="Cashflow growing over 24 months"></svg>
     <div class="legend"><span><i></i>Cashflow</span><span><i class="d"></i>Average trend</span><span>Illustrative data</span></div>
@@ -1824,6 +1844,30 @@ document.getElementById('simulate-consumption-btn').addEventListener('click', ()
     html += formatSimTotal('Consumption Score', score, 'var(--consumption)');
 
     document.getElementById('consumption-sim-output').innerHTML = html;
+});
+
+// Cashflow Simulator
+document.getElementById('simulate-cashflow-btn').addEventListener('click', () => {
+    // Random revenue streams: recurring, semi-recurring, one-time/volatile
+    const recurring = Math.floor(Math.random() * 50000) + 5000;
+    const semiRecurring = Math.floor(Math.random() * 20000) + 1000;
+    const oneTime = Math.floor(Math.random() * 10000) + 500;
+
+    const totalRevenue = recurring + semiRecurring + oneTime;
+
+    // Weighted Cashflow Quality Score (max 3.0 = fully recurring)
+    const weightedPoints = (recurring * 3) + (semiRecurring * 1) + (oneTime * 0.1);
+    const qualityScore = (weightedPoints / totalRevenue).toFixed(4);
+
+    let html = '';
+    html += formatSimRow('Recurring Revenue (3 pts)', recurring, recurring * 3, 'var(--attention)');
+    html += formatSimRow('Semi-Recurring Revenue (1 pt)', semiRecurring, semiRecurring * 1, 'var(--consumption)');
+    html += formatSimRow('One-Time Revenue (0.1 pts)', oneTime, oneTime * 0.1, 'var(--cashflow)');
+    html += formatSimRow('Total Revenue', totalRevenue, null, 'var(--denom)');
+
+    html += formatSimTotal('Cashflow Quality Score (max 3.0)', qualityScore, 'var(--cashflow)');
+
+    document.getElementById('cashflow-sim-output').innerHTML = html;
 });
 </script>
 </body>
