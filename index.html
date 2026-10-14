@@ -19,7 +19,7 @@
 <style>
 :root{
   --bg:#EEF2F5; --surface:#FFFFFF; --ink:#13202B; --muted:#5B6B78; --line:#DCE3E8;
-  --attention:#0E7C86; --consumption:#4B52D6; --cashflow:#C26A0A; --accent:var(--attention);
+  --attention:#0E7C86; --consumption:#4B52D6; --cashflow:#C26A0A; --denom:#A21CAF; --accent:var(--attention);
   --head:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
   --body:"Figtree","Segoe UI",system-ui,sans-serif;
   color-scheme:light;
@@ -28,7 +28,7 @@
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     --bg:#0F171D; --surface:#17222A; --ink:#E8EEF2; --muted:#93A4B0; --line:#26343E;
-    --attention:#3CC4CF; --consumption:#8B91F5; --cashflow:#F0A24C; color-scheme:dark;
+    --attention:#3CC4CF; --consumption:#8B91F5; --cashflow:#F0A24C; --denom:#E879F9; color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
@@ -37,7 +37,7 @@
 }
 :root[data-theme="light"]{
   --bg:#EEF2F5; --surface:#FFFFFF; --ink:#13202B; --muted:#5B6B78; --line:#DCE3E8;
-  --attention:#0E7C86; --consumption:#4B52D6; --cashflow:#C26A0A; color-scheme:light;
+  --attention:#0E7C86; --consumption:#4B52D6; --cashflow:#C26A0A; --denom:#A21CAF; color-scheme:light;
 }
 *{box-sizing:border-box}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
@@ -201,6 +201,14 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
 .sim-status-col.science b{color:var(--attention)}
 .sim-status-col p{margin:0;color:var(--muted);line-height:1.45}
 
+/* Score formula banner (Attention & Consumption simulators) */
+.sim-formula{margin-top:10px;padding:10px 14px;border-radius:10px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--attention);font-family:monospace;font-size:14.5px;font-weight:700;color:var(--ink);line-height:1.5;white-space:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.sim-formula-cons{border-left-color:var(--consumption)}
+@media(max-width:540px){
+  .sim-formula{font-size:12.5px;padding:8px 10px}
+  .sim-chart-wrap{padding:14px 14px}
+}
+
 /* Two-Level Split (Step 4) */
 .levels-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .level-card{border:1px solid var(--line);border-radius:14px;padding:18px;background:var(--bg)}
@@ -293,6 +301,24 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
       <span class="cs-arrow">↓</span>
     </a>
   </div>
+    <!-- Attention Simulator -->
+    <div class="sim-chart-wrap" style="margin-bottom: 24px;">
+      <div class="sim-controls">
+        <span>Attention Score Simulator</span>
+        <button class="sim-btn active" id="simulate-attention-btn" type="button">Generate Random Inputs</button>
+      </div>
+      <div style="font-size: 13px; color: var(--muted); line-height: 1.55; margin-bottom: 12px;">
+        <b style="color: var(--ink);">How to read this:</b><br>
+        <span style="color: var(--denom); font-weight: 600;">Total Impressions</span> = simple views + unique viewers (raw reach).<br>
+        <span style="color: var(--attention); font-weight: 600;">High-Value (3 pts)</span> = high audience quality, propagation (shares, remixes) and influence (new projects built).<br>
+        <span style="color: var(--consumption); font-weight: 600;">Medium-Value (1 pt)</span> = depth of attention (high watch time, completion rate, repeat viewing).<br>
+        <span style="color: var(--cashflow); font-weight: 600;">Low-Value (0.1 pts)</span> = raw reach (simple views, unique viewers).
+        <div class="sim-formula">Attention Score = ((High * 3) + (Medium * 1) + (Low * 0.1)) / Total Impressions</div>
+      </div>
+      <div id="attention-sim-output" style="font-family: monospace; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
+        <p style="color: var(--muted); margin: 0;">Click "Generate Random Inputs" to run the simulation.</p>
+      </div>
+    </div>
     <div class="chart-head"><span>Average trend</span><strong data-slope="0"></strong></div>
     <svg class="chart" data-chart="0" viewBox="0 0 640 250" role="img" aria-label="Attention growing over 24 months"></svg>
     <div class="legend"><span><i></i>Attention</span><span><i class="d"></i>Average trend</span><span>Illustrative data</span></div>
@@ -573,6 +599,24 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
       </a>
     </div>
 
+    <!-- Consumption Simulator -->
+    <div class="sim-chart-wrap" style="margin-bottom: 24px;">
+      <div class="sim-controls">
+        <span>Consumption Score Simulator</span>
+        <button class="sim-btn active" id="simulate-consumption-btn" type="button">Generate Random Inputs</button>
+      </div>
+      <div style="font-size: 13px; color: var(--muted); line-height: 1.55; margin-bottom: 12px;">
+        <b style="color: var(--ink);">How to read this:</b><br>
+        <span style="color: var(--denom); font-weight: 600;">Unique Users</span> = total number of FLO IDs interacting with our app.<br>
+        <span style="color: var(--attention); font-weight: 600;">High-Value (3 pts)</span> = completed interchain swaps, main token buys with USDAI, published AI tracks and taskboard task completions (capped at 5 per user, anti-bot).<br>
+        <span style="color: var(--consumption); font-weight: 600;">Medium-Value (1 pt)</span> = track likes, adjusted plays (listening to &gt;80% of a track).<br>
+        <span style="color: var(--cashflow); font-weight: 600;">Low-Value (0.1 pts)</span> = app opens and passive plays (listening to &lt;10 seconds).
+        <div class="sim-formula sim-formula-cons">Consumption Score = ((High * 3) + (Medium * 1) + (Low * 0.1)) / Unique Users</div>
+      </div>
+      <div id="consumption-sim-output" style="font-family: monospace; font-size: 13.5px; color: var(--ink); line-height: 1.6;">
+        <p style="color: var(--muted); margin: 0;">Click "Generate Random Inputs" to run the simulation.</p>
+      </div>
+    </div>
     <div class="chart-head"><span>Average trend</span><strong data-slope="1"></strong></div>
     <svg class="chart" data-chart="1" viewBox="0 0 640 250" role="img" aria-label="Consumption growing over 24 months"></svg>
     <div class="legend"><span><i></i>Consumption</span><span><i class="d"></i>Average trend</span><span>Illustrative data</span></div>
@@ -1021,7 +1065,7 @@ const simData = [
   }
 ];
 
-const simButtons = document.querySelectorAll('.sim-btn');
+const simButtons = document.querySelectorAll('.sim-btn[data-sim]');
 const simIndicator = document.getElementById('sim-indicator');
 const simPointMeme = document.getElementById('sim-point-meme');
 const simPointScience = document.getElementById('sim-point-science');
@@ -1127,6 +1171,80 @@ simConsButtons.forEach((btn, idx) => {
   });
 });
 
+// --- Random Attention & Consumption Simulators ---
+
+function formatSimRow(label, value, points, colorVar) {
+    const color = colorVar ? `style="color: ${colorVar}; font-weight: 600;"` : '';
+    const pointsText = points !== null ? `(${points.toFixed(1)} pts)` : '';
+    return `
+        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dashed var(--line);">
+            <span style="color: var(--muted);">${label}</span>
+            <span ${color}>${value.toLocaleString()} ${pointsText}</span>
+        </div>
+    `;
+}
+
+function formatSimTotal(label, value, colorVar) {
+    return `
+        <div style="display: flex; justify-content: space-between; padding: 8px 0; font-weight: 700; font-size: 15px; border-top: 2px solid var(--line); margin-top: 8px;">
+            <span>${label}</span>
+            <span style="color: ${colorVar};">${value}</span>
+        </div>
+    `;
+}
+
+// Attention Simulator
+document.getElementById('simulate-attention-btn').addEventListener('click', () => {
+    const impressions = Math.floor(Math.random() * 990000) + 10000;
+    const high = Math.floor(Math.random() * 500) + 10;
+    const medium = Math.floor(Math.random() * 5000) + 500;
+    const low = Math.floor(Math.random() * 50000) + 5000;
+
+    const highPts = high * 3;
+    const mediumPts = medium * 1;
+    const lowPts = low * 0.1;
+    const totalPts = highPts + mediumPts + lowPts;
+    const score = (totalPts / impressions).toFixed(4);
+
+    let html = '';
+    html += formatSimRow('Total Impressions (Reach)', impressions, null, 'var(--denom)');
+    html += formatSimRow('High-Value (3 pts)', high, highPts, 'var(--attention)');
+    html += formatSimRow('Medium-Value (1 pt)', medium, mediumPts, 'var(--consumption)');
+    html += formatSimRow('Low-Value (0.1 pts)', low, lowPts, 'var(--cashflow)');
+    html += formatSimTotal('Total Points', totalPts.toFixed(1), 'var(--ink)');
+    html += formatSimTotal('Attention Score', score, 'var(--attention)');
+
+    document.getElementById('attention-sim-output').innerHTML = html;
+});
+
+// Consumption Simulator
+document.getElementById('simulate-consumption-btn').addEventListener('click', () => {
+    const uniqueUsers = Math.floor(Math.random() * 9900) + 100;
+    const high = Math.floor(Math.random() * 500) + 10;
+    const medium = Math.floor(Math.random() * 5000) + 500;
+    const low = Math.floor(Math.random() * 50000) + 5000;
+
+    // Rule 5: Genuine Demand Filter (Anti-Bot)
+    let cappedHigh = high;
+    const maxAllowedHigh = uniqueUsers * 5;
+    if (cappedHigh > maxAllowedHigh) cappedHigh = maxAllowedHigh;
+
+    const highPts = cappedHigh * 3;
+    const mediumPts = medium * 1;
+    const lowPts = low * 0.1;
+    const totalPts = highPts + mediumPts + lowPts;
+    const score = (totalPts / uniqueUsers).toFixed(4);
+
+    let html = '';
+    html += formatSimRow('Unique Users (FLO IDs)', uniqueUsers, null, 'var(--denom)');
+    html += formatSimRow('High-Value Inputs (3 pts)', cappedHigh, highPts, 'var(--attention)');
+    html += formatSimRow('Medium-Value Inputs (1 pt)', medium, mediumPts, 'var(--consumption)');
+    html += formatSimRow('Low-Value Inputs (0.1 pts)', low, lowPts, 'var(--cashflow)');
+    html += formatSimTotal('Total Points', totalPts.toFixed(1), 'var(--ink)');
+    html += formatSimTotal('Consumption Score', score, 'var(--consumption)');
+
+    document.getElementById('consumption-sim-output').innerHTML = html;
+});
 </script>
 </body>
 </html>
