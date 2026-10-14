@@ -53,12 +53,30 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--bod
 
 /* header right actions */
 .header-right{display:flex;align-items:center;gap:12px}
-.nav-case-study{display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 var(--body);color:#FFFFFF!important;background:var(--btn-bg, var(--attention));padding:8px 15px;border-radius:10px;text-decoration:none;transition:opacity .15s,transform .1s,box-shadow .15s,background-color .2s;box-shadow:0 1px 3px rgba(0,0,0,.15);white-space:nowrap}
-.nav-case-study:hover{opacity:.92;transform:translateY(-1px);box-shadow:0 3px 8px rgba(0,0,0,.2)}
-.nav-case-study:active{transform:scale(.97)}
-:root[data-theme="dark"] .nav-case-study{color:#0F171D!important;background:var(--btn-bg, var(--attention));font-weight:700}
-@media(max-width:600px){.nav-case-study .full-txt{display:none}.nav-case-study .short-txt{display:inline}}
-@media(min-width:601px){.nav-case-study .full-txt{display:inline}.nav-case-study .short-txt{display:none}}
+
+.cs-dropdown-wrap{position:relative}
+.cs-dropdown-trigger{display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 var(--body);color:#FFFFFF!important;background:var(--btn-bg, var(--attention));padding:8px 14px;border-radius:10px;border:none;cursor:pointer;transition:opacity .15s,transform .1s,box-shadow .15s,background-color .2s;box-shadow:0 1px 3px rgba(0,0,0,.15);white-space:nowrap}
+.cs-dropdown-trigger:hover{opacity:.92;transform:translateY(-1px);box-shadow:0 3px 8px rgba(0,0,0,.2)}
+.cs-dropdown-trigger:active{transform:scale(.97)}
+:root[data-theme="dark"] .cs-dropdown-trigger{color:#0F171D!important;font-weight:700}
+.cs-caret{transition:transform .2s ease;display:block}
+.cs-dropdown-wrap.open .cs-caret{transform:rotate(180deg)}
+
+.cs-dropdown-menu{position:absolute;top:calc(100% + 8px);right:0;width:290px;background:var(--surface);border:1.5px solid var(--line);border-radius:14px;box-shadow:0 10px 28px rgba(0,0,0,.15);padding:6px;display:none;flex-direction:column;gap:2px;z-index:1000}
+:root[data-theme="dark"] .cs-dropdown-menu{box-shadow:0 12px 32px rgba(0,0,0,.55)}
+.cs-dropdown-wrap.open .cs-dropdown-menu{display:flex}
+
+.cs-menu-item{all:unset;cursor:pointer;display:flex;align-items:flex-start;gap:11px;padding:9px 12px;border-radius:10px;transition:background-color .15s;text-align:left;box-sizing:border-box;width:100%}
+.cs-menu-item:hover,.cs-menu-item:focus-visible{background:var(--bg);outline:none}
+.cs-item-dot{width:9px;height:9px;border-radius:50%;margin-top:5px;flex-shrink:0;background:var(--item-c, var(--attention))}
+.cs-item-text{display:flex;flex-direction:column;gap:2px}
+.cs-item-title{font:700 13.5px/1.2 var(--head);color:var(--ink);transition:color .15s}
+.cs-menu-item:hover .cs-item-title{color:var(--item-c, var(--attention))}
+.cs-item-text small{font-size:11.5px;color:var(--muted);line-height:1.35}
+
+@media(max-width:480px){
+  .cs-dropdown-menu{right:0;width:270px;max-width:calc(100vw - 32px)}
+}
 
 /* hero banner callout */
 .case-study-hero-banner{margin:0 0 26px}
@@ -339,10 +357,38 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
       <span class="brand-name">RanchiMall</span>
     </a>
     <div class="header-right">
-      <a href="#case-study" class="nav-case-study" id="nav-case-study" aria-label="Jump to YouTube Case Study">
-        <span class="full-txt">Explore YouTube Case Study ↓</span>
-        <span class="short-txt">Case Study ↓</span>
-      </a>
+      <div class="cs-dropdown-wrap" id="cs-dropdown-wrap">
+        <button class="cs-dropdown-trigger" id="cs-dropdown-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Select Case Study">
+          <span>Case Studies</span>
+          <svg class="cs-caret" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+
+        <div class="cs-dropdown-menu" id="cs-dropdown-menu" role="menu" aria-label="Case Studies">
+          <button class="cs-menu-item" type="button" role="menuitem" data-target-tab="t-attention" data-target-scroll="case-study" style="--item-c:var(--attention)">
+            <span class="cs-item-dot"></span>
+            <div class="cs-item-text">
+              <strong class="cs-item-title">Attention</strong>
+              <small>Why 10 Engaged Views Beat 1,000,000 Views</small>
+            </div>
+          </button>
+          <button class="cs-menu-item" type="button" role="menuitem" data-target-tab="t-consumption" data-target-scroll="case-study-consumption" style="--item-c:var(--consumption)">
+            <span class="cs-item-dot"></span>
+            <div class="cs-item-text">
+              <strong class="cs-item-title">Consumption</strong>
+              <small>Why 1,000 Builders Beat 100,000 Churn Users</small>
+            </div>
+          </button>
+          <button class="cs-menu-item" type="button" role="menuitem" data-target-tab="t-cashflow" data-target-scroll="case-study-cashflow" style="--item-c:var(--cashflow)">
+            <span class="cs-item-dot"></span>
+            <div class="cs-item-text">
+              <strong class="cs-item-title">Cashflow</strong>
+              <small>Why Recurring Cashflow Beats One-Time Windfalls</small>
+            </div>
+          </button>
+        </div>
+      </div>
       <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark and light theme" title="Toggle theme">
         <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="4"></circle>
@@ -1507,7 +1553,7 @@ window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',e=>{
 
 // tabs
 const tabs=[...document.querySelectorAll('.tab')];
-function select(t){
+function select(t, scrollTargetId = null){
   tabs.forEach(b=>{
     const on=b===t;
     b.setAttribute('aria-selected',on);
@@ -1516,54 +1562,63 @@ function select(t){
     if(panel) panel.hidden=!on;
   });
   t.focus();
-  const navCaseStudy = document.getElementById('nav-case-study');
-  if(navCaseStudy){
+  const csBtn = document.getElementById('cs-dropdown-btn');
+  if(csBtn){
     if(t.id === 't-attention'){
-      navCaseStudy.style.display = 'inline-flex';
-      navCaseStudy.setAttribute('href', '#case-study');
-      navCaseStudy.style.removeProperty('color');
-      navCaseStudy.style.removeProperty('border-color');
-      navCaseStudy.style.setProperty('--btn-bg', 'var(--attention)');
-      const full = navCaseStudy.querySelector('.full-txt');
-      const short = navCaseStudy.querySelector('.short-txt');
-      if(full) full.textContent = 'Explore YouTube Case Study ↓';
-      if(short) short.textContent = 'Case Study ↓';
+      csBtn.style.setProperty('--btn-bg', 'var(--attention)');
     } else if(t.id === 't-consumption'){
-      navCaseStudy.style.display = 'inline-flex';
-      navCaseStudy.setAttribute('href', '#case-study-consumption');
-      navCaseStudy.style.removeProperty('color');
-      navCaseStudy.style.removeProperty('border-color');
-      navCaseStudy.style.setProperty('--btn-bg', 'var(--consumption)');
-      const full = navCaseStudy.querySelector('.full-txt');
-      const short = navCaseStudy.querySelector('.short-txt');
-      if(full) full.textContent = 'Explore Consumption Case Study ↓';
-      if(short) short.textContent = 'Case Study ↓';
+      csBtn.style.setProperty('--btn-bg', 'var(--consumption)');
     } else if(t.id === 't-cashflow'){
-      navCaseStudy.style.display = 'inline-flex';
-      navCaseStudy.setAttribute('href', '#case-study-cashflow');
-      navCaseStudy.style.removeProperty('color');
-      navCaseStudy.style.removeProperty('border-color');
-      navCaseStudy.style.setProperty('--btn-bg', 'var(--cashflow)');
-      const full = navCaseStudy.querySelector('.full-txt');
-      const short = navCaseStudy.querySelector('.short-txt');
-      if(full) full.textContent = 'Explore Cashflow Case Study ↓';
-      if(short) short.textContent = 'Case Study ↓';
-    } else {
-      navCaseStudy.style.display = 'none';
+      csBtn.style.setProperty('--btn-bg', 'var(--cashflow)');
+    }
+  }
+  if(scrollTargetId){
+    const el = document.getElementById(scrollTargetId);
+    if(el){
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
     }
   }
 }
-const navCaseStudy = document.getElementById('nav-case-study');
-if(navCaseStudy){
-  navCaseStudy.addEventListener('click', (e) => {
-    const href = navCaseStudy.getAttribute('href');
-    if(href === '#case-study') {
-      select(document.getElementById('t-attention'));
-    } else if(href === '#case-study-consumption') {
-      select(document.getElementById('t-consumption'));
-    } else if(href === '#case-study-cashflow') {
-      select(document.getElementById('t-cashflow'));
+
+// Case Studies dropdown
+const csWrap = document.getElementById('cs-dropdown-wrap');
+const csBtn = document.getElementById('cs-dropdown-btn');
+if(csBtn && csWrap){
+  csBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = csWrap.classList.toggle('open');
+    csBtn.setAttribute('aria-expanded', isOpen);
+  });
+
+  document.addEventListener('click', (e) => {
+    if(!csWrap.contains(e.target)){
+      csWrap.classList.remove('open');
+      csBtn.setAttribute('aria-expanded', 'false');
     }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && csWrap.classList.contains('open')){
+      csWrap.classList.remove('open');
+      csBtn.setAttribute('aria-expanded', 'false');
+      csBtn.focus();
+    }
+  });
+
+  const menuItems = csWrap.querySelectorAll('.cs-menu-item');
+  menuItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const targetTabId = item.getAttribute('data-target-tab');
+      const targetScrollId = item.getAttribute('data-target-scroll');
+      const tabEl = document.getElementById(targetTabId);
+      if(tabEl){
+        select(tabEl, targetScrollId);
+      }
+      csWrap.classList.remove('open');
+      csBtn.setAttribute('aria-expanded', 'false');
+    });
   });
 }
 tabs.forEach((b,i)=>{b.onclick=()=>select(b);
