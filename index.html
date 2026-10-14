@@ -53,10 +53,10 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--bod
 
 /* header right actions */
 .header-right{display:flex;align-items:center;gap:12px}
-.nav-case-study{display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 var(--body);color:var(--surface);background:var(--attention);padding:8px 14px;border-radius:10px;text-decoration:none;transition:opacity .15s,transform .1s,box-shadow .15s;box-shadow:0 1px 3px rgba(0,0,0,.12);white-space:nowrap}
-.nav-case-study:hover{opacity:.92;transform:translateY(-1px);box-shadow:0 3px 8px rgba(14,124,134,.28)}
+.nav-case-study{display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 var(--body);color:#FFFFFF!important;background:var(--btn-bg, var(--attention));padding:8px 15px;border-radius:10px;text-decoration:none;transition:opacity .15s,transform .1s,box-shadow .15s,background-color .2s;box-shadow:0 1px 3px rgba(0,0,0,.15);white-space:nowrap}
+.nav-case-study:hover{opacity:.92;transform:translateY(-1px);box-shadow:0 3px 8px rgba(0,0,0,.2)}
 .nav-case-study:active{transform:scale(.97)}
-:root[data-theme="dark"] .nav-case-study{color:#0F171D;background:var(--attention);font-weight:700}
+:root[data-theme="dark"] .nav-case-study{color:#0F171D!important;background:var(--btn-bg, var(--attention));font-weight:700}
 @media(max-width:600px){.nav-case-study .full-txt{display:none}.nav-case-study .short-txt{display:inline}}
 @media(min-width:601px){.nav-case-study .full-txt{display:inline}.nav-case-study .short-txt{display:none}}
 
@@ -171,6 +171,13 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
 
 /* 6 Metrics Grid (Step 2) */
 .metrics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+/* Consumption Storyboard styles */
+.sim-btn-cons{all:unset;cursor:pointer;padding:6px 14px;border-radius:8px;font-size:13px;font-weight:600;border:1px solid var(--line);background:var(--bg);color:var(--ink);transition:all .15s}
+.sim-btn-cons.active,.sim-btn-cons:hover{background:var(--surface);border-color:var(--consumption);color:var(--consumption);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.metrics-grid-7{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:768px){.metrics-grid-7{grid-template-columns:1fr 1fr}}
+@media(max-width:540px){.metrics-grid-7{grid-template-columns:1fr}}
+
 .metric-box{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--bg);transition:transform .15s,border-color .15s}
 .metric-box:hover{transform:translateY(-2px);border-color:var(--attention)}
 .metric-box b{display:block;font:700 15px var(--head);color:var(--ink);margin-bottom:4px}
@@ -242,7 +249,7 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
       <span class="brand-name">RanchiMall</span>
     </a>
     <div class="header-right">
-      <a href="#case-study" class="nav-case-study" aria-label="Jump to YouTube Case Study">
+      <a href="#case-study" class="nav-case-study" id="nav-case-study" aria-label="Jump to YouTube Case Study">
         <span class="full-txt">Explore YouTube Case Study ↓</span>
         <span class="short-txt">Case Study ↓</span>
       </a>
@@ -557,9 +564,285 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
   <section class="panel" role="tabpanel" id="p-consumption" aria-labelledby="t-consumption" hidden style="--c:var(--consumption)">
     <h2>Consumption</h2>
     <p class="lead">Consumption has to grow on average.</p>
+
+    <div class="case-study-hero-banner">
+      <a href="#case-study-consumption" class="case-study-hero-btn" style="--c:var(--consumption);border-color:var(--consumption)">
+        <span class="cs-badge" style="background:rgba(75,82,214,.14);color:var(--consumption)">Deep Dive</span>
+        <span class="cs-title">Explore Consumption Case Study: Why 1,000 High-Utility Users Beat 100,000 Churn Users</span>
+        <span class="cs-arrow" style="color:var(--consumption)">↓</span>
+      </a>
+    </div>
+
     <div class="chart-head"><span>Average trend</span><strong data-slope="1"></strong></div>
     <svg class="chart" data-chart="1" viewBox="0 0 640 250" role="img" aria-label="Consumption growing over 24 months"></svg>
     <div class="legend"><span><i></i>Consumption</span><span><i class="d"></i>Average trend</span><span>Illustrative data</span></div>
+
+    <!-- CASE STUDY: CONSUMPTION MODEL (CONNECTED VERTICAL STORYBOARD) -->
+    <div class="storyboard-section" id="case-study-consumption" style="--c:var(--consumption)">
+      <div class="storyboard-head">
+        <span class="badge" style="background:rgba(75,82,214,.14);color:var(--consumption)">Case Study · Consumption Model</span>
+        <h2>YouTube as a Model for Consumption in an Attention-Driven Economy</h2>
+        <p>Why 1,000 high-utility, persistent users create more 10-year value than 100,000 one-and-done users. A walkthrough of measuring genuine utility, outcomes, and resource efficiency.</p>
+      </div>
+
+      <div class="story-track" style="border-left-color:var(--line)">
+
+        <!-- STEP 1: The Utility Paradox & 3 Layers of Consumption -->
+        <div class="story-step" style="--step-c:var(--consumption)">
+          <div class="story-marker" style="border-color:var(--consumption);color:var(--consumption)">01</div>
+          <span class="story-tag" style="color:var(--consumption)">Utility Paradox & The 3 Layers</span>
+          <h3 class="story-title">Quantity vs. Value: 1,000 High-Utility Users vs. 100,000 Churn Users</h3>
+          <p class="story-desc">Attention measures the interest a product attracts, but consumption measures what people actually watch, use, create, or participate in as a result. An AI application attracting 100,000 one-time experimenters creates massive server costs with little lasting value. Another application with 1,000 regular creators publishing music and building tools generates compounding economic sustainability.</p>
+          
+          <div class="contrast-grid">
+            <div class="contrast-card meme">
+              <h4><span>Product A: Low-Retention AI App</span> <span class="stat-pill">100,000 Users</span></h4>
+              <ul class="contrast-list">
+                <li><span class="label">Usage Pattern:</span> <span>Most users generate 1 output and leave</span></li>
+                <li><span class="label">Output Utility:</span> <span>Few outputs used beyond initial experiment</span></li>
+                <li><span class="label">Compute Cost:</span> <span>High operating costs relative to value</span></li>
+                <li><span class="label">10-Yr Funding:</span> <span><strong>$0</strong> sustained value; usage collapses</span></li>
+              </ul>
+            </div>
+            <div class="contrast-card" style="border-top:3.5px solid var(--consumption)">
+              <h4><span>Product B: High-Utility AI App</span> <span class="stat-pill" style="background:rgba(75,82,214,.14);color:var(--consumption)">1,000 Users</span></h4>
+              <ul class="contrast-list">
+                <li><span class="label">Usage Pattern:</span> <span>Users repeatedly complete useful tasks</span></li>
+                <li><span class="label">Output Utility:</span> <span>Music AI songs published and reused</span></li>
+                <li><span class="label">Compute Cost:</span> <span>Resource-efficient, sustainable operations</span></li>
+                <li><span class="label">10-Yr Funding:</span> <span><strong>Compounding</strong> utility and recurring revenue</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="pipeline-flow">
+            <div class="pipe-node" style="--c:var(--attention)">
+              <span class="pipe-num" style="color:var(--attention)">Layer 1</span>
+              <div class="pipe-name">Attention</div>
+              <div class="pipe-examples">What impact did we attract? Viral reach, influential viewers, meaningful discussions, expert interest, and shared ideas.</div>
+            </div>
+            <div class="pipe-node" style="--c:var(--consumption)">
+              <span class="pipe-num" style="color:var(--consumption)">Layer 2</span>
+              <div class="pipe-name">Consumption</div>
+              <div class="pipe-examples">What did people actually do? Videos watched, watch time, returning viewers, website visits, and Music AI application usage.</div>
+            </div>
+            <div class="pipe-node" style="--c:var(--cashflow)">
+              <span class="pipe-num" style="color:var(--cashflow)">Layer 3</span>
+              <div class="pipe-name">Cash Flow</div>
+              <div class="pipe-examples">What value was generated? YouTube ad revenue, paid product usage, transaction fees, sponsorships, and related services.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2: The Seven Rules for Measuring High-Quality Consumption -->
+        <div class="story-step">
+          <div class="story-marker" style="border-color:var(--consumption);color:var(--consumption)">02</div>
+          <span class="story-tag" style="color:var(--consumption)">Evaluation Principles</span>
+          <h3 class="story-title">The Seven Rules for Measuring High-Quality Consumption</h3>
+          <p class="story-desc">Consumption should not be measured only by counting raw views, users, or operations. These seven principles help distinguish empty activity from consumption that creates meaningful and lasting value.</p>
+          
+          <div class="metrics-grid-7">
+            <div class="metric-box">
+              <b>1. Actual Utility</b>
+              <p>Provides genuine value or fulfills a real need.</p>
+              <span class="metric-ex" style="color:var(--consumption)">Developers completing real tasks</span>
+            </div>
+            <div class="metric-box">
+              <b>2. Outcomes over Activity</b>
+              <p>What consumption produces rather than raw volume.</p>
+              <span class="metric-ex" style="color:var(--consumption)">Songs published, heard, or reused</span>
+            </div>
+            <div class="metric-box">
+              <b>3. Meaningful Engagement</b>
+              <p>Genuine deep interaction with the service.</p>
+              <span class="metric-ex" style="color:var(--consumption)">Creating and refining a song in Music AI</span>
+            </div>
+            <div class="metric-box">
+              <b>4. Persistence</b>
+              <p>Whether consumption endures over years.</p>
+              <span class="metric-ex" style="color:var(--consumption)">Users returning regularly for 10 years</span>
+            </div>
+            <div class="metric-box">
+              <b>5. Genuine Demand</b>
+              <p>Real user intent versus artificial inflation.</p>
+              <span class="metric-ex" style="color:var(--consumption)">Real swaps vs. wash volume</span>
+            </div>
+            <div class="metric-box">
+              <b>6. Downstream Impact</b>
+              <p>Whether usage enables further creative acts.</p>
+              <span class="metric-ex" style="color:var(--consumption)">Inspiring code, research, or apps</span>
+            </div>
+            <div class="metric-box" style="grid-column: span 3">
+              <b>7. Resource Efficiency</b>
+              <p>How much useful value is produced relative to the computing resources consumed.</p>
+              <span class="metric-ex" style="color:var(--consumption)">AI applications completing tasks at sustainable operating & GPU costs</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3: 10-Year Simulation (Product A vs Product B) -->
+        <div class="story-step">
+          <div class="story-marker" style="border-color:var(--consumption);color:var(--consumption)">03</div>
+          <span class="story-tag" style="color:var(--consumption)">10-Year Trajectory</span>
+          <h3 class="story-title">Comparing Trajectories: Compute-Burn Churn vs. High-Utility Retention</h3>
+          <p class="story-desc">Product A experiences a short-lived explosion in signups that burns capital. Product B builds steady cohort retention, generating compounding software output and protocol utility over a 10-year period.</p>
+
+          <div class="sim-controls">
+            <span>Inspect Milestone:</span>
+            <button type="button" class="sim-btn-cons active" data-sim-cons="0">Month 1</button>
+            <button type="button" class="sim-btn-cons" data-sim-cons="1">Year 1</button>
+            <button type="button" class="sim-btn-cons" data-sim-cons="2">Year 5</button>
+            <button type="button" class="sim-btn-cons" data-sim-cons="3">Year 10</button>
+          </div>
+
+          <div class="sim-chart-wrap">
+            <svg viewBox="0 0 640 220" role="img" aria-label="10-Year Comparison: Product A vs Product B">
+              <!-- Grid Lines -->
+              <line x1="50" y1="30" x2="610" y2="30" stroke="var(--line)" stroke-dasharray="4 4" />
+              <line x1="50" y1="70" x2="610" y2="70" stroke="var(--line)" stroke-dasharray="4 4" />
+              <line x1="50" y1="110" x2="610" y2="110" stroke="var(--line)" stroke-dasharray="4 4" />
+              <line x1="50" y1="150" x2="610" y2="150" stroke="var(--line)" stroke-dasharray="4 4" />
+              <line x1="50" y1="190" x2="610" y2="190" stroke="var(--line)" />
+
+              <!-- Time Labels -->
+              <text x="60" y="208" font-size="11" fill="var(--muted)" font-family="var(--body)" text-anchor="middle">M1</text>
+              <text x="140" y="208" font-size="11" fill="var(--muted)" font-family="var(--body)" text-anchor="middle">M6</text>
+              <text x="220" y="208" font-size="11" fill="var(--muted)" font-family="var(--body)" text-anchor="middle">Y1</text>
+              <text x="320" y="208" font-size="11" fill="var(--muted)" font-family="var(--body)" text-anchor="middle">Y3</text>
+              <text x="420" y="208" font-size="11" fill="var(--muted)" font-family="var(--body)" text-anchor="middle">Y5</text>
+              <text x="520" y="208" font-size="11" fill="var(--muted)" font-family="var(--body)" text-anchor="middle">Y8</text>
+              <text x="610" y="208" font-size="11" fill="var(--muted)" font-family="var(--body)" text-anchor="middle">Y10</text>
+
+              <!-- Product A: Churn (Spike then collapse) -->
+              <polyline points="60,30 100,115 140,170 180,188 220,190 320,190 420,190 520,190 610,190" fill="none" stroke="#E05252" stroke-width="2.5" stroke-dasharray="6 4" stroke-linecap="round" />
+
+              <!-- Product B: Compounding Utility -->
+              <polyline points="60,180 140,172 220,158 320,132 420,95 520,60 610,26" fill="none" stroke="var(--consumption)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+
+              <!-- Dynamic Indicator Line -->
+              <line id="sim-cons-indicator" x1="60" y1="20" x2="60" y2="190" stroke="var(--ink)" stroke-width="2" stroke-dasharray="4 3" opacity=".8" />
+              <circle id="sim-cons-point-a" cx="60" cy="30" r="5" fill="#E05252" />
+              <circle id="sim-cons-point-b" cx="60" cy="180" r="5" fill="var(--consumption)" />
+            </svg>
+
+            <div class="sim-legend">
+              <span><i class="meme"></i>Product A (100K Users: High compute burn, rapid churn)</span>
+              <span><i style="border-top:3px solid var(--consumption)"></i>Product B (1K Users: Compounding utility & output retention)</span>
+            </div>
+
+            <div class="sim-status">
+              <div class="sim-status-col meme">
+                <b id="sim-cons-a-title">Product A (Low Retention) · Month 1</b>
+                <p id="sim-cons-a-desc">100,000 signups · Massive GPU server bill · 95% one-and-done dropoff · Zero outputs reused.</p>
+              </div>
+              <div class="sim-status-col" style="--c:var(--consumption)">
+                <b id="sim-cons-b-title" style="color:var(--consumption)">Product B (High Utility) · Month 1</b>
+                <p id="sim-cons-b-desc">1,000 active users · Low $120 operating cost · 240 songs created and published using Music AI.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 4: 10-Year Framework (Two Independent Levels) -->
+        <div class="story-step">
+          <div class="story-marker" style="border-color:var(--consumption);color:var(--consumption)">04</div>
+          <span class="story-tag" style="color:var(--consumption)">Accounting Architecture</span>
+          <h3 class="story-title">Measuring Over 10 Years: Two Independent Levels</h3>
+          <p class="story-desc">Separating consumption volume from the value it creates prevents double-counting and distinguishes pure server load from genuine economic productivity.</p>
+
+          <div class="levels-grid">
+            <div class="level-card">
+              <h4>Level A: Consumption Generated</h4>
+              <p>Measures raw usage volume, frequency, and retention:</p>
+              <ul>
+                <li>Total content watched or listened to</li>
+                <li>Successful tasks completed by applications</li>
+                <li>AI-generated outputs created & used</li>
+                <li>Successful blockchain transactions & active users</li>
+                <li>Cohort retention and consumption growth over time</li>
+              </ul>
+            </div>
+            <div class="level-card">
+              <h4>Level B: Value Created by Consumption</h4>
+              <p>Measures concrete downstream outputs and economic impact:</p>
+              <ul>
+                <li>Music created & published with Music AI</li>
+                <li>Software & digital tools built and deployed</li>
+                <li>Research and useful outputs from educational content</li>
+                <li>Meaningful payments & swaps fulfilling actual user needs</li>
+                <li>Dev cost coverage ratio and revenue from paid services</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="score-banner" style="border-color:var(--consumption);background:rgba(75,82,214,.08)">
+            <b>Predictive Consumption Intelligence:</b> Tracking these levels separately over 10 years allows historical data to reveal which consumption indicators best predict long-term user retention, output utility, and self-funding revenue generation.
+          </div>
+        </div>
+
+        <!-- STEP 5: Critical Reality & The Closed Flywheel -->
+        <div class="story-step">
+          <div class="story-marker" style="border-color:var(--consumption);color:var(--consumption)">05</div>
+          <span class="story-tag" style="color:var(--consumption)">The Closed Loop</span>
+          <h3 class="story-title">Consumption vs. Compute Cost: The Self-Funding Flywheel</h3>
+          <p class="story-desc">Consumption does not automatically generate revenue. People can watch millions of videos or process millions of transactions without the project earning sustainable funding. The system must capture genuine protocol fees that exceed operating costs.</p>
+
+          <div class="flywheel-container">
+            <div class="flywheel-svg-wrap">
+              <svg viewBox="0 0 380 380" role="img" aria-label="Consumption Flywheel Loop">
+                <!-- Orbit Ring -->
+                <circle cx="190" cy="190" r="125" fill="none" stroke="var(--line)" stroke-width="2.5" />
+                <circle cx="190" cy="190" r="125" fill="none" stroke="var(--consumption)" stroke-width="3" stroke-dasharray="14 10" class="rotating-ring" />
+
+                <!-- Center Hub -->
+                <circle cx="190" cy="190" r="48" fill="var(--surface)" stroke="var(--consumption)" stroke-width="2" />
+                <text x="190" y="184" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted)" font-family="var(--head)">10-YEAR</text>
+                <text x="190" y="202" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)" font-family="var(--head)">CONSUMPTION</text>
+
+                <!-- Node 1: Attention (Top) -->
+                <circle cx="190" cy="65" r="28" fill="var(--surface)" stroke="var(--attention)" stroke-width="2.5" />
+                <text x="190" y="69" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--ink)" font-family="var(--head)">ATTENTION</text>
+
+                <!-- Node 2: Consumption (Top Right) -->
+                <circle cx="309" cy="151" r="28" fill="var(--surface)" stroke="var(--consumption)" stroke-width="2.5" />
+                <text x="309" y="155" text-anchor="middle" font-size="10" font-weight="700" fill="var(--ink)" font-family="var(--head)">CONSUMPTION</text>
+
+                <!-- Node 3: Economic Activity (Bottom Right) -->
+                <circle cx="264" cy="291" r="28" fill="var(--surface)" stroke="var(--cashflow)" stroke-width="2.5" />
+                <text x="264" y="287" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--ink)" font-family="var(--head)">ECONOMIC</text>
+                <text x="264" y="299" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--ink)" font-family="var(--head)">ACTIVITY</text>
+
+                <!-- Node 4: Revenue Received (Bottom Left) -->
+                <circle cx="116" cy="291" r="28" fill="var(--surface)" stroke="var(--attention)" stroke-width="2.5" />
+                <text x="116" y="287" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--ink)" font-family="var(--head)">REVENUE</text>
+                <text x="116" y="299" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--ink)" font-family="var(--head)">RECEIVED</text>
+
+                <!-- Node 5: Reinvestment (Top Left) -->
+                <circle cx="71" cy="151" r="28" fill="var(--surface)" stroke="var(--consumption)" stroke-width="2.5" />
+                <text x="71" y="155" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--ink)" font-family="var(--head)">REINVESTMENT</text>
+              </svg>
+            </div>
+
+            <div class="token-distinction">
+              <div class="dist-box leak">
+                <b>Unfunded Compute Drain (Negative Loop)</b>
+                <p>An application processes thousands of free-tier AI queries or wash swaps. Computing bills exceed earnings, producing net capital drain instead of sustainability.</p>
+              </div>
+              <div class="dist-box" style="border-left:4px solid var(--consumption)">
+                <b style="color:var(--consumption)">Sustainable Fee Capture (Self-Funding Flywheel)</b>
+                <p>High-utility tasks, paid product subscriptions, and blockchain swap fees create real protocol cash flow. This revenue directly funds continued operation, infrastructure, and builder bounties.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flywheel-conclusion">
+            <strong>Conclusion:</strong> High-quality consumption must account for utility, outcomes, persistence, genuine demand, downstream impact, and resource efficiency. Over a 10-year period, this model ensures that digital consumption does not just generate activity, but creates enough real economic value to <strong>fund the system's continued operation and growth</strong>.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </section>
 
   <section class="panel" role="tabpanel" id="p-cashflow" aria-labelledby="t-cashflow" hidden style="--c:var(--cashflow)">
@@ -653,18 +936,46 @@ function select(t){
     const on=b===t;
     b.setAttribute('aria-selected',on);
     b.tabIndex=on?0:-1;
-    document.getElementById(b.getAttribute('aria-controls')).hidden=!on;
+    const panel = document.getElementById(b.getAttribute('aria-controls'));
+    if(panel) panel.hidden=!on;
   });
   t.focus();
   const navCaseStudy = document.getElementById('nav-case-study');
   if(navCaseStudy){
-    navCaseStudy.style.display = (t.id === 't-attention') ? 'inline-flex' : 'none';
+    if(t.id === 't-attention'){
+      navCaseStudy.style.display = 'inline-flex';
+      navCaseStudy.setAttribute('href', '#case-study');
+      navCaseStudy.style.removeProperty('color');
+      navCaseStudy.style.removeProperty('border-color');
+      navCaseStudy.style.setProperty('--btn-bg', 'var(--attention)');
+      const full = navCaseStudy.querySelector('.full-txt');
+      const short = navCaseStudy.querySelector('.short-txt');
+      if(full) full.textContent = 'Explore YouTube Case Study ↓';
+      if(short) short.textContent = 'Case Study ↓';
+    } else if(t.id === 't-consumption'){
+      navCaseStudy.style.display = 'inline-flex';
+      navCaseStudy.setAttribute('href', '#case-study-consumption');
+      navCaseStudy.style.removeProperty('color');
+      navCaseStudy.style.removeProperty('border-color');
+      navCaseStudy.style.setProperty('--btn-bg', 'var(--consumption)');
+      const full = navCaseStudy.querySelector('.full-txt');
+      const short = navCaseStudy.querySelector('.short-txt');
+      if(full) full.textContent = 'Explore Consumption Case Study ↓';
+      if(short) short.textContent = 'Case Study ↓';
+    } else {
+      navCaseStudy.style.display = 'none';
+    }
   }
 }
 const navCaseStudy = document.getElementById('nav-case-study');
 if(navCaseStudy){
   navCaseStudy.addEventListener('click', (e) => {
-    select(document.getElementById('t-attention'));
+    const href = navCaseStudy.getAttribute('href');
+    if(href === '#case-study') {
+      select(document.getElementById('t-attention'));
+    } else if(href === '#case-study-consumption') {
+      select(document.getElementById('t-consumption'));
+    }
   });
 }
 tabs.forEach((b,i)=>{b.onclick=()=>select(b);
@@ -742,6 +1053,80 @@ simButtons.forEach((btn, idx) => {
     if (simScienceDesc) simScienceDesc.textContent = d.scienceDesc;
   });
 });
+
+// 10-Year Consumption Simulation controls
+const simConsData = [
+  {
+    x: 60,
+    aY: 30,
+    bY: 180,
+    aTitle: 'Product A (Low Retention) · Month 1',
+    aDesc: '100,000 signups · Massive GPU server bill · 95% one-and-done dropoff · Zero outputs reused.',
+    bTitle: 'Product B (High Utility) · Month 1',
+    bDesc: '1,000 active users · Low $120 operating cost · 240 songs created and published using Music AI.'
+  },
+  {
+    x: 220,
+    aY: 190,
+    bY: 158,
+    aTitle: 'Product A (Low Retention) · Year 1',
+    aDesc: 'Active users down 95% · Server hosting costs exceed revenue · Topic forgotten and churned.',
+    bTitle: 'Product B (High Utility) · Year 1',
+    bDesc: '3,200 active users · 65% monthly retention · Music library actively expanding on FLO Blockchain.'
+  },
+  {
+    x: 420,
+    aY: 190,
+    bY: 95,
+    aTitle: 'Product A (Low Retention) · Year 5',
+    aDesc: 'Project abandoned due to unsustainable compute burn · Net economic value generated: $0.',
+    bTitle: 'Product B (High Utility) · Year 5',
+    bDesc: '18,000 builders · Multi-app ecosystem live · $48,000/yr in recurring swap and network fees.'
+  },
+  {
+    x: 610,
+    aY: 190,
+    bY: 26,
+    aTitle: 'Product A (Low Retention) · Year 10',
+    aDesc: 'Cumulative 10-year economic contribution: $0. A cautionary example of vanity volume.',
+    bTitle: 'Product B (High Utility) · Year 10',
+    bDesc: '10-Year self-funding sustainability achieved · Output revenues completely fund continuous development.'
+  }
+];
+
+const simConsButtons = document.querySelectorAll('.sim-btn-cons');
+const simConsIndicator = document.getElementById('sim-cons-indicator');
+const simConsPointA = document.getElementById('sim-cons-point-a');
+const simConsPointB = document.getElementById('sim-cons-point-b');
+const simConsATitle = document.getElementById('sim-cons-a-title');
+const simConsADesc = document.getElementById('sim-cons-a-desc');
+const simConsBTitle = document.getElementById('sim-cons-b-title');
+const simConsBDesc = document.getElementById('sim-cons-b-desc');
+
+simConsButtons.forEach((btn, idx) => {
+  btn.addEventListener('click', () => {
+    simConsButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const d = simConsData[idx];
+    if (simConsIndicator) {
+      simConsIndicator.setAttribute('x1', d.x);
+      simConsIndicator.setAttribute('x2', d.x);
+    }
+    if (simConsPointA) {
+      simConsPointA.setAttribute('cx', d.x);
+      simConsPointA.setAttribute('cy', d.aY);
+    }
+    if (simConsPointB) {
+      simConsPointB.setAttribute('cx', d.x);
+      simConsPointB.setAttribute('cy', d.bY);
+    }
+    if (simConsATitle) simConsATitle.textContent = d.aTitle;
+    if (simConsADesc) simConsADesc.textContent = d.aDesc;
+    if (simConsBTitle) simConsBTitle.textContent = d.bTitle;
+    if (simConsBDesc) simConsBDesc.textContent = d.bDesc;
+  });
+});
+
 </script>
 </body>
 </html>
