@@ -51,6 +51,26 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--bod
 .brand-logo{width:36px;height:36px;border-radius:50%;display:block;object-fit:contain;flex-shrink:0}
 .brand-name{font:700 20px/1.2 var(--head);letter-spacing:-.02em;color:var(--ink)}
 
+/* header right actions */
+.header-right{display:flex;align-items:center;gap:12px}
+.nav-case-study{display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 var(--body);color:var(--surface);background:var(--attention);padding:8px 14px;border-radius:10px;text-decoration:none;transition:opacity .15s,transform .1s,box-shadow .15s;box-shadow:0 1px 3px rgba(0,0,0,.12);white-space:nowrap}
+.nav-case-study:hover{opacity:.92;transform:translateY(-1px);box-shadow:0 3px 8px rgba(14,124,134,.28)}
+.nav-case-study:active{transform:scale(.97)}
+:root[data-theme="dark"] .nav-case-study{color:#0F171D;background:var(--attention);font-weight:700}
+@media(max-width:600px){.nav-case-study .full-txt{display:none}.nav-case-study .short-txt{display:inline}}
+@media(min-width:601px){.nav-case-study .full-txt{display:inline}.nav-case-study .short-txt{display:none}}
+
+/* hero banner callout */
+.case-study-hero-banner{margin:0 0 26px}
+.case-study-hero-btn{display:inline-flex;align-items:center;gap:12px;background:var(--surface);border:1.5px solid var(--attention);border-radius:14px;padding:12px 18px;text-decoration:none;color:var(--ink);transition:transform .15s,box-shadow .15s,background-color .15s;box-shadow:0 2px 8px rgba(14,124,134,.1)}
+.case-study-hero-btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(14,124,134,.2);background:var(--bg)}
+.case-study-hero-btn .cs-badge{font:700 11px var(--head);letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:6px;background:rgba(14,124,134,.14);color:var(--attention)}
+:root[data-theme="dark"] .case-study-hero-btn .cs-badge{background:rgba(60,196,207,.2)}
+.case-study-hero-btn .cs-title{font:700 16px/1.25 var(--head);color:var(--ink)}
+.case-study-hero-btn .cs-arrow{font-size:18px;font-weight:700;color:var(--attention);transition:transform .2s ease}
+.case-study-hero-btn:hover .cs-arrow{transform:translateY(2px)}
+@media(max-width:640px){.case-study-hero-btn{flex-wrap:wrap;padding:12px 14px;gap:8px}.case-study-hero-btn .cs-title{font-size:14.5px}}
+
 /* theme toggle (icon only, no text) */
 .theme-toggle{all:unset;cursor:pointer;width:38px;height:38px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);display:flex;align-items:center;justify-content:center;transition:border-color .15s,box-shadow .15s,transform .1s,color .15s,background-color .15s}
 .theme-toggle:hover{border-color:var(--attention);color:var(--attention)}
@@ -109,6 +129,108 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
   .row{grid-template-columns:1fr;gap:6px}
   .row .k{display:block}
 }
+/* Storyboard Section */
+.pill-link{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:600;color:var(--attention);text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:3px 12px;margin-top:6px;transition:border-color .15s,background-color .15s}
+.pill-link:hover{border-color:var(--attention);background:var(--bg)}
+.storyboard-section{margin-top:56px;padding-top:24px;border-top:1px solid var(--line)}
+.storyboard-head{margin-bottom:32px}
+.storyboard-head .badge{display:inline-block;padding:4px 12px;border-radius:20px;background:rgba(14,124,134,.12);color:var(--attention);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px}
+:root[data-theme="dark"] .storyboard-head .badge{background:rgba(60,196,207,.15)}
+.storyboard-head h2{font:700 clamp(24px,4vw,34px)/1.15 var(--head);margin:0 0 10px;letter-spacing:-.02em}
+.storyboard-head p{color:var(--muted);max-width:70ch;margin:0;font-size:16px}
+
+/* Timeline Track */
+.story-track{position:relative;border-left:2.5px solid var(--line);margin-left:20px;padding-left:40px;display:flex;flex-direction:column;gap:36px}
+.story-step{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px 28px;transition:border-color .15s}
+.story-step:hover{border-color:var(--attention)}
+.story-marker{position:absolute;left:-58px;top:24px;width:34px;height:34px;border-radius:50%;background:var(--surface);border:2.5px solid var(--attention);color:var(--attention);font:700 14px/1 var(--head);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px var(--bg)}
+.story-tag{display:inline-block;font-size:11.5px;font-weight:700;color:var(--attention);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.story-title{font:700 22px/1.2 var(--head);margin:0 0 10px;color:var(--ink)}
+.story-desc{color:var(--muted);font-size:15px;line-height:1.6;margin:0 0 20px}
+
+/* Contrast Cards (Step 1) */
+.contrast-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.contrast-card{border:1px solid var(--line);border-radius:14px;padding:18px;background:var(--bg)}
+.contrast-card.meme{border-top:3.5px solid #E05252}
+.contrast-card.science{border-top:3.5px solid var(--attention)}
+.contrast-card h4{font:700 16px var(--head);margin:0 0 10px;display:flex;align-items:center;justify-content:space-between}
+.contrast-card .stat-pill{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:8px}
+.contrast-card.meme .stat-pill{background:rgba(224,82,82,.15);color:#D32F2F}
+:root[data-theme="dark"] .contrast-card.meme .stat-pill{color:#FF6B6B}
+.contrast-card.science .stat-pill{background:rgba(14,124,134,.15);color:var(--attention)}
+.contrast-list{list-style:none;padding:0;margin:0;font-size:13.5px;color:var(--ink);display:flex;flex-direction:column;gap:7px}
+.contrast-list li{display:flex;gap:8px}
+.contrast-list li span.label{color:var(--muted);min-width:125px;flex-shrink:0}
+
+/* 3-Layer Pipeline */
+.pipeline-flow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;border:1px solid var(--line);border-radius:14px;padding:16px;background:var(--bg)}
+.pipe-node{background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:12px 14px}
+.pipe-num{font-size:11px;font-weight:700;color:var(--attention);text-transform:uppercase;letter-spacing:.04em}
+.pipe-name{font:700 15px var(--head);color:var(--ink);margin:2px 0 6px}
+.pipe-examples{font-size:12px;color:var(--muted);line-height:1.45}
+
+/* 6 Metrics Grid (Step 2) */
+.metrics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.metric-box{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--bg);transition:transform .15s,border-color .15s}
+.metric-box:hover{transform:translateY(-2px);border-color:var(--attention)}
+.metric-box b{display:block;font:700 15px var(--head);color:var(--ink);margin-bottom:4px}
+.metric-box p{margin:0 0 8px;font-size:12.5px;color:var(--muted);line-height:1.4}
+.metric-box .metric-ex{font-size:11.5px;color:var(--attention);font-weight:600}
+
+/* 10-Year Simulation (Step 3) */
+.sim-controls{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
+.sim-controls span{font-size:13px;font-weight:600;color:var(--muted);margin-right:4px}
+.sim-btn{all:unset;cursor:pointer;padding:6px 14px;border-radius:8px;font-size:13px;font-weight:600;border:1px solid var(--line);background:var(--bg);color:var(--ink);transition:all .15s}
+.sim-btn.active,.sim-btn:hover{background:var(--surface);border-color:var(--attention);color:var(--attention);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.sim-chart-wrap{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:16px 20px}
+.sim-chart-wrap svg{width:100%;height:auto;display:block}
+.sim-legend{display:flex;gap:18px;font-size:12.5px;color:var(--muted);margin-top:10px}
+.sim-legend i{display:inline-block;width:18px;height:0;vertical-align:middle;margin-right:6px}
+.sim-legend i.meme{border-top:2.5px dashed #E05252}
+.sim-legend i.science{border-top:3px solid var(--attention)}
+.sim-status{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:13px}
+.sim-status-col b{display:block;font:700 14px var(--head);margin-bottom:4px}
+.sim-status-col.meme b{color:#E05252}
+.sim-status-col.science b{color:var(--attention)}
+.sim-status-col p{margin:0;color:var(--muted);line-height:1.45}
+
+/* Two-Level Split (Step 4) */
+.levels-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.level-card{border:1px solid var(--line);border-radius:14px;padding:18px;background:var(--bg)}
+.level-card h4{font:700 16px var(--head);margin:0 0 6px;color:var(--ink)}
+.level-card p{font-size:13px;color:var(--muted);margin:0 0 10px}
+.level-card ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink);line-height:1.55}
+.score-banner{margin-top:14px;padding:14px 18px;border-radius:12px;background:rgba(14,124,134,.08);border:1.5px dashed var(--attention);color:var(--ink);font-size:13.5px;line-height:1.5}
+:root[data-theme="dark"] .score-banner{background:rgba(60,196,207,.1)}
+
+/* Flywheel (Step 5) */
+.flywheel-container{display:grid;grid-template-columns:1.15fr 1fr;gap:24px;align-items:center}
+.flywheel-svg-wrap{text-align:center;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:16px}
+.flywheel-svg-wrap svg{max-width:360px;width:100%;height:auto}
+@keyframes rotateFlywheel{from{stroke-dashoffset:0}to{stroke-dashoffset:-240}}
+.rotating-ring{animation:rotateFlywheel 18s linear infinite}
+.token-distinction{display:flex;flex-direction:column;gap:14px}
+.dist-box{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--bg)}
+.dist-box.leak{border-left:4px solid #E05252}
+.dist-box.fund{border-left:4px solid var(--attention)}
+.dist-box b{font:700 14px var(--head);display:block;margin-bottom:4px}
+.dist-box.leak b{color:#E05252}
+.dist-box.fund b{color:var(--attention)}
+.dist-box p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.45}
+.flywheel-conclusion{margin-top:20px;padding:18px 22px;border-radius:14px;background:var(--bg);border:1.5px solid var(--line);font-size:14.5px;line-height:1.6;color:var(--ink)}
+.flywheel-conclusion strong{color:var(--attention)}
+
+@media(max-width:768px){
+  .story-track{margin-left:8px;padding-left:24px}
+  .story-marker{left:-38px;width:28px;height:28px;font-size:12px;top:20px}
+  .contrast-grid,.levels-grid,.pipeline-flow,.flywheel-container,.sim-status{grid-template-columns:1fr}
+  .metrics-grid{grid-template-columns:1fr 1fr}
+  .story-step{padding:20px 18px}
+}
+@media(max-width:540px){
+  .metrics-grid{grid-template-columns:1fr}
+}
+
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -119,22 +241,28 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
       <img src="logo.png" alt="RanchiMall logo" class="brand-logo" width="36" height="36">
       <span class="brand-name">RanchiMall</span>
     </a>
-    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark and light theme" title="Toggle theme">
-      <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <circle cx="12" cy="12" r="4"></circle>
-        <path d="M12 2v2"></path>
-        <path d="M12 20v2"></path>
-        <path d="m4.93 4.93 1.41 1.41"></path>
-        <path d="m17.66 17.66 1.41 1.41"></path>
-        <path d="M2 12h2"></path>
-        <path d="M20 12h2"></path>
-        <path d="m6.34 17.66 1.41-1.41"></path>
-        <path d="m19.07 4.93-1.41 1.41"></path>
-      </svg>
-      <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-      </svg>
-    </button>
+    <div class="header-right">
+      <a href="#case-study" class="nav-case-study" aria-label="Jump to YouTube Case Study">
+        <span class="full-txt">Explore YouTube Case Study ↓</span>
+        <span class="short-txt">Case Study ↓</span>
+      </a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark and light theme" title="Toggle theme">
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2"></path>
+          <path d="M12 20v2"></path>
+          <path d="m4.93 4.93 1.41 1.41"></path>
+          <path d="m17.66 17.66 1.41 1.41"></path>
+          <path d="M2 12h2"></path>
+          <path d="M20 12h2"></path>
+          <path d="m6.34 17.66 1.41-1.41"></path>
+          <path d="m19.07 4.93-1.41 1.41"></path>
+        </svg>
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+        </svg>
+      </button>
+    </div>
   </div>
 </header>
 <main class="wrap">
@@ -142,7 +270,7 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
   <p class="kicker">Attention, Consumption, Cashflow</p>
   <p class="sub">Three layers of the same loop. Each one has to grow on average over time.</p>
 
-  <div class="tabs" role="tablist" aria-label="Sections">
+<div class="tabs" role="tablist" aria-label="Sections">
     <button class="tab" role="tab" id="t-attention" aria-controls="p-attention" aria-selected="true" style="--c:var(--attention)"><b>Attention</b><small>People notice</small><svg data-spark="0"></svg></button>
     <button class="tab" role="tab" id="t-consumption" aria-controls="p-consumption" aria-selected="false" tabindex="-1" style="--c:var(--consumption)"><b>Consumption</b><small>People use</small><svg data-spark="1"></svg></button>
     <button class="tab" role="tab" id="t-cashflow" aria-controls="p-cashflow" aria-selected="false" tabindex="-1" style="--c:var(--cashflow)"><b>Cashflow</b><small>Money moves</small><svg data-spark="2"></svg></button>
@@ -151,11 +279,279 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
   <section class="panel" role="tabpanel" id="p-attention" aria-labelledby="t-attention" style="--c:var(--attention)">
     <h2>Attention</h2>
     <p class="lead">Attention has to grow on average. These are the 16 places it shows up and how each one is measured.</p>
+    <div class="case-study-hero-banner">
+    <a href="#case-study" class="case-study-hero-btn">
+      <span class="cs-badge">Deep Dive</span>
+      <span class="cs-title">Explore YouTube Case Study: Why 10 Engaged Views Beat 1,000,000 Views</span>
+      <span class="cs-arrow">↓</span>
+    </a>
+  </div>
     <div class="chart-head"><span>Average trend</span><strong data-slope="0"></strong></div>
     <svg class="chart" data-chart="0" viewBox="0 0 640 250" role="img" aria-label="Attention growing over 24 months"></svg>
     <div class="legend"><span><i></i>Attention</span><span><i class="d"></i>Average trend</span><span>Illustrative data</span></div>
     <div class="list-head"><span>Type</span><span>Examples</span><span>How it's measured</span></div>
     <div id="rows"></div>
+
+    <!-- CASE STUDY: YOUTUBE AS AN ATTENTION MODEL (CONNECTED VERTICAL STORYBOARD) -->
+  <div class="storyboard-section" id="case-study">
+    <div class="storyboard-head">
+      <span class="badge">Case Study · Sample Example</span>
+      <h2>YouTube Views as an Attention Model for Self-Funding Systems</h2>
+      <p>Why 10 deeply engaged views generate more 10-year value than 1,000,000 viral views. A walkthrough of how attention converts into sustainable economic self-funding.</p>
+    </div>
+
+    <div class="story-track">
+
+      <!-- STEP 1: The Core Paradox & 3 Layers -->
+      <div class="story-step">
+        <div class="story-marker">01</div>
+        <span class="story-tag">Core Paradox & The 3 Layers</span>
+        <h3 class="story-title">Views Do Not Mean Impact: 10 Engaged Views vs. 1,000,000 Meme Views</h3>
+        <p class="story-desc">YouTube view count measures raw reach, but not the actual economic impact. While a viral Dogecoin meme video attracts millions of viewers who vanish in weeks, a scientific video on the Navier–Stokes equation attracts researchers and developers who write code, build AI applications, and sustain the ecosystem for 10 years.</p>
+        
+        <div class="contrast-grid">
+          <div class="contrast-card meme">
+            <h4><span>Video A: Viral Meme</span> <span class="stat-pill">1,000,000 Views</span></h4>
+            <ul class="contrast-list">
+              <li><span class="label">Audience:</span> <span>Passive scrollers, internet entertainment</span></li>
+              <li><span class="label">Builder Conversion:</span> <span>0 developers, 0 applications</span></li>
+              <li><span class="label">Persistence:</span> <span>Declines to near-zero within 3 weeks</span></li>
+              <li><span class="label">10-Yr Funding:</span> <span><strong>$0</strong> sustained project revenue</span></li>
+            </ul>
+          </div>
+          <div class="contrast-card science">
+            <h4><span>Video B: Navier–Stokes</span> <span class="stat-pill">5,000 Views</span></h4>
+            <ul class="contrast-list">
+              <li><span class="label">Audience:</span> <span>Researchers, software engineers, builders</span></li>
+              <li><span class="label">Builder Conversion:</span> <span>Code contributions, new AI apps built</span></li>
+              <li><span class="label">Persistence:</span> <span>Compounds over months and years</span></li>
+              <li><span class="label">10-Yr Funding:</span> <span><strong>Sustainable</strong> recurring protocol fees</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pipeline-flow">
+          <div class="pipe-node" style="--c:var(--attention)">
+            <span class="pipe-num">Layer 1</span>
+            <div class="pipe-name">Attention</div>
+            <div class="pipe-examples">What did we attract? Watch time, audience retention, shares, interest from researchers, developers, and investors.</div>
+          </div>
+          <div class="pipe-node" style="--c:var(--consumption)">
+            <span class="pipe-num">Layer 2</span>
+            <div class="pipe-name">Consumption</div>
+            <div class="pipe-examples">What did people do? Returning viewers, project site visits, using Music AI, repo contributions, token swaps.</div>
+          </div>
+          <div class="pipe-node" style="--c:var(--cashflow)">
+            <span class="pipe-num">Layer 3</span>
+            <div class="pipe-name">Cash Flow</div>
+            <div class="pipe-examples">What value was generated? YouTube ad rev, paid product usage, blockchain tx fees, royalties from related services.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 2: 6 Types of Attention Impact -->
+      <div class="story-step">
+        <div class="story-marker">02</div>
+        <span class="story-tag">Evaluation Framework</span>
+        <h3 class="story-title">Beyond Vanity Views: The 6 Types of Attention Impact</h3>
+        <p class="story-desc">View count alone cannot capture whether attention is economically productive. These six qualitative metrics distinguish temporary viral attention from attention that continues to generate compounding value over time.</p>
+        
+        <div class="metrics-grid">
+          <div class="metric-box">
+            <b>1. Reach</b>
+            <p>How many people encounter the content.</p>
+            <span class="metric-ex">Views and unique viewers</span>
+          </div>
+          <div class="metric-box">
+            <b>2. Depth of Attention</b>
+            <p>How deeply people engage with the content.</p>
+            <span class="metric-ex">Watch time, completion rate, repeat viewing</span>
+          </div>
+          <div class="metric-box">
+            <b>3. Audience Quality</b>
+            <p>Whether attention comes from relevant actors.</p>
+            <span class="metric-ex">Researchers, developers, investors, users</span>
+          </div>
+          <div class="metric-box">
+            <b>4. Attention Propagation</b>
+            <p>Whether viewers spread the idea further.</p>
+            <span class="metric-ex">Shares, citations, remixes, external links</span>
+          </div>
+          <div class="metric-box">
+            <b>5. Persistence</b>
+            <p>Whether attention continues over time.</p>
+            <span class="metric-ex">Discussions & views continuing years later</span>
+          </div>
+          <div class="metric-box">
+            <b>6. Influence & Outcomes</b>
+            <p>Whether attention leads to meaningful outcomes.</p>
+            <span class="metric-ex">New projects, code PRs, integrations, tools</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3: 10-Year Simulation (Meme vs Navier-Stokes) -->
+      <div class="story-step">
+        <div class="story-marker">03</div>
+        <span class="story-tag">10-Year Trajectory</span>
+        <h3 class="story-title">Comparing Trajectories: Viral Meme vs. Scientific Discovery</h3>
+        <p class="story-desc">Video A dominates the first 30 days in vanity reach. Video B starts small but builds compounding cumulative value as developers build tools, launch AI applications, and generate protocol cash flows over a 10-year horizon.</p>
+
+        <div class="sim-controls">
+          <span>Inspect Milestone:</span>
+          <button type="button" class="sim-btn active" data-sim="0">Month 1</button>
+          <button type="button" class="sim-btn" data-sim="1">Year 1</button>
+          <button type="button" class="sim-btn" data-sim="2">Year 5</button>
+          <button type="button" class="sim-btn" data-sim="3">Year 10</button>
+        </div>
+
+        <div class="sim-chart-wrap">
+          <svg viewBox="0 0 640 220" role="img" aria-label="10-Year Comparison: Meme vs Science">
+            <!-- Grid Lines -->
+            <line x1="50" y1="30" x2="610" y2="30" stroke="var(--line)" stroke-dasharray="4 4" />
+            <line x1="50" y1="70" x2="610" y2="70" stroke="var(--line)" stroke-dasharray="4 4" />
+            <line x1="50" y1="110" x2="610" y2="110" stroke="var(--line)" stroke-dasharray="4 4" />
+            <line x1="50" y1="150" x2="610" y2="150" stroke="var(--line)" stroke-dasharray="4 4" />
+            <line x1="50" y1="190" x2="610" y2="190" stroke="var(--line)" />
+
+            <!-- Time Labels -->
+            <text x="60" y="208" font-size="11" fill="var(--muted)" font-family="var(--body)" text-anchor="middle">M1</text>
+            <text x="140" y="208" font-size="11" fill="var(--muted)" font-family="var(--body)" text-anchor="middle">M6</text>
+            <text x="220" y="208" font-size="11" fill="var(--muted)" font-family="var(--body)" text-anchor="middle">Y1</text>
+            <text x="320" y="208" font-size="11" fill="var(--muted)" font-family="var(--body)" text-anchor="middle">Y3</text>
+            <text x="420" y="208" font-size="11" fill="var(--muted)" font-family="var(--body)" text-anchor="middle">Y5</text>
+            <text x="520" y="208" font-size="11" fill="var(--muted)" font-family="var(--body)" text-anchor="middle">Y8</text>
+            <text x="610" y="208" font-size="11" fill="var(--muted)" font-family="var(--body)" text-anchor="middle">Y10</text>
+
+            <!-- Video A: Meme (Spike then zero) -->
+            <polyline points="60,30 100,120 140,175 180,190 220,190 320,190 420,190 520,190 610,190" fill="none" stroke="#E05252" stroke-width="2.5" stroke-dasharray="6 4" stroke-linecap="round" />
+
+            <!-- Video B: Science (Compounding) -->
+            <polyline points="60,182 140,176 220,165 320,140 420,105 520,68 610,32" fill="none" stroke="var(--attention)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+
+            <!-- Dynamic Indicator Line -->
+            <line id="sim-indicator" x1="60" y1="20" x2="60" y2="190" stroke="var(--ink)" stroke-width="2" stroke-dasharray="4 3" opacity=".8" />
+            <circle id="sim-point-meme" cx="60" cy="30" r="5" fill="#E05252" />
+            <circle id="sim-point-science" cx="60" cy="182" r="5" fill="var(--attention)" />
+          </svg>
+
+          <div class="sim-legend">
+            <span><i class="meme"></i>Video A (Viral Meme: High initial spike, rapid decay)</span>
+            <span><i class="science"></i>Video B (Science: Compounding 10-year value)</span>
+          </div>
+
+          <div class="sim-status">
+            <div class="sim-status-col meme">
+              <b id="sim-meme-title">Video A (Meme) · Month 1</b>
+              <p id="sim-meme-desc">1,000,000 views · $140 quick ad revenue · 0 code commits · 0 developer inquiries. Attention peaks immediately.</p>
+            </div>
+            <div class="sim-status-col science">
+              <b id="sim-science-title">Video B (Science) · Month 1</b>
+              <p id="sim-science-desc">5,000 views · $1 ad revenue · 2 academic researchers reach out · Initial seed of high-agency attention planted.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 4: 10-Year Framework (Two Independent Levels) -->
+      <div class="story-step">
+        <div class="story-marker">04</div>
+        <span class="story-tag">Accounting Architecture</span>
+        <h3 class="story-title">Measuring Over 10 Years: Two Independent Levels</h3>
+        <p class="story-desc">To establish a sustainable accounting model, metrics are tracked at two separate levels. Keeping them strictly separated prevents counting the same outcome twice as both attention and consumption.</p>
+
+        <div class="levels-grid">
+          <div class="level-card">
+            <h4>Level A: Attention Generated</h4>
+            <p>Measures the raw fuel flowing into the ecosystem:</p>
+            <ul>
+              <li>Reach & unique viewers</li>
+              <li>Depth of attention & watch duration</li>
+              <li>Audience quality (researchers, developers, builders)</li>
+              <li>Propagation (citations, remixes, mentions)</li>
+              <li>Persistence across months and years</li>
+            </ul>
+          </div>
+          <div class="level-card">
+            <h4>Level B: Outcomes Created by Attention</h4>
+            <p>Measures the resulting downstream activity:</p>
+            <ul>
+              <li>New user accounts & returning visitors</li>
+              <li>Developer contributions & GitHub pull requests</li>
+              <li>Usage of AI applications (Music AI, etc.)</li>
+              <li>Token swaps & blockchain transaction volume</li>
+              <li>Proportion of dev costs covered by protocol fees</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="score-banner">
+          <b>Weighted Attention Impact Score:</b> As 10 years of historical data accumulate, the mathematical relationship between Level A attention sources and Level B revenue outcomes forms a predictive score—directing resources toward attention that actually self-funds development.
+        </div>
+      </div>
+
+      <!-- STEP 5: Tokenization & The Self-Funding Flywheel -->
+      <div class="story-step">
+        <div class="story-marker">05</div>
+        <span class="story-tag">The Closed Loop</span>
+        <h3 class="story-title">Tokenized Views vs. Real Revenue: The Self-Funding Flywheel</h3>
+        <p class="story-desc">Views can potentially be represented by tokens on a blockchain, creating a market around attention. However, token trading volume is not revenue received by the project. The system must capture real economic fees to reinvest into building.</p>
+
+        <div class="flywheel-container">
+          <div class="flywheel-svg-wrap">
+            <svg viewBox="0 0 380 380" role="img" aria-label="Self Funding Flywheel Loop">
+              <!-- Orbit Ring -->
+              <circle cx="190" cy="190" r="125" fill="none" stroke="var(--line)" stroke-width="2.5" />
+              <circle cx="190" cy="190" r="125" fill="none" stroke="var(--attention)" stroke-width="3" stroke-dasharray="14 10" class="rotating-ring" />
+
+              <!-- Center Hub -->
+              <circle cx="190" cy="190" r="48" fill="var(--surface)" stroke="var(--attention)" stroke-width="2" />
+              <text x="190" y="184" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted)" font-family="var(--head)">10-YEAR</text>
+              <text x="190" y="202" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)" font-family="var(--head)">SELF-FUNDING</text>
+
+              <!-- Node 1: Attention (Top) -->
+              <circle cx="190" cy="65" r="28" fill="var(--surface)" stroke="var(--attention)" stroke-width="2.5" />
+              <text x="190" y="69" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--ink)" font-family="var(--head)">ATTENTION</text>
+
+              <!-- Node 2: Consumption (Top Right) -->
+              <circle cx="309" cy="151" r="28" fill="var(--surface)" stroke="var(--consumption)" stroke-width="2.5" />
+              <text x="309" y="155" text-anchor="middle" font-size="10" font-weight="700" fill="var(--ink)" font-family="var(--head)">CONSUMPTION</text>
+
+              <!-- Node 3: Economic Activity (Bottom Right) -->
+              <circle cx="264" cy="291" r="28" fill="var(--surface)" stroke="var(--cashflow)" stroke-width="2.5" />
+              <text x="264" y="287" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--ink)" font-family="var(--head)">ECONOMIC</text>
+              <text x="264" y="299" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--ink)" font-family="var(--head)">ACTIVITY</text>
+
+              <!-- Node 4: Revenue Received (Bottom Left) -->
+              <circle cx="116" cy="291" r="28" fill="var(--surface)" stroke="var(--attention)" stroke-width="2.5" />
+              <text x="116" y="287" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--ink)" font-family="var(--head)">REVENUE</text>
+              <text x="116" y="299" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--ink)" font-family="var(--head)">RECEIVED</text>
+
+              <!-- Node 5: Reinvestment (Top Left) -->
+              <circle cx="71" cy="151" r="28" fill="var(--surface)" stroke="var(--consumption)" stroke-width="2.5" />
+              <text x="71" y="155" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--ink)" font-family="var(--head)">REINVESTMENT</text>
+            </svg>
+          </div>
+
+          <div class="token-distinction">
+            <div class="dist-box leak">
+              <b>Speculative Volume (Leaky System)</b>
+              <p>When Trader A buys an attention token from Trader B, the payment transfers between holders. The project receives <strong>$0</strong> to pay engineers or host AI models.</p>
+            </div>
+            <div class="dist-box fund">
+              <b>Protocol Fee Capture (Self-Funding Flywheel)</b>
+              <p>The project earns sustainable revenue through transaction fees, AI app usage, and swaps. This capital directly funds continuous development, sparking new high-quality attention.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flywheel-conclusion">
+          <strong>Conclusion:</strong> Attention must not be judged merely by the number of views, but by the relevance of the audience, how long interest persists, whether the idea propagates, and what that attention enables people to build. Over a 10-year period, this closed loop measures whether an attention-driven economic system generates enough economic value to <strong>fund its own growth</strong>.
+        </div>
+      </div>
+
+    </div>
+  </div>
   </section>
 
   <section class="panel" role="tabpanel" id="p-consumption" aria-labelledby="t-consumption" hidden style="--c:var(--consumption)">
@@ -252,10 +648,100 @@ window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',e=>{
 
 // tabs
 const tabs=[...document.querySelectorAll('.tab')];
-function select(t){tabs.forEach(b=>{const on=b===t;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1;
-  document.getElementById(b.getAttribute('aria-controls')).hidden=!on});t.focus()}
+function select(t){
+  tabs.forEach(b=>{
+    const on=b===t;
+    b.setAttribute('aria-selected',on);
+    b.tabIndex=on?0:-1;
+    document.getElementById(b.getAttribute('aria-controls')).hidden=!on;
+  });
+  t.focus();
+  const navCaseStudy = document.getElementById('nav-case-study');
+  if(navCaseStudy){
+    navCaseStudy.style.display = (t.id === 't-attention') ? 'inline-flex' : 'none';
+  }
+}
+const navCaseStudy = document.getElementById('nav-case-study');
+if(navCaseStudy){
+  navCaseStudy.addEventListener('click', (e) => {
+    select(document.getElementById('t-attention'));
+  });
+}
 tabs.forEach((b,i)=>{b.onclick=()=>select(b);
  b.onkeydown=e=>{if(e.key==='ArrowRight')select(tabs[(i+1)%3]);if(e.key==='ArrowLeft')select(tabs[(i+2)%3])}});
+
+// 10-Year Simulation controls
+const simData = [
+  {
+    x: 60,
+    memeY: 30,
+    scienceY: 182,
+    memeTitle: 'Video A (Meme) · Month 1',
+    memeDesc: '1,000,000 views · $140 quick ad revenue · 0 code commits · 0 developer inquiries. Attention peaks immediately.',
+    scienceTitle: 'Video B (Science) · Month 1',
+    scienceDesc: '5,000 views · $1 ad revenue · 2 academic researchers reach out · Initial seed of high-agency attention planted.'
+  },
+  {
+    x: 220,
+    memeY: 190,
+    scienceY: 165,
+    memeTitle: 'Video A (Meme) · Year 1',
+    memeDesc: '0 new views · Topic dead · 0 returning viewers · $0 sustained revenue. Meme is forgotten.',
+    scienceTitle: 'Video B (Science) · Year 1',
+    scienceDesc: '18,000 views · 4 GitHub pull requests merged · Music AI prototype initiated · Growing developer interest.'
+  },
+  {
+    x: 420,
+    memeY: 190,
+    scienceY: 105,
+    memeTitle: 'Video A (Meme) · Year 5',
+    memeDesc: 'Zero presence · $0 protocol cash flow · No products ever launched from this attention.',
+    scienceTitle: 'Video B (Science) · Year 5',
+    scienceDesc: '45,000 views · 3 decentralized applications live · $24,000/yr in recurring swap and network transaction fees.'
+  },
+  {
+    x: 610,
+    memeY: 190,
+    scienceY: 32,
+    memeTitle: 'Video A (Meme) · Year 10',
+    memeDesc: 'Cumulative 10-year economic contribution to project: $0. A total vanity dead-end.',
+    scienceTitle: 'Video B (Science) · Year 10',
+    scienceDesc: 'Self-funding equilibrium reached · Ecosystem activity pays 100% of ongoing R&D, hosting, and builder bounties.'
+  }
+];
+
+const simButtons = document.querySelectorAll('.sim-btn');
+const simIndicator = document.getElementById('sim-indicator');
+const simPointMeme = document.getElementById('sim-point-meme');
+const simPointScience = document.getElementById('sim-point-science');
+const simMemeTitle = document.getElementById('sim-meme-title');
+const simMemeDesc = document.getElementById('sim-meme-desc');
+const simScienceTitle = document.getElementById('sim-science-title');
+const simScienceDesc = document.getElementById('sim-science-desc');
+
+simButtons.forEach((btn, idx) => {
+  btn.addEventListener('click', () => {
+    simButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const d = simData[idx];
+    if (simIndicator) {
+      simIndicator.setAttribute('x1', d.x);
+      simIndicator.setAttribute('x2', d.x);
+    }
+    if (simPointMeme) {
+      simPointMeme.setAttribute('cx', d.x);
+      simPointMeme.setAttribute('cy', d.memeY);
+    }
+    if (simPointScience) {
+      simPointScience.setAttribute('cx', d.x);
+      simPointScience.setAttribute('cy', d.scienceY);
+    }
+    if (simMemeTitle) simMemeTitle.textContent = d.memeTitle;
+    if (simMemeDesc) simMemeDesc.textContent = d.memeDesc;
+    if (simScienceTitle) simScienceTitle.textContent = d.scienceTitle;
+    if (simScienceDesc) simScienceDesc.textContent = d.scienceDesc;
+  });
+});
 </script>
 </body>
 </html>
