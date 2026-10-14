@@ -285,6 +285,10 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
 :root[data-theme="dark"] .pipe-status.fail{color:#FF6B6B}
 .pipe-status.won-self{color:var(--attention);border-color:var(--attention);background:rgba(14,124,134,.15)}
 #pipe-stage-selffunding.won{border-color:var(--attention);box-shadow:0 0 0 3px rgba(14,124,134,.18)}
+@keyframes pipePop{0%{transform:scale(.96)}60%{transform:scale(1.02)}100%{transform:scale(1)}}
+@keyframes pipePulse{0%{transform:scale(1)}50%{transform:scale(1.5)}100%{transform:scale(1.25)}}
+#pipeline-visual .pipe-stage.lit{animation:pipePop .45s ease}
+.pipeline-arrow.lit{animation:pipePulse .5s ease}
 
 /* Full Cycle Pipeline: horizontal rail (top of page) */
 .pipe-rail{display:flex;align-items:stretch;gap:6px}
@@ -346,7 +350,7 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
   .metrics-grid{grid-template-columns:1fr}
 }
 
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
@@ -1942,19 +1946,41 @@ document.getElementById('simulate-cashflow-btn').addEventListener('click', () =>
     document.getElementById('cashflow-sim-output').innerHTML = html;
 });
 
-// --- Full Cycle Pipeline Simulator (Winning Bias) ---
-document.getElementById('simulate-full-cycle-btn').addEventListener('click', () => {
+// --- Full Cycle Pipeline Simulator ---
+document.getElementById('simulate-full-cycle-btn').addEventListener('click', async () => {
+    const runBtn = document.getElementById('simulate-full-cycle-btn');
+    const sleep = ms => new Promise(r => setTimeout(r, ms));
+    const reduced = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    const GAP = reduced ? 0 : 650; // pause between stages lighting up
+
+    function lightArrow(id, color) {
+        const arrow = document.getElementById(id);
+        arrow.style.color = color;
+        arrow.style.transform = 'scale(1.25)';
+        arrow.classList.remove('lit');
+        void arrow.offsetWidth; // restart pulse animation
+        arrow.classList.add('lit');
+    }
+    function lightStage(id) {
+        const stage = document.getElementById(id);
+        stage.style.opacity = '1';
+        stage.classList.remove('lit');
+        void stage.offsetWidth; // restart pop animation
+        stage.classList.add('lit');
+    }
+
     // 1. Reset UI
     const stages = ['attention', 'consumption', 'cashflow', 'selffunding'];
     const statusIds = { attention: 'pipe-attn-status', consumption: 'pipe-cons-status', cashflow: 'pipe-cash-status', selffunding: 'pipe-self-status' };
     const idleLabels = { attention: 'Pending', consumption: 'Pending', cashflow: 'Pending', selffunding: 'Locked' };
     stages.forEach(s => {
-        document.getElementById(`pipe-stage-${s}`).style.opacity = '0.4';
+        const stage = document.getElementById(`pipe-stage-${s}`);
+        stage.style.opacity = '0.4';
+        stage.classList.remove('lit', 'won');
         const badge = document.getElementById(statusIds[s]);
         badge.className = 'pipe-status';
         badge.textContent = idleLabels[s];
     });
-    document.getElementById('pipe-stage-selffunding').classList.remove('won');
     ['pipe-attn-numbers', 'pipe-cons-numbers', 'pipe-cash-numbers'].forEach(id => {
         document.getElementById(id).hidden = true;
     });
@@ -1962,82 +1988,85 @@ document.getElementById('simulate-full-cycle-btn').addEventListener('click', () 
         const arrow = document.getElementById(a);
         arrow.style.color = 'var(--line)';
         arrow.style.transform = '';
+        arrow.classList.remove('lit');
     });
+    runBtn.disabled = true;
+    runBtn.style.opacity = '.5';
+    const done = () => { runBtn.disabled = false; runBtn.style.opacity = ''; };
 
-    // 2. Winning Mechanism: Generate High Scores and Low Cutoffs
+    //  Winning Mechanism: Generate High Scores and Low Cutoffs
     // This ensures the pipeline passes, but we add a 20% chance of failure at each stage to look realistic
     const shouldWin = Math.random() > 0.2; // 80% chance of winning the whole pipeline
+    const winScore = () => (Math.random() * 1.5) + 1.5; 
+    const winCutoff = () => Math.random() * 1.0; 
 
     // Stage 1: Attention
-    const attnScore = shouldWin ? (Math.random() * 1.5) + 1.5 : Math.random() * 2.5; // High score if winning
-    const attnCutoff = shouldWin ? Math.random() * 1.0 : Math.random() * 2.0; // Low cutoff if winning
-    const attnPass = attnScore >= attnCutoff;
-
+    await sleep(reduced ? 0 : 350);
+    const attnScore = shouldWin ? winScore() : Math.random() * 2.5;
+    const attnCutoff = shouldWin ? winCutoff() : Math.random() * 2.0;
     document.getElementById('pipe-attn-score').textContent = attnScore.toFixed(2);
     document.getElementById('pipe-attn-cutoff').textContent = attnCutoff.toFixed(2);
     document.getElementById('pipe-attn-numbers').hidden = false;
     const attnStatus = document.getElementById('pipe-attn-status');
-    if (attnPass) {
+    if (attnScore >= attnCutoff) {
         attnStatus.textContent = 'Passed';
         attnStatus.className = 'pipe-status pass-attn';
-        document.getElementById('pipe-stage-attention').style.opacity = '1';
-        document.getElementById('arrow-1').style.color = 'var(--attention)';
-        document.getElementById('arrow-1').style.transform = 'scale(1.25)';
+        lightStage('pipe-stage-attention');
+        lightArrow('arrow-1', 'var(--attention)');
     } else {
         attnStatus.textContent = 'Halted';
         attnStatus.className = 'pipe-status fail';
+        done();
         return;
     }
 
     // Stage 2: Consumption
-    const consScore = shouldWin ? (Math.random() * 1.5) + 1.5 : Math.random() * 2.5;
-    const consCutoff = shouldWin ? Math.random() * 1.0 : Math.random() * 2.0;
-    const consPass = consScore >= consCutoff;
-
+    await sleep(GAP);
+    const consScore = shouldWin ? winScore() : Math.random() * 2.5;
+    const consCutoff = shouldWin ? winCutoff() : Math.random() * 2.0;
     document.getElementById('pipe-cons-score').textContent = consScore.toFixed(2);
     document.getElementById('pipe-cons-cutoff').textContent = consCutoff.toFixed(2);
     document.getElementById('pipe-cons-numbers').hidden = false;
     const consStatus = document.getElementById('pipe-cons-status');
-    if (consPass) {
+    if (consScore >= consCutoff) {
         consStatus.textContent = 'Passed';
         consStatus.className = 'pipe-status pass-cons';
-        document.getElementById('pipe-stage-consumption').style.opacity = '1';
-        document.getElementById('arrow-2').style.color = 'var(--consumption)';
-        document.getElementById('arrow-2').style.transform = 'scale(1.25)';
+        lightStage('pipe-stage-consumption');
+        lightArrow('arrow-2', 'var(--consumption)');
     } else {
         consStatus.textContent = 'Halted';
         consStatus.className = 'pipe-status fail';
+        done();
         return;
     }
 
     // Stage 3: Cashflow
-    const cashScore = shouldWin ? (Math.random() * 1.5) + 1.5 : Math.random() * 2.5;
-    const cashCutoff = shouldWin ? Math.random() * 1.0 : Math.random() * 2.0;
-
-    const cashPass = cashScore >= cashCutoff;
-
+    await sleep(GAP);
+    const cashScore = shouldWin ? winScore() : Math.random() * 2.5;
+    const cashCutoff = shouldWin ? winCutoff() : Math.random() * 2.0;
     document.getElementById('pipe-cash-score').textContent = cashScore.toFixed(2);
     document.getElementById('pipe-cash-cutoff').textContent = cashCutoff.toFixed(2);
     document.getElementById('pipe-cash-numbers').hidden = false;
-
     const cashStatus = document.getElementById('pipe-cash-status');
-    if (cashPass) {
+    if (cashScore >= cashCutoff) {
         cashStatus.textContent = 'Passed';
         cashStatus.className = 'pipe-status pass-cash';
-        document.getElementById('pipe-stage-cashflow').style.opacity = '1';
-        document.getElementById('arrow-3').style.color = 'var(--cashflow)';
-        document.getElementById('arrow-3').style.transform = 'scale(1.25)';
+        lightStage('pipe-stage-cashflow');
+        lightArrow('arrow-3', 'var(--cashflow)');
     } else {
         cashStatus.textContent = 'Halted';
         cashStatus.className = 'pipe-status fail';
+        done();
         return;
     }
 
     // Stage 4: Self-Funding
-    document.getElementById('pipe-stage-selffunding').style.opacity = '1';
+    await sleep(GAP);
+    lightStage('pipe-stage-selffunding');
     document.getElementById('pipe-stage-selffunding').classList.add('won');
     document.getElementById('pipe-self-status').textContent = 'Self-funding achieved';
     document.getElementById('pipe-self-status').className = 'pipe-status won-self';
+    done();
 });
 </script>
 </body>
