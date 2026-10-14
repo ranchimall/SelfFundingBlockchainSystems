@@ -150,7 +150,7 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
 /* Storyboard Section */
 .pill-link{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:600;color:var(--attention);text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:3px 12px;margin-top:6px;transition:border-color .15s,background-color .15s}
 .pill-link:hover{border-color:var(--attention);background:var(--bg)}
-.storyboard-section{margin-top:56px;padding-top:24px;border-top:1px solid var(--line)}
+.storyboard-section{margin-top:56px;padding-top:24px;border-top:1px solid var(--line);scroll-margin-top:72px}
 .storyboard-head{margin-bottom:32px}
 .storyboard-head .badge{display:inline-block;padding:4px 12px;border-radius:20px;background:rgba(14,124,134,.12);color:var(--attention);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px}
 :root[data-theme="dark"] .storyboard-head .badge{background:rgba(60,196,207,.15)}
@@ -168,10 +168,10 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
 
 /* Contrast Cards (Step 1) */
 .contrast-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
-.contrast-card{border:1px solid var(--line);border-radius:14px;padding:18px;background:var(--bg)}
+.contrast-card{border:1px solid var(--line);border-radius:14px;padding:18px;background:var(--bg);min-width:0}
 .contrast-card.meme{border-top:3.5px solid #E05252}
 .contrast-card.science{border-top:3.5px solid var(--attention)}
-.contrast-card h4{font:700 16px var(--head);margin:0 0 10px;display:flex;align-items:center;justify-content:space-between}
+.contrast-card h4{font:700 16px var(--head);margin:0 0 10px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px}
 .contrast-card .stat-pill{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:8px}
 .contrast-card.meme .stat-pill{background:rgba(224,82,82,.15);color:#D32F2F}
 :root[data-theme="dark"] .contrast-card.meme .stat-pill{color:#FF6B6B}
@@ -182,7 +182,7 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
 
 /* 3-Layer Pipeline */
 .pipeline-flow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;border:1px solid var(--line);border-radius:14px;padding:16px;background:var(--bg)}
-.pipe-node{background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:12px 14px}
+.pipe-node{background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:12px 14px;min-width:0}
 .pipe-num{font-size:11px;font-weight:700;color:var(--attention);text-transform:uppercase;letter-spacing:.04em}
 .pipe-name{font:700 15px var(--head);color:var(--ink);margin:2px 0 6px}
 .pipe-examples{font-size:12px;color:var(--muted);line-height:1.45}
@@ -193,19 +193,14 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
 .sim-btn-cons{all:unset;cursor:pointer;padding:6px 14px;border-radius:8px;font-size:13px;font-weight:600;border:1px solid var(--line);background:var(--bg);color:var(--ink);transition:all .15s}
 .sim-btn-cons.active,.sim-btn-cons:hover{background:var(--surface);border-color:var(--consumption);color:var(--consumption);box-shadow:0 1px 3px rgba(0,0,0,.08)}
 .metrics-grid-7{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-@media(max-width:768px){.metrics-grid-7{grid-template-columns:1fr 1fr}}
-@media(max-width:540px){.metrics-grid-7{grid-template-columns:1fr}}
 
 /* Cashflow Storyboard styles */
 .sim-btn-cash{all:unset;cursor:pointer;padding:6px 14px;border-radius:8px;font-size:13px;font-weight:600;border:1px solid var(--line);background:var(--bg);color:var(--ink);transition:all .15s}
 .sim-btn-cash.active,.sim-btn-cash:hover{background:var(--surface);border-color:var(--cashflow);color:var(--cashflow);box-shadow:0 1px 3px rgba(0,0,0,.08)}
 .metrics-grid-9{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-@media(max-width:768px){.metrics-grid-9{grid-template-columns:1fr 1fr}}
-@media(max-width:540px){.metrics-grid-9{grid-template-columns:1fr}}
 
 .pred-spectrum{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px;padding:16px;border-radius:12px;background:var(--bg);border:1px solid var(--line)}
-@media(max-width:768px){.pred-spectrum{grid-template-columns:1fr}}
-.pred-card{padding:12px;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
+.pred-card{padding:12px;border-radius:10px;background:var(--surface);border:1px solid var(--line);min-width:0}
 .pred-card b{display:block;font:700 13.5px var(--head);margin-bottom:4px;color:var(--ink)}
 .pred-card p{margin:0;font-size:12px;color:var(--muted);line-height:1.4}
 .pred-badge{display:inline-block;padding:2px 8px;border-radius:6px;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
@@ -219,32 +214,34 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
 .ratio-box{background:var(--bg);border:1.5px solid var(--cashflow);border-radius:14px;padding:20px;margin-top:20px}
 .ratio-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:12px}
 .ratio-badge{padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;background:rgba(194,106,10,.14);color:var(--cashflow)}
-.ratio-formula{font:700 clamp(16px,2.5vw,19px) var(--head);color:var(--ink);background:var(--surface);padding:10px 16px;border-radius:10px;border:1px solid var(--line);display:inline-block;margin-bottom:10px}
+.ratio-formula{font:700 clamp(14px,2.5vw,19px) var(--head);color:var(--ink);background:var(--surface);padding:10px 16px;border-radius:10px;border:1px solid var(--line);display:block;max-width:100%;word-break:break-word;overflow-wrap:break-word;margin-bottom:10px}
 .ratio-desc{font-size:13.5px;color:var(--muted);line-height:1.5;margin:0}
 
 .cash-dashboard-wrap{margin-top:20px;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:20px}
 .dash-title{font:700 16px var(--head);color:var(--ink);margin:0 0 14px}
 .dash-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-@media(max-width:640px){.dash-grid{grid-template-columns:1fr}.dash-item[style*="grid-column"]{grid-column:span 1!important}}
-.dash-item{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;position:relative}
+.dash-item{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;position:relative;min-width:0}
 .dash-item .d-num{font-size:11px;font-weight:700;color:var(--cashflow);display:block;margin-bottom:3px;letter-spacing:.04em}
 .dash-item b{font:700 13.5px var(--head);color:var(--ink);display:block;margin-bottom:4px}
 .dash-item p{margin:0;font-size:12px;color:var(--muted);line-height:1.4}
 
-.crypto-realities-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-bottom:20px}
-.crypto-card{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--bg)}
-.crypto-card b{font:700 14px var(--head);display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;color:var(--ink)}
+.crypto-realities-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px}
+.crypto-card{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--bg);min-width:0}
+.crypto-card b{font:700 14px var(--head);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;margin-bottom:6px;color:var(--ink)}
 .crypto-card p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.45}
 .crypto-card .c-tag{font-size:11px;font-weight:700;padding:2px 7px;border-radius:6px}
 .crypto-card.false .c-tag{background:rgba(224,82,82,.15);color:#D32F2F}
 .crypto-card.true .c-tag{background:rgba(194,106,10,.15);color:var(--cashflow)}
 :root[data-theme="dark"] .crypto-card.false .c-tag{color:#FF6B6B}
 
-.metric-box{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--bg);transition:transform .15s,border-color .15s}
+.metric-box{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--bg);transition:transform .15s,border-color .15s;min-width:0}
 .metric-box:hover{transform:translateY(-2px);border-color:var(--attention)}
 .metric-box b{display:block;font:700 15px var(--head);color:var(--ink);margin-bottom:4px}
 .metric-box p{margin:0 0 8px;font-size:12.5px;color:var(--muted);line-height:1.4}
-.metric-box .metric-ex{font-size:11.5px;color:var(--attention);font-weight:600}
+.metric-box .metric-ex{font-size:11.5px;color:var(--attention);font-weight:600;word-break:break-word}
+
+/* Full span utility */
+.span-full{grid-column:1 / -1 !important}
 
 /* 10-Year Simulation (Step 3) */
 .sim-controls{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
@@ -253,7 +250,7 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
 .sim-btn.active,.sim-btn:hover{background:var(--surface);border-color:var(--attention);color:var(--attention);box-shadow:0 1px 3px rgba(0,0,0,.08)}
 .sim-chart-wrap{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:16px 20px}
 .sim-chart-wrap svg{width:100%;height:auto;display:block}
-.sim-legend{display:flex;gap:18px;font-size:12.5px;color:var(--muted);margin-top:10px}
+.sim-legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:12.5px;color:var(--muted);margin-top:10px}
 .sim-legend i{display:inline-block;width:18px;height:0;vertical-align:middle;margin-right:6px}
 .sim-legend i.meme{border-top:2.5px dashed #E05252}
 .sim-legend i.science{border-top:3px solid var(--attention)}
@@ -264,17 +261,13 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
 .sim-status-col p{margin:0;color:var(--muted);line-height:1.45}
 
 /* Score formula banner (Attention & Consumption simulators) */
-.sim-formula{margin-top:10px;padding:10px 14px;border-radius:10px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--attention);font-family:monospace;font-size:14.5px;font-weight:700;color:var(--ink);line-height:1.5;white-space:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.sim-formula{margin-top:10px;padding:10px 14px;border-radius:10px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--attention);font-family:monospace;font-size:14.5px;font-weight:700;color:var(--ink);line-height:1.5;white-space:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin;max-width:100%;box-sizing:border-box}
 .sim-formula-cons{border-left-color:var(--consumption)}
 .sim-formula-cash{border-left-color:var(--cashflow)}
-@media(max-width:540px){
-  .sim-formula{font-size:12.5px;padding:8px 10px}
-  .sim-chart-wrap{padding:14px 14px}
-}
 
 /* Two-Level Split (Step 4) */
 .levels-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.level-card{border:1px solid var(--line);border-radius:14px;padding:18px;background:var(--bg)}
+.level-card{border:1px solid var(--line);border-radius:14px;padding:18px;background:var(--bg);min-width:0}
 .level-card h4{font:700 16px var(--head);margin:0 0 6px;color:var(--ink)}
 .level-card p{font-size:13px;color:var(--muted);margin:0 0 10px}
 .level-card ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink);line-height:1.55}
@@ -283,30 +276,58 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
 
 /* Flywheel (Step 5) */
 .flywheel-container{display:grid;grid-template-columns:1.15fr 1fr;gap:24px;align-items:center}
-.flywheel-svg-wrap{text-align:center;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:16px}
+.flywheel-svg-wrap{text-align:center;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:16px;min-width:0}
 .flywheel-svg-wrap svg{max-width:360px;width:100%;height:auto}
 @keyframes rotateFlywheel{from{stroke-dashoffset:0}to{stroke-dashoffset:-240}}
 .rotating-ring{animation:rotateFlywheel 18s linear infinite}
 .token-distinction{display:flex;flex-direction:column;gap:14px}
-.dist-box{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--bg)}
+.dist-box{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--bg);min-width:0}
 .dist-box.leak{border-left:4px solid #E05252}
 .dist-box.fund{border-left:4px solid var(--attention)}
 .dist-box b{font:700 14px var(--head);display:block;margin-bottom:4px}
 .dist-box.leak b{color:#E05252}
 .dist-box.fund b{color:var(--attention)}
 .dist-box p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.45}
-.flywheel-conclusion{margin-top:20px;padding:18px 22px;border-radius:14px;background:var(--bg);border:1.5px solid var(--line);font-size:14.5px;line-height:1.6;color:var(--ink)}
+.flywheel-conclusion{margin-top:20px;padding:18px 22px;border-radius:14px;background:var(--bg);border:1.5px solid var(--line);font-size:14.5px;line-height:1.6;color:var(--ink);min-width:0}
 .flywheel-conclusion strong{color:var(--attention)}
 
 @media(max-width:768px){
-  .story-track{margin-left:8px;padding-left:24px}
-  .story-marker{left:-38px;width:28px;height:28px;font-size:12px;top:20px}
-  .contrast-grid,.levels-grid,.pipeline-flow,.flywheel-container,.sim-status{grid-template-columns:1fr}
-  .metrics-grid{grid-template-columns:1fr 1fr}
-  .story-step{padding:20px 18px}
+  .wrap{padding:24px 16px 56px}
+  .story-track{margin-left:6px;padding-left:22px;gap:28px}
+  .story-marker{left:-35px;width:26px;height:26px;font-size:11px;top:20px}
+  .contrast-grid,.levels-grid,.pipeline-flow,.flywheel-container,.sim-status,.pred-spectrum,.crypto-realities-grid,.dash-grid{grid-template-columns:1fr !important}
+  .metrics-grid,.metrics-grid-7,.metrics-grid-9{grid-template-columns:1fr 1fr}
+  .story-step{padding:18px 16px}
 }
-@media(max-width:540px){
-  .metrics-grid{grid-template-columns:1fr}
+
+@media(max-width:580px){
+  .wrap{padding:18px 12px 48px;overflow-x:hidden}
+  .top-bar-inner{padding:10px 12px}
+  .metrics-grid,.metrics-grid-7,.metrics-grid-9{grid-template-columns:1fr !important}
+  .story-step [style*="grid-column"],.span-full{grid-column:span 1 !important}
+  .tabs{gap:6px}
+  .tab{padding:9px 6px 6px;border-radius:11px}
+  .tab b{font-size:13.5px}
+  .panel{padding:14px 12px;border-radius:14px}
+  .story-track{margin-left:4px;padding-left:18px;gap:22px}
+  .story-step{padding:15px 12px;border-radius:14px}
+  .story-marker{left:-30px;width:22px;height:22px;font-size:10px;top:15px}
+  .contrast-list li{flex-direction:column;gap:2px}
+  .contrast-list li span.label{min-width:0;font-size:12px;font-weight:600}
+  .sim-formula{font-size:12px;padding:8px 10px}
+  .sim-chart-wrap{padding:12px 10px}
+  .cs-dropdown-trigger{padding:6px 10px;font-size:12px}
+  .theme-toggle{width:34px;height:34px}
+  .brand-logo{width:30px;height:30px}
+  .brand-name{font-size:17px}
+  .ratio-box{padding:14px 12px}
+  .cash-dashboard-wrap{padding:14px 12px}
+}
+
+@media(max-width:360px){
+  .brand-name{font-size:14px}
+  .tab b{font-size:12px}
+  .top-bar-inner{padding:8px 10px}
 }
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -807,7 +828,7 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
               <p>Whether usage enables further creative acts.</p>
               <span class="metric-ex" style="color:var(--consumption)">Inspiring code, research, or apps</span>
             </div>
-            <div class="metric-box" style="grid-column: span 3">
+            <div class="metric-box span-full">
               <b>7. Resource Efficiency</b>
               <p>How much useful value is produced relative to the computing resources consumed.</p>
               <span class="metric-ex" style="color:var(--consumption)">AI applications completing tasks at sustainable operating & GPU costs</span>
@@ -1184,7 +1205,7 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
               <p>Each service contributes positively after its direct cost.</p>
               <span class="metric-ex" style="color:var(--cashflow)">AI music rev exceeding GPU compute</span>
             </div>
-            <div class="metric-box" style="grid-column: span 3">
+            <div class="metric-box span-full">
               <b>7. Reinvestment Capacity</b>
               <p>Ability to fund further R&D and feature expansion completely internally using operating surplus rather than needing new funding rounds.</p>
               <span class="metric-ex" style="color:var(--cashflow)">Internal operating surplus funding protocol engineers & infrastructure</span>
@@ -1303,7 +1324,7 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
                 <b>% OpEx Covered Internally</b>
                 <p>Proportion of continuous operational overhead paid purely from self-generated platform fees.</p>
               </div>
-              <div class="dash-item" style="grid-column: span 2">
+              <div class="dash-item span-full">
                 <span class="d-num">Metric 07</span>
                 <b>Cash Available for Internal Reinvestment</b>
                 <p>Net operating surplus deployed directly into protocol development, developer bounties, and ecosystem expansion without outside capital or token dilution.</p>
@@ -1336,7 +1357,7 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
               <b><span>Captured Fees = Operating Cash</span> <span class="c-tag">Real Cashflow</span></b>
               <p>Transaction fees paid by actual users to complete real swaps, API tasks, and data storage represent legitimate, recurring operating income.</p>
             </div>
-            <div class="crypto-card false" style="grid-column: span 2">
+            <div class="crypto-card false span-full">
               <b><span>Redemption Reserves ≠ Available Profit</span> <span class="c-tag">Obligation Reserve</span></b>
               <p>Capital held to back redemption obligations, pool liquidity, or guarantees cannot be treated as profit or spent on speculative R&D.</p>
             </div>
@@ -1489,7 +1510,7 @@ function select(t, scrollTargetId = null){
     const panel = document.getElementById(b.getAttribute('aria-controls'));
     if(panel) panel.hidden=!on;
   });
-  t.focus();
+  t.focus({ preventScroll: true });
   const csBtn = document.getElementById('cs-dropdown-btn');
   if(csBtn){
     if(t.id === 't-attention'){
@@ -1503,9 +1524,11 @@ function select(t, scrollTargetId = null){
   if(scrollTargetId){
     const el = document.getElementById(scrollTargetId);
     if(el){
-      setTimeout(() => {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 50);
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 80);
+      });
     }
   }
 }
@@ -1777,7 +1800,7 @@ function formatSimRow(label, value, points, colorVar) {
     const color = colorVar ? `style="color: ${colorVar}; font-weight: 600;"` : '';
     const pointsText = points !== null ? `(${points.toFixed(1)} pts)` : '';
     return `
-        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dashed var(--line);">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px; padding: 6px 0; border-bottom: 1px dashed var(--line);">
             <span style="color: var(--muted);">${label}</span>
             <span ${color}>${value.toLocaleString()} ${pointsText}</span>
         </div>
@@ -1786,7 +1809,7 @@ function formatSimRow(label, value, points, colorVar) {
 
 function formatSimTotal(label, value, colorVar) {
     return `
-        <div style="display: flex; justify-content: space-between; padding: 8px 0; font-weight: 700; font-size: 15px; border-top: 2px solid var(--line); margin-top: 8px;">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px; padding: 8px 0; font-weight: 700; font-size: 15px; border-top: 2px solid var(--line); margin-top: 8px;">
             <span>${label}</span>
             <span style="color: ${colorVar};">${value}</span>
         </div>
