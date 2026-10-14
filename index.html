@@ -33,7 +33,7 @@
 }
 :root[data-theme="dark"]{
   --bg:#0F171D; --surface:#17222A; --ink:#E8EEF2; --muted:#93A4B0; --line:#26343E;
-  --attention:#3CC4CF; --consumption:#8B91F5; --cashflow:#F0A24C; color-scheme:dark;
+  --attention:#3CC4CF; --consumption:#8B91F5; --cashflow:#F0A24C; --denom:#E879F9; color-scheme:dark;
 }
 :root[data-theme="light"]{
   --bg:#EEF2F5; --surface:#FFFFFF; --ink:#13202B; --muted:#5B6B78; --line:#DCE3E8;
@@ -149,9 +149,9 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
 }
 @media (max-width:540px){
   .tabs{grid-template-columns:repeat(3,auto);justify-content:center;gap:8px}
-  .tab{min-width:96px;padding:8px 10px 6px}
+  .tab{min-width:0;padding:8px 12px}
   .tab b{font-size:13px}
-  .tab svg{height:24px}
+  .tab svg{display:none}
 }
 /* Storyboard Section */
 .pill-link{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:600;color:var(--attention);text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:3px 12px;margin-top:6px;transition:border-color .15s,background-color .15s}
@@ -270,6 +270,41 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
 .sim-formula{margin-top:10px;padding:10px 14px;border-radius:10px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--attention);font-family:monospace;font-size:14.5px;font-weight:700;color:var(--ink);line-height:1.5;white-space:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin;max-width:100%;box-sizing:border-box}
 .sim-formula-cons{border-left-color:var(--consumption)}
 .sim-formula-cash{border-left-color:var(--cashflow)}
+
+/* Full Cycle Pipeline */
+#pipeline-visual .metric-box{transition:opacity .4s ease,border-color .15s,box-shadow .3s ease}
+.pipeline-arrow{transition:color .3s ease,transform .3s ease}
+.pipe-status{display:inline-block;font:700 11px var(--head);letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:20px;border:1.5px solid var(--line);color:var(--muted);background:var(--surface)}
+.pipe-status.pass-attn{color:var(--attention);border-color:var(--attention);background:rgba(14,124,134,.12)}
+.pipe-status.pass-cons{color:var(--consumption);border-color:var(--consumption);background:rgba(75,82,214,.12)}
+.pipe-status.pass-cash{color:var(--cashflow);border-color:var(--cashflow);background:rgba(194,106,10,.12)}
+.pipe-status.fail{color:#E05252;border-color:#E05252;background:rgba(224,82,82,.1)}
+:root[data-theme="dark"] .pipe-status.fail{color:#FF6B6B}
+.pipe-status.won-self{color:var(--attention);border-color:var(--attention);background:rgba(14,124,134,.15)}
+#pipe-stage-selffunding.won{border-color:var(--attention);box-shadow:0 0 0 3px rgba(14,124,134,.18)}
+@keyframes pipePop{0%{transform:scale(.96)}60%{transform:scale(1.02)}100%{transform:scale(1)}}
+@keyframes pipePulse{0%{transform:scale(1)}50%{transform:scale(1.5)}100%{transform:scale(1.25)}}
+#pipeline-visual .pipe-stage.lit{animation:pipePop .45s ease}
+.pipeline-arrow.lit{animation:pipePulse .5s ease}
+
+/* Full Cycle Pipeline: horizontal rail (top of page) */
+.pipe-rail{display:flex;align-items:stretch;gap:6px}
+.pipe-rail .pipe-stage{flex:1 1 0;min-width:0;text-align:center;padding:10px 8px}
+.pipe-rail .pipe-stage .pipe-status{margin-top:4px}
+.pipe-rail .pipeline-arrow{align-self:center;flex:0 0 auto;font-size:22px;font-weight:700;line-height:1}
+.pipe-rail .pipeline-arrow span{display:inline-block;transition:transform .3s ease}
+.pipe-play{all:unset;cursor:pointer;width:36px;height:36px;border-radius:50%;background:var(--attention);color:#FFFFFF;display:flex;align-items:center;justify-content:center;flex:0 0 auto;box-shadow:0 2px 8px rgba(0,0,0,.18);transition:transform .15s ease,opacity .15s}
+.pipe-play:hover{transform:scale(1.08)}
+.pipe-play:active{transform:scale(.94)}
+.pipe-play:focus-visible{outline:3px solid var(--attention);outline-offset:2px}
+.pipe-play svg{width:22px;height:22px;margin-left:2px}
+:root[data-theme="dark"] .pipe-play{color:#0F171D}
+@media(max-width:720px){
+  .pipe-rail{flex-direction:column;align-items:stretch;overflow:visible;gap:2px}
+  .pipe-rail .pipe-stage{flex:0 0 auto;padding:10px 12px 12px}
+  .pipe-rail .pipeline-arrow{align-self:center;font-size:26px;margin:2px 0}
+  .pipe-rail .pipeline-arrow span{transform:rotate(90deg)}
+}
 @media(max-width:540px){
   .sim-formula{font-size:12.5px;padding:8px 10px}
   .sim-chart-wrap{padding:14px 14px}
