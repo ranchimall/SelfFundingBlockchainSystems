@@ -123,11 +123,17 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
 .empty{border:1.5px dashed var(--line);border-radius:12px;padding:22px;color:var(--muted)}
 .empty b{display:block;color:var(--ink);margin-bottom:2px}
 @media (max-width:720px){
-  .tabs{gap:8px}.tab{padding:10px 10px 8px}.tab b{font-size:15px}.tab small{display:none}
+  .tabs{gap:8px}.tab{padding:10px 10px 8px}.tab b{font-size:14px}.tab small{display:none}
   .panel{padding:18px}
   .list-head{display:none}
   .row{grid-template-columns:1fr;gap:6px}
   .row .k{display:block}
+}
+@media (max-width:540px){
+  .tabs{grid-template-columns:repeat(3,auto);justify-content:center;gap:8px}
+  .tab{min-width:96px;padding:8px 10px 6px}
+  .tab b{font-size:13px}
+  .tab svg{height:24px}
 }
 /* Storyboard Section */
 .pill-link{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:600;color:var(--attention);text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:3px 12px;margin-top:6px;transition:border-color .15s,background-color .15s}
@@ -249,6 +255,37 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
 .sim-formula{margin-top:10px;padding:10px 14px;border-radius:10px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--attention);font-family:monospace;font-size:14.5px;font-weight:700;color:var(--ink);line-height:1.5;white-space:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
 .sim-formula-cons{border-left-color:var(--consumption)}
 .sim-formula-cash{border-left-color:var(--cashflow)}
+
+/* Full Cycle Pipeline */
+#pipeline-visual .metric-box{transition:opacity .4s ease,border-color .15s,box-shadow .3s ease}
+.pipeline-arrow{transition:color .3s ease,transform .3s ease}
+.pipe-status{display:inline-block;font:700 11px var(--head);letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:20px;border:1.5px solid var(--line);color:var(--muted);background:var(--surface)}
+.pipe-status.pass-attn{color:var(--attention);border-color:var(--attention);background:rgba(14,124,134,.12)}
+.pipe-status.pass-cons{color:var(--consumption);border-color:var(--consumption);background:rgba(75,82,214,.12)}
+.pipe-status.pass-cash{color:var(--cashflow);border-color:var(--cashflow);background:rgba(194,106,10,.12)}
+.pipe-status.fail{color:#E05252;border-color:#E05252;background:rgba(224,82,82,.1)}
+:root[data-theme="dark"] .pipe-status.fail{color:#FF6B6B}
+.pipe-status.won-self{color:var(--attention);border-color:var(--attention);background:rgba(14,124,134,.15)}
+#pipe-stage-selffunding.won{border-color:var(--attention);box-shadow:0 0 0 3px rgba(14,124,134,.18)}
+
+/* Full Cycle Pipeline: horizontal rail (top of page) */
+.pipe-rail{display:flex;align-items:stretch;gap:6px}
+.pipe-rail .pipe-stage{flex:1 1 0;min-width:0;text-align:center;padding:10px 8px}
+.pipe-rail .pipe-stage .pipe-status{margin-top:4px}
+.pipe-rail .pipeline-arrow{align-self:center;flex:0 0 auto;font-size:22px;font-weight:700;line-height:1}
+.pipe-rail .pipeline-arrow span{display:inline-block;transition:transform .3s ease}
+.pipe-play{all:unset;cursor:pointer;width:36px;height:36px;border-radius:50%;background:var(--attention);color:#FFFFFF;display:flex;align-items:center;justify-content:center;flex:0 0 auto;box-shadow:0 2px 8px rgba(0,0,0,.18);transition:transform .15s ease,opacity .15s}
+.pipe-play:hover{transform:scale(1.08)}
+.pipe-play:active{transform:scale(.94)}
+.pipe-play:focus-visible{outline:3px solid var(--attention);outline-offset:2px}
+.pipe-play svg{width:22px;height:22px;margin-left:2px}
+:root[data-theme="dark"] .pipe-play{color:#0F171D}
+@media(max-width:720px){
+  .pipe-rail{flex-direction:column;align-items:stretch;overflow:visible;gap:2px}
+  .pipe-rail .pipe-stage{flex:0 0 auto;padding:10px 12px 12px}
+  .pipe-rail .pipeline-arrow{align-self:center;font-size:26px;margin:2px 0}
+  .pipe-rail .pipeline-arrow span{transform:rotate(90deg)}
+}
 @media(max-width:540px){
   .sim-formula{font-size:12.5px;padding:8px 10px}
   .sim-chart-wrap{padding:14px 14px}
@@ -329,6 +366,41 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
   <h1>Self Funding Blockchain Systems</h1>
   <p class="kicker">Attention, Consumption, Cashflow</p>
   <p class="sub">Three layers of the same loop. Each one has to grow on average over time.</p>
+
+  <!-- FULL CYCLE PIPELINE (horizontal) -->
+  <div class="sim-chart-wrap" style="margin-bottom: 16px; padding: 16px;">
+    <div class="sim-controls" style="justify-content: space-between; margin-bottom: 12px;">
+      <span style="font-weight: 700; color: var(--ink); font-size: 16px;">Full Cycle Pipeline</span>
+      <button class="pipe-play" id="simulate-full-cycle-btn" type="button" aria-label="Run winning cycle" title="Run winning cycle">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+    </div>
+    <div id="pipeline-visual" class="pipe-rail">
+      <div id="pipe-stage-attention" class="metric-box pipe-stage" style="border-top: 3.5px solid var(--attention);">
+          <b>1. Attention</b>
+          <p id="pipe-attn-numbers" style="margin: 2px 0; font-size: 12px;" hidden>Score: <span id="pipe-attn-score">-</span> | Cutoff: <span id="pipe-attn-cutoff">-</span></p>
+          <span id="pipe-attn-status" class="pipe-status">Pending</span>
+      </div>
+      <div class="pipeline-arrow" id="arrow-1" style="color: var(--line);"><span>→</span></div>
+      <div id="pipe-stage-consumption" class="metric-box pipe-stage" style="border-top: 3.5px solid var(--consumption); opacity: 0.4;">
+          <b>2. Consumption</b>
+          <p id="pipe-cons-numbers" style="margin: 2px 0; font-size: 12px;" hidden>Score: <span id="pipe-cons-score">-</span> | Cutoff: <span id="pipe-cons-cutoff">-</span></p>
+          <span id="pipe-cons-status" class="pipe-status">Pending</span>
+      </div>
+      <div class="pipeline-arrow" id="arrow-2" style="color: var(--line);"><span>→</span></div>
+      <div id="pipe-stage-cashflow" class="metric-box pipe-stage" style="border-top: 3.5px solid var(--cashflow); opacity: 0.4;">
+          <b>3. Cashflow</b>
+          <p id="pipe-cash-numbers" style="margin: 2px 0; font-size: 12px;" hidden>Score: <span id="pipe-cash-score">-</span> | Cutoff: <span id="pipe-cash-cutoff">-</span></p>
+          <span id="pipe-cash-status" class="pipe-status">Pending</span>
+      </div>
+      <div class="pipeline-arrow" id="arrow-3" style="color: var(--line);"><span>→</span></div>
+      <div id="pipe-stage-selffunding" class="metric-box pipe-stage" style="border-top: 3.5px solid var(--attention); opacity: 0.4; background: rgba(14,124,134,0.1);">
+          <b>4. Self-Funding</b>
+          <p style="margin: 2px 0; font-size: 12px;">Fully sustainable.</p>
+          <span id="pipe-self-status" class="pipe-status">Locked</span>
+      </div>
+    </div>
+  </div>
 
 <div class="tabs" role="tablist" aria-label="Sections">
     <button class="tab" role="tab" id="t-attention" aria-controls="p-attention" aria-selected="true" style="--c:var(--attention)"><b>Attention</b><small>People notice</small><svg data-spark="0"></svg></button>
@@ -1813,6 +1885,104 @@ document.getElementById('simulate-cashflow-btn').addEventListener('click', () =>
     html += formatSimTotal('Cashflow Quality Score (max 3.0)', qualityScore, 'var(--cashflow)');
 
     document.getElementById('cashflow-sim-output').innerHTML = html;
+});
+
+// --- Full Cycle Pipeline Simulator (Winning Bias) ---
+document.getElementById('simulate-full-cycle-btn').addEventListener('click', () => {
+    // 1. Reset UI
+    const stages = ['attention', 'consumption', 'cashflow', 'selffunding'];
+    const statusIds = { attention: 'pipe-attn-status', consumption: 'pipe-cons-status', cashflow: 'pipe-cash-status', selffunding: 'pipe-self-status' };
+    const idleLabels = { attention: 'Pending', consumption: 'Pending', cashflow: 'Pending', selffunding: 'Locked' };
+    stages.forEach(s => {
+        document.getElementById(`pipe-stage-${s}`).style.opacity = '0.4';
+        const badge = document.getElementById(statusIds[s]);
+        badge.className = 'pipe-status';
+        badge.textContent = idleLabels[s];
+    });
+    document.getElementById('pipe-stage-selffunding').classList.remove('won');
+    ['pipe-attn-numbers', 'pipe-cons-numbers', 'pipe-cash-numbers'].forEach(id => {
+        document.getElementById(id).hidden = true;
+    });
+    ['arrow-1', 'arrow-2', 'arrow-3'].forEach(a => {
+        const arrow = document.getElementById(a);
+        arrow.style.color = 'var(--line)';
+        arrow.style.transform = '';
+    });
+
+    // 2. Winning Mechanism: Generate High Scores and Low Cutoffs
+    // This ensures the pipeline passes, but we add a 20% chance of failure at each stage to look realistic
+    const shouldWin = Math.random() > 0.2; // 80% chance of winning the whole pipeline
+
+    // Stage 1: Attention
+    const attnScore = shouldWin ? (Math.random() * 1.5) + 1.5 : Math.random() * 2.5; // High score if winning
+    const attnCutoff = shouldWin ? Math.random() * 1.0 : Math.random() * 2.0; // Low cutoff if winning
+    const attnPass = attnScore >= attnCutoff;
+
+    document.getElementById('pipe-attn-score').textContent = attnScore.toFixed(2);
+    document.getElementById('pipe-attn-cutoff').textContent = attnCutoff.toFixed(2);
+    document.getElementById('pipe-attn-numbers').hidden = false;
+    const attnStatus = document.getElementById('pipe-attn-status');
+    if (attnPass) {
+        attnStatus.textContent = 'Passed';
+        attnStatus.className = 'pipe-status pass-attn';
+        document.getElementById('pipe-stage-attention').style.opacity = '1';
+        document.getElementById('arrow-1').style.color = 'var(--attention)';
+        document.getElementById('arrow-1').style.transform = 'scale(1.25)';
+    } else {
+        attnStatus.textContent = 'Halted';
+        attnStatus.className = 'pipe-status fail';
+        return;
+    }
+
+    // Stage 2: Consumption
+    const consScore = shouldWin ? (Math.random() * 1.5) + 1.5 : Math.random() * 2.5;
+    const consCutoff = shouldWin ? Math.random() * 1.0 : Math.random() * 2.0;
+    const consPass = consScore >= consCutoff;
+
+    document.getElementById('pipe-cons-score').textContent = consScore.toFixed(2);
+    document.getElementById('pipe-cons-cutoff').textContent = consCutoff.toFixed(2);
+    document.getElementById('pipe-cons-numbers').hidden = false;
+    const consStatus = document.getElementById('pipe-cons-status');
+    if (consPass) {
+        consStatus.textContent = 'Passed';
+        consStatus.className = 'pipe-status pass-cons';
+        document.getElementById('pipe-stage-consumption').style.opacity = '1';
+        document.getElementById('arrow-2').style.color = 'var(--consumption)';
+        document.getElementById('arrow-2').style.transform = 'scale(1.25)';
+    } else {
+        consStatus.textContent = 'Halted';
+        consStatus.className = 'pipe-status fail';
+        return;
+    }
+
+    // Stage 3: Cashflow
+    const cashScore = shouldWin ? (Math.random() * 1.5) + 1.5 : Math.random() * 2.5;
+    const cashCutoff = shouldWin ? Math.random() * 1.0 : Math.random() * 2.0;
+
+    const cashPass = cashScore >= cashCutoff;
+
+    document.getElementById('pipe-cash-score').textContent = cashScore.toFixed(2);
+    document.getElementById('pipe-cash-cutoff').textContent = cashCutoff.toFixed(2);
+    document.getElementById('pipe-cash-numbers').hidden = false;
+
+    const cashStatus = document.getElementById('pipe-cash-status');
+    if (cashPass) {
+        cashStatus.textContent = 'Passed';
+        cashStatus.className = 'pipe-status pass-cash';
+        document.getElementById('pipe-stage-cashflow').style.opacity = '1';
+        document.getElementById('arrow-3').style.color = 'var(--cashflow)';
+        document.getElementById('arrow-3').style.transform = 'scale(1.25)';
+    } else {
+        cashStatus.textContent = 'Halted';
+        cashStatus.className = 'pipe-status fail';
+        return;
+    }
+
+    // Stage 4: Self-Funding
+    document.getElementById('pipe-stage-selffunding').style.opacity = '1';
+    document.getElementById('pipe-stage-selffunding').classList.add('won');
+    document.getElementById('pipe-self-status').textContent = 'Self-funding achieved';
+    document.getElementById('pipe-self-status').className = 'pipe-status won-self';
 });
 </script>
 </body>
