@@ -54,29 +54,39 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--bod
 /* header right actions */
 .header-right{display:flex;align-items:center;gap:12px}
 
-.cs-dropdown-wrap{position:relative}
-.cs-dropdown-trigger{display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 var(--body);color:#FFFFFF!important;background:var(--btn-bg, var(--attention));padding:8px 14px;border-radius:10px;border:none;cursor:pointer;transition:opacity .15s,transform .1s,box-shadow .15s,background-color .2s;box-shadow:0 1px 3px rgba(0,0,0,.15);white-space:nowrap}
-.cs-dropdown-trigger:hover{opacity:.92;transform:translateY(-1px);box-shadow:0 3px 8px rgba(0,0,0,.2)}
-.cs-dropdown-trigger:active{transform:scale(.97)}
-:root[data-theme="dark"] .cs-dropdown-trigger{color:#0F171D!important;font-weight:700}
-.cs-caret{transition:transform .2s ease;display:block}
-.cs-dropdown-wrap.open .cs-caret{transform:rotate(180deg)}
+/* Direct Touch Hub (Top Navigation) */
+.touch-hub{margin:0 0 24px;display:flex;flex-direction:column;gap:14px}
+.touch-hub-group{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.touch-hub-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.touch-hub-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:8px;font:700 11.5px var(--head);text-transform:uppercase;letter-spacing:.05em;background:rgba(14,124,134,.12);color:var(--attention)}
+.touch-hub-badge.sim{background:rgba(75,82,214,.12);color:var(--consumption)}
+:root[data-theme="dark"] .touch-hub-badge{background:rgba(60,196,207,.15);color:var(--attention)}
+:root[data-theme="dark"] .touch-hub-badge.sim{background:rgba(139,145,245,.18);color:var(--consumption)}
+.touch-hub-sub{font-size:12.5px;color:var(--muted);font-weight:500}
 
-.cs-dropdown-menu{position:absolute;top:calc(100% + 8px);right:0;width:290px;background:var(--surface);border:1.5px solid var(--line);border-radius:14px;box-shadow:0 10px 28px rgba(0,0,0,.15);padding:6px;display:none;flex-direction:column;gap:2px;z-index:1000}
-:root[data-theme="dark"] .cs-dropdown-menu{box-shadow:0 12px 32px rgba(0,0,0,.55)}
-.cs-dropdown-wrap.open .cs-dropdown-menu{display:flex}
+.touch-hub-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 
-.cs-menu-item{all:unset;cursor:pointer;display:flex;align-items:flex-start;gap:11px;padding:9px 12px;border-radius:10px;transition:background-color .15s;text-align:left;box-sizing:border-box;width:100%}
-.cs-menu-item:hover,.cs-menu-item:focus-visible{background:var(--bg);outline:none}
-.cs-item-dot{width:9px;height:9px;border-radius:50%;margin-top:5px;flex-shrink:0;background:var(--item-c, var(--attention))}
-.cs-item-text{display:flex;flex-direction:column;gap:2px}
-.cs-item-title{font:700 13.5px/1.2 var(--head);color:var(--ink);transition:color .15s}
-.cs-menu-item:hover .cs-item-title{color:var(--item-c, var(--attention))}
-.cs-item-text small{font-size:11.5px;color:var(--muted);line-height:1.35}
+.touch-card{all:unset;cursor:pointer;background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:13px 15px;display:flex;flex-direction:column;gap:5px;transition:border-color .15s,transform .15s,box-shadow .15s;text-align:left;box-sizing:border-box}
+.touch-card:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,.08);border-color:var(--c)}
+.touch-card:focus-visible{outline:3px solid var(--c);outline-offset:2px}
+.touch-card:active{transform:scale(.98)}
 
-@media(max-width:480px){
-  .cs-dropdown-menu{right:0;width:270px;max-width:calc(100vw - 32px)}
-}
+.touch-card-attn{--c:var(--attention)}
+.touch-card-cons{--c:var(--consumption)}
+.touch-card-cash{--c:var(--cashflow)}
+
+.touch-card-tag{font:700 11px var(--head);text-transform:uppercase;letter-spacing:.04em;color:var(--c);display:inline-flex;align-items:center;gap:4px}
+.touch-card-title{font:700 14px/1.25 var(--head);color:var(--ink);transition:color .15s}
+.touch-card:hover .touch-card-title{color:var(--c)}
+.touch-card-desc{font-size:12px;color:var(--muted);line-height:1.4}
+.touch-card-action{font:700 11.5px var(--head);color:var(--c);margin-top:3px;display:inline-flex;align-items:center;gap:4px}
+
+/* Floating Back to Top Button */
+.back-to-top{position:fixed;bottom:24px;right:24px;z-index:999;display:inline-flex;align-items:center;gap:6px;background:var(--surface);color:var(--ink);border:1.5px solid var(--line);padding:9px 15px;border-radius:30px;font:700 13px var(--head);letter-spacing:.02em;box-shadow:0 4px 16px rgba(0,0,0,.14);cursor:pointer;opacity:0;visibility:hidden;transform:translateY(14px);transition:opacity .25s ease,transform .25s ease,visibility .25s ease,border-color .15s,box-shadow .15s,color .15s}
+.back-to-top.visible{opacity:1;visibility:visible;transform:translateY(0)}
+.back-to-top:hover{border-color:var(--attention);color:var(--attention);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.2)}
+.back-to-top:active{transform:scale(.95)}
+:root[data-theme="dark"] .back-to-top{box-shadow:0 6px 20px rgba(0,0,0,.6)}
 
 /* hero banner callout */
 .case-study-hero-banner{margin:0 0 26px}
@@ -254,8 +264,39 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
 .sim-controls span{font-size:13px;font-weight:600;color:var(--muted);margin-right:4px}
 .sim-btn{all:unset;cursor:pointer;padding:6px 14px;border-radius:8px;font-size:13px;font-weight:600;border:1px solid var(--line);background:var(--bg);color:var(--ink);transition:all .15s}
 .sim-btn.active,.sim-btn:hover{background:var(--surface);border-color:var(--attention);color:var(--attention);box-shadow:0 1px 3px rgba(0,0,0,.08)}
-.sim-chart-wrap{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:16px 20px}
-.sim-chart-wrap svg{width:100%;height:auto;display:block}
+.sim-chart-wrap{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:16px 20px;scroll-margin-top:72px}
+.sim-chart-wrap > svg{width:100%;height:auto;display:block}
+
+/* Full Cycle Pipeline */
+#pipeline-visual .metric-box{transition:opacity .4s ease,border-color .15s,box-shadow .3s ease}
+.pipeline-arrow{transition:color .3s ease,transform .3s ease}
+.pipe-status{display:inline-block;font:700 11px var(--head);letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:20px;border:1.5px solid var(--line);color:var(--muted);background:var(--surface)}
+.pipe-status.pass-attn{color:var(--attention);border-color:var(--attention);background:rgba(14,124,134,.12)}
+.pipe-status.pass-cons{color:var(--consumption);border-color:var(--consumption);background:rgba(75,82,214,.12)}
+.pipe-status.pass-cash{color:var(--cashflow);border-color:var(--cashflow);background:rgba(194,106,10,.12)}
+.pipe-status.fail{color:#E05252;border-color:#E05252;background:rgba(224,82,82,.1)}
+:root[data-theme="dark"] .pipe-status.fail{color:#FF6B6B}
+.pipe-status.won-self{color:var(--attention);border-color:var(--attention);background:rgba(14,124,134,.15)}
+#pipe-stage-selffunding.won{border-color:var(--attention);box-shadow:0 0 0 3px rgba(14,124,134,.18)}
+
+/* Full Cycle Pipeline: rail & play button */
+.pipe-rail{display:flex;align-items:stretch;gap:6px}
+.pipe-rail .pipe-stage{flex:1 1 0;min-width:0;text-align:center;padding:10px 8px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.pipe-rail .pipe-stage .pipe-status{margin-top:6px}
+.pipe-rail .pipeline-arrow{align-self:center;flex:0 0 auto;font-size:22px;font-weight:700;line-height:1;color:var(--line);text-align:center}
+.pipe-rail .pipeline-arrow span{display:inline-block;transition:transform .3s ease}
+.pipe-play{all:unset;cursor:pointer;width:34px;height:34px;border-radius:50%;background:var(--attention);color:#FFFFFF;display:inline-flex;align-items:center;justify-content:center;flex:0 0 34px;box-shadow:0 2px 8px rgba(0,0,0,.18);transition:transform .15s ease,opacity .15s;box-sizing:border-box}
+.pipe-play:hover{transform:scale(1.08)}
+.pipe-play:active{transform:scale(.94)}
+.pipe-play:focus-visible{outline:3px solid var(--attention);outline-offset:2px}
+.pipe-play svg{width:18px !important;height:18px !important;min-width:18px !important;min-height:18px !important;max-width:18px !important;max-height:18px !important;display:block !important;margin-left:2px}
+:root[data-theme="dark"] .pipe-play{color:#0F171D}
+@media(max-width:720px){
+  .pipe-rail{flex-direction:column;align-items:stretch;overflow:visible;gap:2px}
+  .pipe-rail .pipe-stage{flex:0 0 auto;padding:12px 14px;text-align:center}
+  .pipe-rail .pipeline-arrow{align-self:center;font-size:20px;margin:2px 0}
+  .pipe-rail .pipeline-arrow span{transform:rotate(90deg)}
+}
 .sim-legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:12.5px;color:var(--muted);margin-top:10px}
 .sim-legend i{display:inline-block;width:18px;height:0;vertical-align:middle;margin-right:6px}
 .sim-legend i.meme{border-top:2.5px dashed #E05252}
@@ -305,7 +346,8 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
   .wrap{padding:24px 16px 56px}
   .story-track{margin-left:6px;padding-left:22px;gap:28px}
   .story-marker{left:-35px;width:26px;height:26px;font-size:11px;top:20px}
-  .contrast-grid,.levels-grid,.pipeline-flow,.flywheel-container,.sim-status,.pred-spectrum,.crypto-realities-grid,.dash-grid{grid-template-columns:1fr !important}
+  .contrast-grid,.levels-grid,.pipeline-flow,.flywheel-container,.sim-status,.pred-spectrum,.crypto-realities-grid,.dash-grid,.touch-hub-grid{grid-template-columns:1fr !important}
+  .touch-hub-group{padding:14px 14px}
   .metrics-grid,.metrics-grid-7,.metrics-grid-9{grid-template-columns:1fr 1fr}
   .story-step{padding:18px 16px}
 }
@@ -326,7 +368,7 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
   .contrast-list li span.label{min-width:0;font-size:12px;font-weight:600}
   .sim-formula{font-size:12px;padding:8px 10px}
   .sim-chart-wrap{padding:12px 10px}
-  .cs-dropdown-trigger{padding:6px 10px;font-size:12px}
+  .back-to-top{bottom:18px;right:18px;padding:8px 13px;font-size:12px}
   .theme-toggle{width:34px;height:34px}
   .brand-logo{width:30px;height:30px}
   .brand-name{font-size:17px}
@@ -351,38 +393,6 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
       <span class="brand-name">RanchiMall</span>
     </a>
     <div class="header-right">
-      <div class="cs-dropdown-wrap" id="cs-dropdown-wrap">
-        <button class="cs-dropdown-trigger" id="cs-dropdown-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Select Case Study">
-          <span>Case Studies</span>
-          <svg class="cs-caret" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </button>
-
-        <div class="cs-dropdown-menu" id="cs-dropdown-menu" role="menu" aria-label="Case Studies">
-          <button class="cs-menu-item" type="button" role="menuitem" data-target-tab="t-attention" data-target-scroll="case-study" style="--item-c:var(--attention)">
-            <span class="cs-item-dot"></span>
-            <div class="cs-item-text">
-              <strong class="cs-item-title">Attention</strong>
-              <small>Why 10 Engaged Views Beat 1,000,000 Views</small>
-            </div>
-          </button>
-          <button class="cs-menu-item" type="button" role="menuitem" data-target-tab="t-consumption" data-target-scroll="case-study-consumption" style="--item-c:var(--consumption)">
-            <span class="cs-item-dot"></span>
-            <div class="cs-item-text">
-              <strong class="cs-item-title">Consumption</strong>
-              <small>Why 1,000 Builders Beat 100,000 Churn Users</small>
-            </div>
-          </button>
-          <button class="cs-menu-item" type="button" role="menuitem" data-target-tab="t-cashflow" data-target-scroll="case-study-cashflow" style="--item-c:var(--cashflow)">
-            <span class="cs-item-dot"></span>
-            <div class="cs-item-text">
-              <strong class="cs-item-title">Cashflow</strong>
-              <small>Why Recurring Cashflow Beats One-Time Windfalls</small>
-            </div>
-          </button>
-        </div>
-      </div>
       <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark and light theme" title="Toggle theme">
         <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="4"></circle>
@@ -407,9 +417,70 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
   <p class="kicker">Attention, Consumption, Cashflow</p>
   <p class="sub">Three layers of the same loop. Each one has to grow on average over time.</p>
 
+  <!-- DIRECT TOUCH HUB (Case Studies & Score Simulators) -->
+  <section class="touch-hub" aria-label="Quick Access Touch Panels">
+    <div class="touch-hub-group">
+      <div class="touch-hub-head">
+        <span class="touch-hub-badge">📖 Case Studies</span>
+        <span class="touch-hub-sub">10-Year Deep Dives &amp; Economic Models</span>
+      </div>
+      <div class="touch-hub-grid">
+        <button type="button" class="touch-card touch-card-attn" data-target-tab="t-attention" data-target-scroll="case-study">
+          <span class="touch-card-tag">● Attention Model</span>
+          <strong class="touch-card-title">10 Engaged Views vs. 1M Views</strong>
+          <span class="touch-card-desc">Audience quality &amp; Navier–Stokes vs Doge meme</span>
+          <span class="touch-card-action">Explore Case Study →</span>
+        </button>
+
+        <button type="button" class="touch-card touch-card-cons" data-target-tab="t-consumption" data-target-scroll="case-study-consumption">
+          <span class="touch-card-tag">● Consumption Model</span>
+          <strong class="touch-card-title">1,000 Builders vs. 100K Churn</strong>
+          <span class="touch-card-desc">7 Rules of utility &amp; compute-burn vs retention</span>
+          <span class="touch-card-action">Explore Case Study →</span>
+        </button>
+
+        <button type="button" class="touch-card touch-card-cash" data-target-tab="t-cashflow" data-target-scroll="case-study-cashflow">
+          <span class="touch-card-tag">● Cashflow Model</span>
+          <strong class="touch-card-title">Recurring Cash vs. One-Time Windfall</strong>
+          <span class="touch-card-desc">Self-Funding Ratio &amp; blockchain realities</span>
+          <span class="touch-card-action">Explore Case Study →</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="touch-hub-group">
+      <div class="touch-hub-head">
+        <span class="touch-hub-badge sim">⚡ Score Simulators</span>
+        <span class="touch-hub-sub">Interactive Weighting &amp; Anti-Bot Calculations</span>
+      </div>
+      <div class="touch-hub-grid">
+        <button type="button" class="touch-card touch-card-attn" data-target-tab="t-attention" data-target-scroll="sim-attention">
+          <span class="touch-card-tag">⚡ Attention Simulator</span>
+          <strong class="touch-card-title">Attention Score Model</strong>
+          <span class="touch-card-desc">High (3pt), Med (1pt), Low (0.1pt) weighting</span>
+          <span class="touch-card-action">Launch Simulator →</span>
+        </button>
+
+        <button type="button" class="touch-card touch-card-cons" data-target-tab="t-consumption" data-target-scroll="sim-consumption">
+          <span class="touch-card-tag">⚡ Consumption Simulator</span>
+          <strong class="touch-card-title">Consumption Score Model</strong>
+          <span class="touch-card-desc">Anti-bot 5x cap filter &amp; FLO ID unique users</span>
+          <span class="touch-card-action">Launch Simulator →</span>
+        </button>
+
+        <button type="button" class="touch-card touch-card-cash" data-target-tab="t-cashflow" data-target-scroll="sim-cashflow">
+          <span class="touch-card-tag">⚡ Cashflow Simulator</span>
+          <strong class="touch-card-title">Cashflow Quality Score Model</strong>
+          <span class="touch-card-desc">Recurring predictability vs volatile windfall</span>
+          <span class="touch-card-action">Launch Simulator →</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
   <!-- FULL CYCLE PIPELINE (horizontal) -->
   <div class="sim-chart-wrap" style="margin-bottom: 16px; padding: 16px;">
-    <div class="sim-controls" style="justify-content: space-between; margin-bottom: 12px;">
+    <div class="sim-controls" style="justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: nowrap;">
       <span style="font-weight: 700; color: var(--ink); font-size: 16px;">Full Cycle Pipeline</span>
       <button class="pipe-play" id="simulate-full-cycle-btn" type="button" aria-label="Run winning cycle" title="Run winning cycle">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
@@ -459,7 +530,7 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
     </a>
   </div>
     <!-- Attention Simulator -->
-    <div class="sim-chart-wrap" style="margin-bottom: 24px;">
+    <div class="sim-chart-wrap" id="sim-attention" style="margin-bottom: 24px;">
       <div class="sim-controls">
         <span>Attention Score Simulator</span>
         <button class="sim-btn active" id="simulate-attention-btn" type="button">Generate Random Inputs</button>
@@ -757,7 +828,7 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
     </div>
 
     <!-- Consumption Simulator -->
-    <div class="sim-chart-wrap" style="margin-bottom: 24px;">
+    <div class="sim-chart-wrap" id="sim-consumption" style="margin-bottom: 24px;">
       <div class="sim-controls">
         <span>Consumption Score Simulator</span>
         <button class="sim-btn active" id="simulate-consumption-btn" type="button">Generate Random Inputs</button>
@@ -1059,7 +1130,7 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
     </div>
 
     <!-- Cashflow Simulator -->
-    <div class="sim-chart-wrap" style="margin-bottom: 24px;">
+    <div class="sim-chart-wrap" id="sim-cashflow" style="margin-bottom: 24px;">
       <div class="sim-controls">
         <span>Cashflow Repeatability Simulator</span>
         <button class="sim-btn active" id="simulate-cashflow-btn" type="button">Generate Random Inputs</button>
@@ -1466,8 +1537,15 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
 
       </div>
     </div>
-
   </section>
+
+  <!-- Floating Back to Top Button -->
+  <button class="back-to-top" id="back-to-top" type="button" aria-label="Go to top of page" title="Go to top">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+    <span>Top</span>
+  </button>
 </main>
 
 <script>
@@ -1556,16 +1634,6 @@ function select(t, scrollTargetId = null){
     if(panel) panel.hidden=!on;
   });
   t.focus({ preventScroll: true });
-  const csBtn = document.getElementById('cs-dropdown-btn');
-  if(csBtn){
-    if(t.id === 't-attention'){
-      csBtn.style.setProperty('--btn-bg', 'var(--attention)');
-    } else if(t.id === 't-consumption'){
-      csBtn.style.setProperty('--btn-bg', 'var(--consumption)');
-    } else if(t.id === 't-cashflow'){
-      csBtn.style.setProperty('--btn-bg', 'var(--cashflow)');
-    }
-  }
   if(scrollTargetId){
     const el = document.getElementById(scrollTargetId);
     if(el){
@@ -1578,43 +1646,31 @@ function select(t, scrollTargetId = null){
   }
 }
 
-// Case Studies dropdown
-const csWrap = document.getElementById('cs-dropdown-wrap');
-const csBtn = document.getElementById('cs-dropdown-btn');
-if(csBtn && csWrap){
-  csBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const isOpen = csWrap.classList.toggle('open');
-    csBtn.setAttribute('aria-expanded', isOpen);
-  });
-
-  document.addEventListener('click', (e) => {
-    if(!csWrap.contains(e.target)){
-      csWrap.classList.remove('open');
-      csBtn.setAttribute('aria-expanded', 'false');
+// Direct Touch Hub navigation
+document.querySelectorAll('.touch-card').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const targetTabId = btn.getAttribute('data-target-tab');
+    const targetScrollId = btn.getAttribute('data-target-scroll');
+    const tabEl = document.getElementById(targetTabId);
+    if(tabEl){
+      select(tabEl, targetScrollId);
     }
   });
+});
 
-  document.addEventListener('keydown', (e) => {
-    if(e.key === 'Escape' && csWrap.classList.contains('open')){
-      csWrap.classList.remove('open');
-      csBtn.setAttribute('aria-expanded', 'false');
-      csBtn.focus();
+// Floating Go to Top button
+const backToTopBtn = document.getElementById('back-to-top');
+if(backToTopBtn){
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 280){
+      backToTopBtn.classList.add('visible');
+    } else {
+      backToTopBtn.classList.remove('visible');
     }
-  });
+  }, { passive: true });
 
-  const menuItems = csWrap.querySelectorAll('.cs-menu-item');
-  menuItems.forEach(item => {
-    item.addEventListener('click', () => {
-      const targetTabId = item.getAttribute('data-target-tab');
-      const targetScrollId = item.getAttribute('data-target-scroll');
-      const tabEl = document.getElementById(targetTabId);
-      if(tabEl){
-        select(tabEl, targetScrollId);
-      }
-      csWrap.classList.remove('open');
-      csBtn.setAttribute('aria-expanded', 'false');
-    });
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
 tabs.forEach((b,i)=>{b.onclick=()=>select(b);
