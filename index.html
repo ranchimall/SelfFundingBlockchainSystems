@@ -148,10 +148,10 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
   .row .k{display:block}
 }
 @media (max-width:540px){
-  .tabs{grid-template-columns:repeat(3,auto);justify-content:center;gap:8px}
-  .tab{min-width:0;padding:8px 12px}
-  .tab b{font-size:13px}
-  .tab svg{display:none}
+  .tabs{grid-template-columns:repeat(3,1fr);justify-content:stretch;gap:6px}
+  .tabs .tab{padding:8px 6px 6px}
+  .tabs .tab b{font-size:12px}
+  .tabs .tab svg{display:block;height:22px;margin-top:4px}
 }
 /* Storyboard Section */
 .pill-link{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:600;color:var(--attention);text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:3px 12px;margin-top:6px;transition:border-color .15s,background-color .15s}
@@ -270,6 +270,18 @@ h1{font:700 clamp(30px,5vw,46px)/1.08 var(--head);letter-spacing:-.02em;margin:0
 .sim-formula{margin-top:10px;padding:10px 14px;border-radius:10px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--attention);font-family:monospace;font-size:14.5px;font-weight:700;color:var(--ink);line-height:1.5;white-space:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin;max-width:100%;box-sizing:border-box}
 .sim-formula-cons{border-left-color:var(--consumption)}
 .sim-formula-cash{border-left-color:var(--cashflow)}
+
+/* Simulator output rows (shared by Attention / Consumption / Cashflow) */
+.sim-row{display:flex;justify-content:space-between;align-items:baseline;gap:2px 12px;padding:6px 0;border-bottom:1px dashed var(--line)}
+.sim-row-label{color:var(--muted)}
+.sim-row-value{font-weight:600;white-space:nowrap}
+.sim-total{display:flex;justify-content:space-between;align-items:baseline;gap:2px 12px;padding:8px 0;font-weight:700;font-size:15px;border-top:2px solid var(--line);margin-top:8px}
+@media(max-width:540px){
+  .sim-row{display:block;padding:7px 0}
+  .sim-row-value{display:block;text-align:right;margin-top:1px}
+  .sim-total{display:block}
+  .sim-total .sim-row-value{font-size:16px;margin-top:2px}
+}
 
 /* Full Cycle Pipeline */
 #pipeline-visual .metric-box{transition:opacity .4s ease,border-color .15s,box-shadow .3s ease}
@@ -1877,21 +1889,21 @@ simCashButtons.forEach((btn, idx) => {
 // --- Random Attention & Consumption Simulators ---
 
 function formatSimRow(label, value, points, colorVar) {
-    const color = colorVar ? `style="color: ${colorVar}; font-weight: 600;"` : '';
-    const pointsText = points !== null ? `(${points.toFixed(1)} pts)` : '';
+    const color = colorVar ? `style="color: ${colorVar};"` : '';
+    const pointsText = points !== null ? ` (${points.toFixed(1)} pts)` : '';
     return `
-        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px; padding: 6px 0; border-bottom: 1px dashed var(--line);">
-            <span style="color: var(--muted);">${label}</span>
-            <span ${color}>${value.toLocaleString()} ${pointsText}</span>
+        <div class="sim-row">
+            <span class="sim-row-label">${label}</span>
+            <span class="sim-row-value" ${color}>${value.toLocaleString()}${pointsText}</span>
         </div>
     `;
 }
 
 function formatSimTotal(label, value, colorVar) {
     return `
-        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px; padding: 8px 0; font-weight: 700; font-size: 15px; border-top: 2px solid var(--line); margin-top: 8px;">
+        <div class="sim-total">
             <span>${label}</span>
-            <span style="color: ${colorVar};">${value}</span>
+            <span class="sim-row-value" style="color: ${colorVar};">${value}</span>
         </div>
     `;
 }
